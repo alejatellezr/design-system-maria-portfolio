@@ -4,10 +4,10 @@
 
 [1m@storybook/core v8.6.12
 [22m
-info => Cleaning outputDir: [36mC:\Users\user\AppData\Local\Temp\chromatic--24596-KPQiAVTFeiQV[39m
+info => Cleaning outputDir: [36mC:\Users\user\AppData\Local\Temp\chromatic--25948-1YekCzI80fxl[39m
 info => Loading presets
 info => Building manager..
-info => Manager built ([38;2;181;126;229m150 ms[39m)
+info => Manager built ([38;2;181;126;229m141 ms[39m)
 info => Building preview..
 info Addon-docs: using MDX3
 info => Using implicit CSS loaders
@@ -26,5 +26,5 @@ WARN       runtime~main.6685e72b.iframe.bundle.js
 WARN       730.7a0a1500.iframe.bundle.js
 WARN       main.4df707f6.iframe.bundle.js
 WARN 
-info => Preview built ([38;2;181;126;229m9.65 s[39m)
-info => Output directory: C:\Users\user\AppData\Local\Temp\chromatic--24596-KPQiAVTFeiQV
+info => Preview built ([38;2;181;126;229m9.75 s[39m)
+info => Output directory: C:\Users\user\AppData\Local\Temp\chromatic--25948-1YekCzI80fxl
