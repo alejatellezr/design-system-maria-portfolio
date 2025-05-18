@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap');
+
+:root {
+    --font-family: 'Cabin', sans-serif;
+    --font-family-graphs: Arial, Helvetica, sans-serif;
+
+    --font-weight-regular: Regular;
+    --font-weight-bold: Bold;
+    --font-weight-italic: Italic;
+
+	--font-size-default: 16px;
+	--font-size-xs: 12px;
+	--font-size-sm: 14px;
+	--font-size-m: 26px;
+	--font-size-xl: 42px;
+
+    --color-text-title: #111111;
+	--color-text-default: #313131;
+	--color-text-disable: var(--color-disable);
+
+    --line-height-xs: 18px;
+	--line-height-sm: 20px;
+	--line-height-default: 22px;
+	--line-height-m: 26px;
+	--line-height-ml: 38px;
+	--line-height-xl: 48px;
+
+	--letter-spacing: 0px;
+
+    --color-white: #FFFFFF;
+	--color-black: #000000;
+	--color-primary: var(--color-white);
+	--color-secondary: var(--color-black);
+	--color-disable: #adada8;
+    --color-highlight: #1E73F8;
+
+	--surface-primary: var(--color-white);
+	--surface-secondary: var(--color-black);
+	--surface-third: #242222;
+	--surface-fourth: #fafafa;
+	--surface-fifth: #f2feff;
+	--surface-dialog-mask: #24222280;
+	
+	--color-icon-default: #313131;
+	--color-icon-hover: var(--color-highlight);
+	--color-icon-disable: var(--color-disable);
+
+
+	--shadow-global-position-x: 0px;
+	--shadow-global-position-y: 4px;
+	--shadow-global-blur: 4px;
+	--shadow-global-spread: 4px;
+	--shadow-global-color: #00000026;
+
+	--size-global-stroke-width: 1px;
+	--size-none-stroke-width: 0px;
+	--size-bold-stroke-width: 4px;    
+	--size-input-stroke-width: 2px;
+
+	--size-global-default-width: 40px;
+	--size-global-default-height: 45px;
+	--size-global-inputs-min-width: 80px;
+	--size-global-inputs-max-width: 1200px;
+
+	--size-switch-height: 16px;
+	--size-switch-width: 28px;
+	--size-switch-ball: 8px;
+
+	--size-global-icon-width: 24px;
+	--size-global-icon-height: 24px;
+	--size-xs-icon-width: 16px;
+	--size-xs-icon-height: 16px;
+	--size-xxs-icon-width: 10px;
+	--size-xxs-icon-height: 10px;
+	--size-l-icon-width: 32px;
+	--size-l-icon-height: 32px;
+	--size-xl-icon-width: 36px;
+	--size-xl-icon-height: 36px;
+
+    --gap-none: 0px;
+	--gap-negative: -1px;
+	--gap-xs: 4px;
+	--gap-xxs: 6px;
+	--gap-s: 8px;
+	--gap-m: 12px;
+	--gap-ml: 16px;
+	--gap-l: 20px;
+	--gap-xl: 24px;
+	--gap-xxl: 32px;
+	--gap-xxxl: 50px;
+	--gap-negative-menu: -16px;
+
+	--size-global-dropdown-min-width: 250px;
+	--size-global-dropdown-max-width: 500px;
+	--size-message-min-height: 40px;
+	--size-message-max-height: 450px;
+	--size-global-message-min-width: 500px;
+	--size-global-message-medium-width: 800px;
+	--size-global-message-max-width: 1000px;
+
+	--color-link-default: var(--color-highlight);
+	--color-link-hover: var(--color-text-title);
+	--color-link-disabled: var(--color-disable);
+
+	--line-height-xxs: 16px;
+
+	--border-radius-none: 0px;
+	--border-radius-xxs: 2px;
+	--border-radius-xs: 4px;
+	--border-radius-s: 8px;
+	--border-radius-sm: 10px;
+	--border-radius-default: 12px;
+	--border-radius-m: 16px;
+	--border-radius-total: 100px;
+
+	--graph-color-1: #E41655;
+	--graph-color-2: #1e73f8;
+	--graph-color-3: #ffbf00;
+	--graph-color-4: #1ad430;
+	--graph-color-5: #9700a7;
+	--graph-color-6: #ff7300;
+	--graph-color-7: #f598bb;
+	--graph-color-8: #7c56f1;
+	--graph-color-9: #121a52;
+	--graph-color-10: #000000;
+	--graph-color-other: #D5D6C7;
+
+	--color-border-primary: #e9e9e6;
+	--color-border-secondary: #f2f2f2;
+	--color-border-graph: #f2f2f2;
+	--color-border-third: var(--color-highlight);
+
+	--color-error: #d70000;
+	--color-success: #0aa81c;
+	--color-warning: #e78d05;
+	--color-background-error: #ffe0e0;
+	--color-background-success: #dbffdf;
+	--color-background-warning: #ffeac9;
+
+	--color-grid-even-default: var(--color-white);
+	--color-grid-odd-default: #f9f9f9;
+	--color-grid-even-hover: #f5f5f5;
+	--color-grid-odd-hover: #e4e4e4;
+	--size-grid-min-width: 40px;
+	--size-grid-min-height: 50px;
+	--size-grid-default-height: 50px;
+	--size-grid-max-width: 1800px;
+	--size-grid-max-height: 120px;
+	--size-grid-default-width: 150px;
+
+	--button-solid-background-default: var(--color-secondary);
+	--button-solid-border-default: var(--color-secondary);
+	--button-solid-text-default: var(--color-white);
+
+	--button-solid-background-hover: var(--color-highlight);
+	--button-solid-border-hover: var(--color-highlight);
+	--button-solid-text-hover: var(--color-white);
+
+	--button-solid-background-disable: var(--surface-fourth);
+	--button-solid-border-disable: var(--surface-fourth);
+	--button-solid-text-disable: var(--color-disable);
+
+	--button-outline-background-default: var(--color-white);
+	--button-outline-border-default: var(--color-secondary);
+	--button-outline-text-default: var(--color-secondary);
+    
+	--button-outline-background-hover: var(--color-highlight);
+	--button-outline-border-hover: var(--color-highlight);
+	--button-outline-text-hover: var(--color-white);
+
+	--button-outline-background-disable: var(--surface-primary);
+	--button-outline-border-disable: var(--color-border-primary);
+	--button-outline-text-disable: var(--color-disable);
+
+	--button-flat-background-default: var(--surface-primary);
+	--button-flat-border-default: var(--surface-primary);
+	--button-flat-text-default: var(--color-secondary);
+
+	--button-flat-background-hover: var(--surface-fifth);
+	--button-flat-border-hover: var(--surface-fifth);
+	--button-flat-text-hover: var(--color-highlight);
+
+	--button-flat-background-disable: var(--surface-fourth);
+	--button-flat-border-disable: var(--surface-fourth);
+	--button-flat-text-disable: var(--color-disable);
+
+
+	--size-stepper-width: 140px;
+	--size-stepper-line-width: 70px;
+
+	--size-desktop-min-width: 1000px;
+	--size-desktop-medium-width: 1440px;
+	--size-desktop-max-width: 1900px;
+
+	--size-mobile-bar-height: 60px;
+	--size-mobile-width: 450px;
+
+	--size-desktop-menu-min-height: 900px;
+	--size-desktop-menu-min-width: 280px;
+	--size-desktop-menu-collapse-width: 90px;
+	--size-desktop-menu-max-width: 400px;
+
+    --base-transition: all 0.3s ease-in-out;
+}

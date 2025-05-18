@@ -1,0 +1,54 @@
+@import "/stories/styles/abstracts/variables.scss";
+@import "/stories/styles/abstracts/mixins.scss";
+
+.x-button {
+  @include flex-center;
+  cursor: pointer;
+  border-width: var(--size-global-stroke-width);
+  border-style: solid;
+  border-radius: var(--border-radius-m);
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-default);
+  line-height: var(--line-height-sm);
+  height: var(--size-global-default-height);
+  transition: var(--base-transition);
+  padding: var(--border-radius-m);
+}
+
+.x-button--solid {
+  background-color: var(--button-solid-background-default);
+  color: var(--button-solid-text-default);
+  border-color: var(--button-solid-border-default);
+
+  &:hover{
+    background-color: var(--button-solid-background-hover);
+    color: var(--button-solid-text-hover);
+    border-color: var(--button-solid-border-hover);
+  }
+}
+
+.x-button--outline {
+  background-color: var(--button-outline-background-default);
+  color: var(--button-outline-text-default);
+  border-color: var(--button-outline-border-default);
+
+  &:hover{
+    background-color: var(--button-outline-background-hover);
+    color: var(--button-outline-text-hover);
+    border-color: var(--button-outline-border-hover);
+  }
+}
+
+.x-button--flat {
+  background-color: var(--button-flat-background-default);
+  color: var(--button-flat-text-default);
+  border-color: var(--button-flat-border-default);
+
+  &:hover{
+    background-color: var(--button-flat-background-hover);
+    color: var(--button-flat-text-hover);
+    border-color: var(--button-flat-border-hover);
+  }
+}
+
