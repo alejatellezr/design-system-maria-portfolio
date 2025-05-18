@@ -1,0 +1,32 @@
+{
+  "devDependencies": {
+    "@storybook/addon-designs": "^8.2.1",
+    "@storybook/addon-essentials": "^8.6.12",
+    "@storybook/addon-interactions": "^8.6.12",
+    "@storybook/addon-onboarding": "^8.6.12",
+    "@storybook/addon-styling-webpack": "^1.0.1",
+    "@storybook/addon-webpack5-compiler-babel": "^3.0.6",
+    "@storybook/addon-webpack5-compiler-swc": "^3.0.0",
+    "@storybook/blocks": "^8.6.12",
+    "@storybook/react": "^8.6.12",
+    "@storybook/react-webpack5": "^8.6.12",
+    "@storybook/test": "^8.6.12",
+    "chromatic": "^11.28.2",
+    "css-loader": "^7.1.2",
+    "image-webpack-loader": "^8.1.0",
+    "prop-types": "^15.8.1",
+    "sass": "^1.89.0",
+    "sass-loader": "^16.0.5",
+    "storybook": "^8.6.12",
+    "style-loader": "^4.0.0",
+    "webpack-bundle-analyzer": "^4.10.2"
+  },
+  "scripts": {
+    "chromatic": "chromatic",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "@tabler/icons-react": "^3.33.0"
+  }
+}
