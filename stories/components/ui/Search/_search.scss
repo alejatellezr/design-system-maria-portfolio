@@ -1,0 +1,96 @@
+@import "/stories/styles/abstracts/variables.scss";
+@import "/stories/styles/abstracts/mixins.scss";
+@import "/stories/styles/abstracts/primitives.scss";
+
+.x-search {
+  @include flex-center;
+  cursor: pointer;
+  border-width: var(--size-global-stroke-width);
+  border-style: solid;
+  gap: var(--gap-s);
+  border-radius: var(--border-radius-m);
+  font-family: var(--font-family);
+  height: var(--size-global-default-height);
+  min-width: var(--size-global-dropdown-min-width);
+  max-width: var(--size-global-dropdown-max-width);
+  transition: var(--base-transition);
+  padding: var(--gap-none) var(--gap-s);
+  background-color: var(--surface-fourth);
+
+  &--icon{
+    width: var(--size-global-icon-width);
+    height: var(--size-global-icon-height);
+    transition: var(--base-transition);
+  }
+
+  &--input {
+    width: 100%;
+    height: 100%;
+    color: var(--color-text-primary);
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 0;
+    transition: var(--base-transition);
+    &::placeholder {
+      color: var(--color-text-disabled);
+    }
+  }
+
+  &--default {
+    border-color: var(--color-border-primary);
+    .x-search {
+      &--input {
+        color: var(--surface-third);
+        &::placeholder {
+          color: var(--color-text-disabled);
+        }
+      }
+    }
+  }
+
+  &--hover,
+  &:hover {
+    border-color: var(--color-highlight);
+    background-color: var(--surface-fifth);
+    .x-search {
+      &--icon{
+        color: var(--color-highlight);
+      }
+      &--input {
+        color: var(--surface-highlight);
+        &::placeholder {
+          color: var(--color-highlight);
+        }
+      }
+    }
+  }
+
+  &--disabled {
+    background-color: var(--surface-fourth);
+    border-color: var(--color-border-secondary);
+    cursor: not-allowed;
+    pointer-events: none;
+    .x-search {
+      &--input {
+        color: var(--color-text-disabled);
+        &::placeholder {
+          color: var(--color-text-disabled);
+        }
+      }
+    }
+  }
+
+  &--error {
+    border-color: var(--color-error);
+    background-color: var(--color-background-error);
+    .x-search {
+      &--input {
+        color: var(--color-error);
+        &::placeholder {
+          color: var(--color-error);
+        }
+      }
+    }
+  }
+}

@@ -6,16 +6,22 @@ const config = {
     "../stories/**/*.mdx",
     "../stories/**/*.stories.@(js|jsx|ts|tsx)"
   ],
+
   addons: [
     "@storybook/addon-webpack5-compiler-swc",
     "@storybook/addon-essentials",
     "@storybook/addon-onboarding",
-    "@storybook/addon-interactions"
+    "@storybook/addon-interactions",
+    "storybook-addon-pseudo-states",
+    '@storybook/addon-mdx-gfm',
+    "@chromatic-com/storybook"
   ],
+
   framework: {
     name: "@storybook/react-webpack5",
     options: {}
   },
+
   webpackFinal: async (config) => {
     config.module.rules.push({
       test: /\.scss$/,
@@ -36,6 +42,14 @@ const config = {
 
     return config;
   },
+
+  docs: {
+    autodocs: true
+  },
+
+  typescript: {
+    reactDocgen: "react-docgen-typescript"
+  }
 };
 
 export default config;

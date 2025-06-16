@@ -1,0 +1,98 @@
+@import "/stories/styles/abstracts/variables.scss";
+@import "/stories/styles/abstracts/mixins.scss";
+@import "/stories/styles/abstracts/primitives.scss";
+
+.x-broadcast{
+    position: relative;
+    @include flex;
+    gap: var(--gap-s);
+    font-family: var(--font-family);
+    padding: var(--gap-m);
+    max-width: var(--size-global-message-max-width);
+    min-width: var(--size-global-message-min-width);
+    border-style: solid;
+    border-width: var(--size-bold-stroke-width);
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+    border-radius: var(--border-radius-none);
+    border-top-right-radius: var(--border-radius-m);
+    border-bottom-right-radius: var(--border-radius-m);
+    background-color: var(--surface-fourth);
+
+    &--icon{
+        width: var(--size-global-icon-width);
+        height: var(--size-global-icon-width);
+    }
+
+    &--message{
+        @include flex;
+        gap: var(--gap-s);        
+        width: calc(100% - var(--gap-s) - var(--size-global-icon-width));
+    }
+
+    &--title{
+        margin: var(--gap-xs) var(--gap-none);
+    }
+
+    &--text{
+        margin: var(--gap-s) var(--gap-none);
+    }
+
+    &--closeButton{
+        height: fit-content;
+        padding: var(--gap-xs);
+    }
+
+    &--neutral{
+        background-color: var(--surface-fifth);
+        border-color: var(--color-border-third);
+        .x-broadcast{           
+            &--icon,
+            &--title,
+            &--text,
+            &--closeButton{
+                color: var(--color-highlight);
+            }
+        }
+    }
+
+    &--success{
+        background-color: var(--color-background-success);
+        border-color: var(--color-success);
+        .x-broadcast{           
+            &--icon,
+            &--title,
+            &--text,
+            &--closeButton{
+                color: var(--color-success);
+            }
+        }
+    }
+
+    &--warning{
+        background-color: var(--color-background-warning);
+        border-color: var(--color-warning);
+        .x-broadcast{           
+            &--icon,
+            &--title,
+            &--text,
+            &--closeButton{
+                color: var(--color-warning);
+            }
+        }
+    }
+
+    &--error{
+        background-color: var(--color-background-error);
+        border-color: var(--color-error);
+        .x-broadcast{           
+            &--icon,
+            &--title,
+            &--text,
+            &--closeButton{
+                color: var(--color-error);
+            }
+        }
+    }
+}

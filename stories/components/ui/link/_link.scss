@@ -1,0 +1,68 @@
+@import "/stories/styles/abstracts/variables.scss";
+@import "/stories/styles/abstracts/mixins.scss";
+@import "/stories/styles/abstracts/primitives";
+
+.x-link {
+  
+  text-decoration: none;
+  font-weight: 500;
+  gap:var(--gap-xs);
+  color: var(--color-link-default);
+  cursor: pointer;
+  transition: var(--base-transition);
+  position: relative;
+
+  &:after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: var(--size-global-stroke-width);
+    background-color: var(--color-link-default);
+    transition: var(--base-transition);
+  }
+
+  &--active{
+    cursor: not-allowed;
+    pointer-events: none;
+    
+    &:after {
+      width: 0;
+    }
+    &:hover{
+      color: var(--color-link-default);
+      &:after {
+        width: 0;
+      }
+    }
+  }
+
+  &--hover,
+  &:hover {
+    color: var(--color-link-hover);
+    &:after {
+      width: 0;
+      background-color: var(--color-link-hover);
+    }
+  }
+
+  &--disabled{
+    color: var(--color-link-disabled);
+    cursor: not-allowed;
+    pointer-events: none;
+
+    &:after {
+      background-color: var(--color-link-disabled);
+    }
+  }
+
+  &--text {
+    color: var(--color-link-default);
+
+    &:hover {
+      color: var(--color-link-hover);
+    }
+  }
+
+}

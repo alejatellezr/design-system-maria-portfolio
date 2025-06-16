@@ -1,0 +1,86 @@
+@import "/stories/styles/abstracts/variables.scss";
+@import "/stories/styles/abstracts/mixins.scss";
+
+.x-accordion {
+  @include flex-space-between;
+  cursor: pointer;
+  border-color: var(--surface-fourth);
+  background-color: var(--surface-fourth);
+  gap: var(--gap-s);
+  transition: var(--base-transition);
+  font-family: var(--font-family);
+  position: relative;
+  min-width: var(--size-global-dropdown-min-width);
+  max-width: var(--size-global-dropdown-max-width);
+  border-color: var(--surface-primary);
+  border-radius: var(--border-radius-m);
+  height: var(--size-global-default-height);
+  transition: var(--base-transition);
+  padding: var(--gap-none) var(--gap-none) var(--gap-none) var(--gap-m);
+
+  &--label {
+    color: var(--color-text-default);
+    font-size: var(--font-size-default);
+    line-height: var(--line-height-sm);
+    font-weight: var(--font-weight-regular);
+    transition: var(--base-transition);
+  }
+
+  &--arrow {
+    width: var(--size-global-icon-width);
+    height: var(--size-global-icon-height);
+    color: var(--surface-secondary);
+    transition: var(--base-transition);
+    transform: scale(0.5);
+    padding: var(--gap-none) var(--gap-s);
+  }
+
+  &:disabled,
+  &--disabled,
+  [disabled] {
+    cursor: not-allowed;
+    pointer-events: none;
+
+    .x-accordion {
+      &--label {
+        color: var(--color-text-disabled);
+      }
+      &--arrow {
+        color: var(--color-icon-disabled);
+      }
+    }
+  }
+
+  &--hover,
+  &:hover {
+    border-color: var(--surface-secondary);
+    background-color: var(--surface-secondary);
+
+    .x-accordion {
+      &--label {
+        color: var(--surface-primary);
+      }
+      &--arrow {
+        color: var(--surface-primary);
+      }
+    }
+  }
+
+  &--active,
+  &:active {
+    border-color: var(--color-border-primary);
+    background-color: var(--surface-primary);
+    border-bottom: var(--gap-none);
+    border-bottom-left-radius: var(--border-radius-none);
+    border-bottom-right-radius: var(--border-radius-none);
+    .x-accordion {
+      &--label {
+        color: var(--surface-secondary);
+      }
+      &--arrow {
+        color: var(--surface-secondary);
+        transform: scale(0.5) rotate(180deg);
+      }
+    }
+  }
+}

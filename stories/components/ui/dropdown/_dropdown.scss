@@ -1,0 +1,172 @@
+@import "/stories/styles/abstracts/variables.scss";
+@import "/stories/styles/abstracts/mixins.scss";
+
+.x-dropdown {
+  @include flex-row(center, center);
+  gap: var(--gap-s);
+  transition: var(--base-transition);
+  font-family: var(--font-family);
+
+  &--column {
+    @include flex-column;
+  }
+
+  &--label {
+    color: var(--color-text-title);
+    font-size: var(--font-size-default);
+    line-height: var(--line-height-l);
+    font-weight: var(--font-weight-bold);
+  }
+
+  &--toggleContainer {
+    position: relative;
+    min-width: var(--size-global-dropdown-min-width);
+    max-width: var(--size-global-dropdown-max-width);
+  }
+
+  &--toggle {
+    cursor: pointer;
+    @include flex-center;
+    width: 100%;
+    height: var(--size-global-default-height);
+    border-width: var(--size-global-stroke-width);
+    border-style: solid;
+    border-radius: var(--border-radius-m);
+    border-color: var(--surface-fourth);
+    background-color: var(--surface-fourth);
+    transition: var(--base-transition);
+  }
+
+  &--select {
+    width: calc(100% - var(--size-global-icon-width) - var(--gap-m));
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-default);
+    line-height: var(--line-height-sm);
+    transition: var(--base-transition);
+    color: var(--color-text-default);
+    padding: var(--gap-none) var(--gap-s) var(--gap-none) var(--gap-m);
+  }
+
+  &--arrow {
+    width: var(--size-global-icon-width);
+    height: var(--size-global-icon-height);
+    color: var(--surface-secondary);
+    transition: var(--base-transition);
+    transform: scale(0.5);
+    padding: var(--gap-none) var(--gap-s);
+  }
+
+  &--menu {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    margin: var(--gap-none);
+    list-style: none;
+    padding: var(--gap-m) var(--gap-none);
+    max-height: var(--size-message-max-height);
+    overflow-y: auto;
+    background-color: var(--surface-primary);
+    box-shadow: var(--shadow-global-position-x) var(--shadow-global-position-y)
+      var(--shadow-global-blur) var(--shadow-global-spread)
+      var(--shadow-global-color);
+    z-index: 10;
+    border-width: var(--size-global-stroke-width);
+    border-style: solid;
+    border-bottom-left-radius: var(--border-radius-m);
+    border-bottom-right-radius: var(--border-radius-m);
+    border-color: var(--color-border-primary);
+    border-top: var(--gap-none);
+  }
+
+  &--option {
+    height: var(--size-global-icon-height);
+    padding: var(--gap-s) var(--gap-ml);
+    border-radius: var(--border-radius-m);
+    color: var(--surface-secondary);
+    cursor: pointer;
+    transition: var(--base-transition);
+
+    &:hover {
+      background-color: var(--surface-fifth);
+      color: var(--color-highlight);
+    }
+
+    &:active,
+    &__active {
+      background-color: var(--color-secondary);
+      color: var(--color-white);
+    }
+  }
+
+  &:disabled,
+  &--disabled,
+  [disabled] {
+    cursor: none;
+    pointer-events: none;
+    .x-dropdown {
+      &--label {
+        color: var(--color-text-disabled);
+      }
+
+      &--toggle {
+        cursor: none;
+        border-color: var(--color-border-secondary);
+        background-color: var(--surface-fourth);
+      }
+
+      &--select {
+        font-weight: var(--font-weight-regular);
+        color: var(--color-text-disabled);
+      }
+
+      &--arrow {
+        color: var(--color-icon-disabled);
+        transform: scale(0.5) rotate(180deg);
+      }
+    }
+  }
+
+  &--hover,
+  &:hover {
+    .x-dropdown {
+      &--toggle {
+        border-color: var(--surface-fifth);
+        background-color: var(--surface-fifth);
+      }
+      &--select {
+        color: var(--color-text-title);
+      }
+      &--arrow {
+        color: var(--color-icon-hover);
+        transform: scale(0.5) rotate(180deg);
+      }
+    }
+  }
+
+  &--active,
+  &:active {
+    .x-dropdown {
+      &--toggle {
+        background-color: var(--surface-primary);
+        color: var(--surface-secondary);
+        border-color: var(--color-border-primary);
+        border-bottom: var(--size-none-stroke-width);
+        border-bottom-left-radius: var(--border-radius-none);
+        border-bottom-right-radius: var(--border-radius-none);
+        box-shadow: var(--shadow-global-position-x)
+          var(--shadow-global-position-y) var(--shadow-global-blur)
+          var(--shadow-global-spread) var(--shadow-global-color);
+      }
+
+      &--select {
+        color: var(--color-text-title);
+      }
+
+      &--arrow {
+        color: var(--surface-secondary);
+        transform: scale(0.5) rotate(180deg);
+      }
+    }
+  }
+}

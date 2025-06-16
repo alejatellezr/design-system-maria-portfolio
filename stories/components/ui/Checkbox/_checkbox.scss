@@ -1,0 +1,99 @@
+@import "/stories/styles/abstracts/variables.scss";
+@import "/stories/styles/abstracts/mixins.scss";
+@import "/stories/styles/abstracts/primitives.scss";
+
+.x-checkbox {
+  @include flex-center;
+  cursor: pointer;
+  user-select: none;
+  gap: var(--gap-xs);
+  transition: var(--base-transition);
+
+  &--input {
+    display: none;
+  }
+
+  &--custom {
+    width: var(--size-xs-icon-width);
+    height: var(--size-xs-icon-height);
+    border-width: 3px;
+    border-style: solid;
+    border-color: var(--color-highlight);
+    border-radius: var(--border-radius-xs);
+    background-color: var(--surface-primary);
+    position: relative;
+    transition: var(--base-transition);
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -8px;
+      left: -8px;
+      width: var(--size-l-icon-width);
+      height: var(--size-l-icon-height);
+      background-color: var(--color-highlight);
+      border-radius: var(--border-radius-xs);
+      opacity: 0;
+      transition: var(--base-transition);
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: -2px;
+      width: 6px;
+      height: 12px;
+      border-style: solid;
+      border-color: var(--color-white);
+      border-width: var(--border-radius-none) 3px 3px var(--border-radius-none);
+      transform: rotate(45deg);
+      border-radius: var(--border-radius-xxs);
+      opacity: 0;
+    }
+  }
+
+  &--input:checked + .x-checkbox--custom {
+    background-color: var(--color-highlight);
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  &--label {
+    color: var(--color-text-default);
+  }
+
+  &:hover {
+    .x-checkbox {
+      &--custom {
+        &::before {
+          opacity: 0.2;
+        }
+        &--label {
+          color: var(--color-text-title);
+        }
+      }
+    }
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    .x-checkbox {
+      &--custom {
+        background-color: var(--surface-fourth);
+        border-color: var(--color-icon-disabled);
+        &::before {
+          background-color: var(--color-icon-disabled);
+        }
+      }
+      &--label {
+        color: var(--color-text-disabled);
+      }
+      &--input:checked + .x-checkbox--custom {
+        background-color: var(--color-icon-disabled);
+      }
+    }
+  }
+}

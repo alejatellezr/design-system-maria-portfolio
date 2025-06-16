@@ -1,0 +1,81 @@
+@import "/stories/styles/abstracts/variables.scss";
+@import "/stories/styles/abstracts/mixins.scss";
+@import "/stories/styles/abstracts/primitives.scss";
+
+.x-switch {
+  @include flex-center;
+  gap: var(--gap-s);
+  cursor: pointer;
+  user-select: none;
+
+  &--input {
+    display: none;
+  }
+
+  &--slider {
+    position: relative;
+    width: var(--size-switch-width);
+    height: var(--size-switch-height);
+    border-radius: var(--border-radius-default);
+    border-width: var(--size-input-stroke-width);
+    border-style: solid;
+    border-color: var(--color-icon-default);
+    background-color: var(--surface-primary);
+    transition: var(--base-transition);
+
+    &::before {
+      content: "";
+      position: absolute;
+      height: var(--size-switch-ball);
+      width: var(--size-switch-ball);
+      left: 2px;
+      bottom: 2px;
+      background-color: var(--color-icon-default);
+      border-radius: var(--border-radius-total);
+      border-width: var(--size-input-stroke-width);
+      border-style: solid;
+      border-color: var(--color-icon-default);
+      transition: var(--base-transition);
+    }
+  }
+
+  &--input:checked + .x-switch--slider {
+    background-color: var(--color-icon-hover);
+    border-color: var(--color-icon-hover);
+    &::before {
+      transform: translateX(12px);
+      background-color: var(--color-white);
+      border-color: var(--color-white);
+    }
+  }
+
+  &--label {
+    color: var(--color-text-default);
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+
+    .x-switch {
+      &--slider {
+        border-color: var(--button-outline-border-disabled);
+        background-color: var(--button-outline-background-disabled);
+
+        &::before {
+          background-color: var(--button-outline-border-disabled);
+          border-color: var(--button-outline-border-disabled);
+          transform: translateX(0);
+        }
+      }
+
+      &--input:checked + .x-switch--slider {
+        background-color: var(--button-outline-background-disabled);
+      }
+
+      &--label {
+        color: var(--color-text-disabled);
+      }
+    }
+  }
+}
