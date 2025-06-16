@@ -16,7 +16,7 @@
 
     --color-text-title: #111111;
 	--color-text-default: #313131;
-	--color-text-disable: var(--color-disable);
+	--color-text-disabled: var(--color-disabled);
 
     --line-height-xs: 18px;
 	--line-height-sm: 20px;
@@ -31,7 +31,7 @@
 	--color-black: #000000;
 	--color-primary: var(--color-white);
 	--color-secondary: var(--color-black);
-	--color-disable: #adada8;
+	--color-disabled: #adada8;
     --color-highlight: #1E73F8;
 
 	--surface-primary: var(--color-white);
@@ -43,14 +43,14 @@
 	
 	--color-icon-default: #313131;
 	--color-icon-hover: var(--color-highlight);
-	--color-icon-disable: var(--color-disable);
+	--color-icon-disabled: var(--color-disabled);
 
 
 	--shadow-global-position-x: 0px;
-	--shadow-global-position-y: 4px;
+	--shadow-global-position-y: 8px;
 	--shadow-global-blur: 4px;
 	--shadow-global-spread: 4px;
-	--shadow-global-color: #00000026;
+	--shadow-global-color: #0000000e;
 
 	--size-global-stroke-width: 1px;
 	--size-none-stroke-width: 0px;
@@ -68,6 +68,8 @@
 
 	--size-global-icon-width: 24px;
 	--size-global-icon-height: 24px;
+	--size-s-icon-width: 18px;
+	--size-s-icon-height: 18px;
 	--size-xs-icon-width: 16px;
 	--size-xs-icon-height: 16px;
 	--size-xxs-icon-width: 10px;
@@ -100,7 +102,7 @@
 
 	--color-link-default: var(--color-highlight);
 	--color-link-hover: var(--color-text-title);
-	--color-link-disabled: var(--color-disable);
+	--color-link-disabled: var(--color-disabled);
 
 	--line-height-xxs: 16px;
 
@@ -111,7 +113,7 @@
 	--border-radius-sm: 10px;
 	--border-radius-default: 12px;
 	--border-radius-m: 16px;
-	--border-radius-total: 100px;
+	--border-radius-total: 100%;
 
 	--graph-color-1: #E41655;
 	--graph-color-2: #1e73f8;
@@ -156,9 +158,9 @@
 	--button-solid-border-hover: var(--color-highlight);
 	--button-solid-text-hover: var(--color-white);
 
-	--button-solid-background-disable: var(--surface-fourth);
-	--button-solid-border-disable: var(--surface-fourth);
-	--button-solid-text-disable: var(--color-disable);
+	--button-solid-background-disabled: var(--surface-fourth);
+	--button-solid-border-disabled: var(--surface-fourth);
+	--button-solid-text-disabled: var(--color-disabled);
 
 	--button-outline-background-default: var(--color-white);
 	--button-outline-border-default: var(--color-secondary);
@@ -168,9 +170,9 @@
 	--button-outline-border-hover: var(--color-highlight);
 	--button-outline-text-hover: var(--color-white);
 
-	--button-outline-background-disable: var(--surface-primary);
-	--button-outline-border-disable: var(--color-border-primary);
-	--button-outline-text-disable: var(--color-disable);
+	--button-outline-background-disabled: var(--surface-primary);
+	--button-outline-border-disabled: var(--color-border-primary);
+	--button-outline-text-disabled: var(--color-disabled);
 
 	--button-flat-background-default: var(--surface-primary);
 	--button-flat-border-default: var(--surface-primary);
@@ -180,9 +182,9 @@
 	--button-flat-border-hover: var(--surface-fifth);
 	--button-flat-text-hover: var(--color-highlight);
 
-	--button-flat-background-disable: var(--surface-fourth);
-	--button-flat-border-disable: var(--surface-fourth);
-	--button-flat-text-disable: var(--color-disable);
+	--button-flat-background-disabled: var(--surface-fourth);
+	--button-flat-border-disabled: var(--surface-fourth);
+	--button-flat-text-disabled: var(--color-disabled);
 
 
 	--size-stepper-width: 140px;

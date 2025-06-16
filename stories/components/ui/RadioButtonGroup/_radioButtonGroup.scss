@@ -1,0 +1,18 @@
+@import "/stories/styles/abstracts/variables.scss";
+@import "/stories/styles/abstracts/mixins.scss";
+@import "/stories/styles/abstracts/primitives.scss";
+
+.x-radio-group {
+  @include flex;
+  gap: var(--gap-s);
+
+  &--column {
+    @include flex-column(flex-start, flex-start);
+  }
+
+  &--row {
+    @include flex-row(flex-start, flex-start);
+    flex-wrap: wrap;
+    gap: var(--gap-ml);
+  }
+}
