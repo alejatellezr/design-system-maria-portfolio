@@ -19,13 +19,15 @@ export const Accordion = ({
 
   return (
     <section
-      className={`x-accordion x-accordion--${status} ${
+      className={`x-accordion x-accordion--${status} 
+      ${
         status === "hover" ? "x-accordion--hover" : ""
-      } ${status === "disabled" ? "x-accordion--disabled" : ""}`}
+      } 
+      ${status === "disabled" ? "x-accordion--disabled" : ""}`}
     >
-      <label className="x-accordion--label">{label}</label>
+      <label className="x-accordion__label">{label}</label>
       <IconTriangleInvertedFilled
-            className={`x-accordion--arrow`}
+            className={`x-accordion__arrow`}
           />
     </section>
   );

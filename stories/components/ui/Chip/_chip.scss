@@ -1,0 +1,48 @@
+@import "/stories/styles/abstracts/variables.scss";
+@import "/stories/styles/abstracts/mixins.scss";
+@import "/stories/styles/abstracts/primitives.scss";
+
+.x-chip {
+  @include flex-center;
+  width: fit-content;
+  background-color: var(--surface-fourth);
+  color: var(--color-text-default);
+  border-width: var(--size-global-stroke-width);
+  border-style: solid;
+  border-color: var(--color-border-secondary);
+  border-radius: var(--border-radius-m);
+  padding: var(--gap-xs) var(--gap-s);
+  gap: var(--gap-s);
+  transition: var(--base-transition);
+  height: var(--size-l-icon-height);
+
+  &__close {
+    &.x-button {
+      background: var(--color-icon-default);
+      border: none;
+      width: var(--size-xs-icon-width);
+      height: var(--size-xs-icon-height);
+      color: var(--surface-primary);
+      padding: var(--gap-none);
+      transition: var(--base-transition);
+    }
+  }
+
+  &:hover {
+    background-color: var(--surface-fifth);
+    color: var(--color-highlight);
+    border-color: var(--color-border-third);
+
+    .x-chip__close {
+      background: var(--color-highlight);
+      color: var(--surface-primary);
+    }
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    border-color: var(--color-border-primary);
+    color: var(--color-text-disabled);
+  }
+}

@@ -9,11 +9,11 @@
   gap: var(--gap-xs);
   transition: var(--base-transition);
 
-  &--input {
+  &__input {
     display: none;
   }
 
-  &--custom {
+  &__custom {
     width: var(--size-xs-icon-width);
     height: var(--size-xs-icon-height);
     border-width: 3px;
@@ -53,7 +53,7 @@
     }
   }
 
-  &--input:checked + .x-checkbox--custom {
+  &__input:checked + .x-checkbox--custom {
     background-color: var(--color-highlight);
     &::after {
       opacity: 1;
@@ -66,7 +66,7 @@
 
   &:hover {
     .x-checkbox {
-      &--custom {
+      &__custom {
         &::before {
           opacity: 0.2;
         }
@@ -81,7 +81,7 @@
     cursor: not-allowed;
     pointer-events: none;
     .x-checkbox {
-      &--custom {
+      &__custom {
         background-color: var(--surface-fourth);
         border-color: var(--color-icon-disabled);
         &::before {
@@ -91,7 +91,7 @@
       &--label {
         color: var(--color-text-disabled);
       }
-      &--input:checked + .x-checkbox--custom {
+      &__input:checked + .x-checkbox--custom {
         background-color: var(--color-icon-disabled);
       }
     }

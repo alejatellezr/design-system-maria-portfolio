@@ -18,7 +18,7 @@
   transition: var(--base-transition);
   padding: var(--gap-none) var(--gap-none) var(--gap-none) var(--gap-m);
 
-  &--label {
+  &__label {
     color: var(--color-text-default);
     font-size: var(--font-size-default);
     line-height: var(--line-height-sm);
@@ -26,7 +26,7 @@
     transition: var(--base-transition);
   }
 
-  &--arrow {
+  &__arrow {
     width: var(--size-global-icon-width);
     height: var(--size-global-icon-height);
     color: var(--surface-secondary);
@@ -42,10 +42,10 @@
     pointer-events: none;
 
     .x-accordion {
-      &--label {
+      &__label {
         color: var(--color-text-disabled);
       }
-      &--arrow {
+      &__arrow {
         color: var(--color-icon-disabled);
       }
     }
@@ -57,10 +57,10 @@
     background-color: var(--surface-secondary);
 
     .x-accordion {
-      &--label {
+      &__label {
         color: var(--surface-primary);
       }
-      &--arrow {
+      &__arrow {
         color: var(--surface-primary);
       }
     }
@@ -74,10 +74,10 @@
     border-bottom-left-radius: var(--border-radius-none);
     border-bottom-right-radius: var(--border-radius-none);
     .x-accordion {
-      &--label {
+      &__label {
         color: var(--surface-secondary);
       }
-      &--arrow {
+      &__arrow {
         color: var(--surface-secondary);
         transform: scale(0.5) rotate(180deg);
       }

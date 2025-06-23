@@ -16,19 +16,28 @@ export const Button = ({
   iconPosition = 'left',
   iconOnly = false,
   className = '',
+  active = false,
   ...props
 }) => {
 
   const Icon = iconName ? TablerIcons[iconName] : null;
   const IconSize = 20;
+  const accessibilityLabel = iconOnly && !label ? iconName : undefined;
   
   return (
     <button
       type="button"
-      className={`x-button x-button--${style} ${
-        status === "hover" ? "--hover" : ""
-      } ${className}`}
+      className={`x-button x-button__${style} 
+      ${
+        status === "hover" ? "x-button--hover" : ""
+      } 
+      ${active ? 'x-button--active' : ''} 
+      ${
+        status === "disabled" ? "x-button--disabled" : ""
+      }
+      ${className}`}
       disabled={status === "disabled"}
+      aria-label={accessibilityLabel}
       {...props}
     >
       {Icon && iconPosition === "left" && (

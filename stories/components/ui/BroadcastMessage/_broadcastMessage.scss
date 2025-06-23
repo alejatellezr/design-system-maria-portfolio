@@ -20,38 +20,41 @@
     border-bottom-right-radius: var(--border-radius-m);
     background-color: var(--surface-fourth);
 
-    &--icon{
+    &__icon{
         width: var(--size-global-icon-width);
         height: var(--size-global-icon-width);
     }
 
-    &--message{
+    &__message{
         @include flex;
         gap: var(--gap-s);        
         width: calc(100% - var(--gap-s) - var(--size-global-icon-width));
     }
 
-    &--title{
+    &__title{
         margin: var(--gap-xs) var(--gap-none);
     }
 
-    &--text{
+    &__text{
         margin: var(--gap-s) var(--gap-none);
     }
 
-    &--closeButton{
-        height: fit-content;
-        padding: var(--gap-xs);
+    &__closeButton{
+        &.x-button{
+            width: var(--size-global-icon-width);
+            height: var(--size-global-icon-width);
+            padding: var(--gap-none);
+        }
     }
 
     &--neutral{
         background-color: var(--surface-fifth);
         border-color: var(--color-border-third);
         .x-broadcast{           
-            &--icon,
-            &--title,
-            &--text,
-            &--closeButton{
+            &__icon,
+            &__title,
+            &__text,
+            &__closeButton{
                 color: var(--color-highlight);
             }
         }
@@ -61,10 +64,10 @@
         background-color: var(--color-background-success);
         border-color: var(--color-success);
         .x-broadcast{           
-            &--icon,
-            &--title,
-            &--text,
-            &--closeButton{
+            &__icon,
+            &__title,
+            &__text,
+            &__closeButton{
                 color: var(--color-success);
             }
         }
@@ -74,10 +77,10 @@
         background-color: var(--color-background-warning);
         border-color: var(--color-warning);
         .x-broadcast{           
-            &--icon,
-            &--title,
-            &--text,
-            &--closeButton{
+            &__icon,
+            &__title,
+            &__text,
+            &__closeButton{
                 color: var(--color-warning);
             }
         }
@@ -87,10 +90,10 @@
         background-color: var(--color-background-error);
         border-color: var(--color-error);
         .x-broadcast{           
-            &--icon,
-            &--title,
-            &--text,
-            &--closeButton{
+            &__icon,
+            &__title,
+            &__text,
+            &__closeButton{
                 color: var(--color-error);
             }
         }
