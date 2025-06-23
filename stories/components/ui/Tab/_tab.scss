@@ -1,0 +1,48 @@
+@import "/stories/styles/abstracts/variables.scss";
+@import "/stories/styles/abstracts/mixins.scss";
+@import "/stories/styles/abstracts/primitives.scss";
+
+.x-tab {
+  height: var(--size-global-default-height);
+  padding: var(--gap-s) var(--gap-xl);
+  border-width: var(--size-global-stroke-width);
+  border-style: solid;
+  border-radius: var(--border-radius-m);
+  cursor: pointer;
+  transition: var(--base-transition);
+
+  &--column {
+    @include flex-column;
+    align-items: flex-start;
+    justify-content: center;
+    border-top-left-radius: var(--border-radius-none);
+    border-bottom-left-radius: var(--border-radius-none);
+    width: 100%;;
+  }
+
+  &--row {
+    @include flex-center;
+    border-bottom-left-radius: var(--border-radius-none);
+    border-bottom-right-radius: var(--border-radius-none);
+  }
+
+  &--default,
+  &--active {
+    background-color: var(--button-solid-background-default);
+    border-color: var(--button-solid-border-default);
+    color: var(--button-solid-text-default);
+  }
+
+  &:hover:not(:disabled) {
+    background-color: var(--button-solid-background-hover);
+    border-color: var(--button-solid-border-hover);
+    color: var(--button-solid-text-hover);
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    background-color: var(--button-solid-background-disabled);
+    border-color: var(--button-solid-border-disabled);
+    color: var(--button-solid-text-disabled);
+  }
+}

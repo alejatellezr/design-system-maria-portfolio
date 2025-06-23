@@ -7,25 +7,25 @@ import "./_link.scss"; // optional: your custom styles
 export const Link = ({
   href,
   label,
-  iconName = null,
+  iconName = 'IconStar',
   iconPosition,
   isExternal = false,
   className = "",
   status,
   ...props
 }) => {
-  const Icon = iconName ? TablerIcons[iconName] : null;
+  const Icon = iconName ? TablerIcons[iconName] : 'IconStar';
 
   const classes = `x-link ${className} x-font-16 x-link--${status}`.trim();
 
   const content = (
     <>
       {iconPosition === "left" && Icon && (
-        <Icon className="x-link--icon x-link--icon-left" size={16} stroke={2} />
+        <Icon className="x-link__icon x-link--icon-left" size={16} stroke={2} />
       )}
-      <span>{label}</span>
+      <span className='x-link__text'>{label}</span>
       {iconPosition === "right" && Icon && (
-        <Icon className="x-link--icon x-link--icon-right" size={16} stroke={2} />
+        <Icon className="x-link__icon x-link--icon-right" size={16} stroke={2} />
       )}
     </>
   );

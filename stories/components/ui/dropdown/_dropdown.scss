@@ -1,8 +1,7 @@
 @import "/stories/styles/abstracts/variables.scss";
 @import "/stories/styles/abstracts/mixins.scss";
 
-.x-dropdown {
-  @include flex-row(center, center);
+.x-dropdown {  
   gap: var(--gap-s);
   transition: var(--base-transition);
   font-family: var(--font-family);
@@ -11,20 +10,24 @@
     @include flex-column;
   }
 
-  &--label {
+  &--row {
+    @include flex-row(center, center);
+  }
+
+  &__label {
     color: var(--color-text-title);
     font-size: var(--font-size-default);
     line-height: var(--line-height-l);
     font-weight: var(--font-weight-bold);
   }
 
-  &--toggleContainer {
+  &__toggleContainer {
     position: relative;
     min-width: var(--size-global-dropdown-min-width);
     max-width: var(--size-global-dropdown-max-width);
   }
 
-  &--toggle {
+  &__toggle {
     cursor: pointer;
     @include flex-center;
     width: 100%;
@@ -37,7 +40,7 @@
     transition: var(--base-transition);
   }
 
-  &--select {
+  &__select {
     width: calc(100% - var(--size-global-icon-width) - var(--gap-m));
     font-weight: var(--font-weight-regular);
     font-size: var(--font-size-default);
@@ -47,7 +50,7 @@
     padding: var(--gap-none) var(--gap-s) var(--gap-none) var(--gap-m);
   }
 
-  &--arrow {
+  &__arrow {
     width: var(--size-global-icon-width);
     height: var(--size-global-icon-height);
     color: var(--surface-secondary);
@@ -56,7 +59,7 @@
     padding: var(--gap-none) var(--gap-s);
   }
 
-  &--menu {
+  &__menu {
     position: absolute;
     left: 0;
     top: 100%;
@@ -79,7 +82,7 @@
     border-top: var(--gap-none);
   }
 
-  &--option {
+  &__option {
     height: var(--size-global-icon-height);
     padding: var(--gap-s) var(--gap-ml);
     border-radius: var(--border-radius-m);
@@ -93,7 +96,7 @@
     }
 
     &:active,
-    &__active {
+    &--active {
       background-color: var(--color-secondary);
       color: var(--color-white);
     }
@@ -105,22 +108,22 @@
     cursor: none;
     pointer-events: none;
     .x-dropdown {
-      &--label {
+      &__label {
         color: var(--color-text-disabled);
       }
 
-      &--toggle {
+      &__toggle {
         cursor: none;
         border-color: var(--color-border-secondary);
         background-color: var(--surface-fourth);
       }
 
-      &--select {
+      &__select {
         font-weight: var(--font-weight-regular);
         color: var(--color-text-disabled);
       }
 
-      &--arrow {
+      &__arrow {
         color: var(--color-icon-disabled);
         transform: scale(0.5) rotate(180deg);
       }
@@ -130,14 +133,14 @@
   &--hover,
   &:hover {
     .x-dropdown {
-      &--toggle {
+      &__toggle {
         border-color: var(--surface-fifth);
         background-color: var(--surface-fifth);
       }
-      &--select {
+      &__select {
         color: var(--color-text-title);
       }
-      &--arrow {
+      &__arrow {
         color: var(--color-icon-hover);
         transform: scale(0.5) rotate(180deg);
       }
@@ -147,7 +150,7 @@
   &--active,
   &:active {
     .x-dropdown {
-      &--toggle {
+      &__toggle {
         background-color: var(--surface-primary);
         color: var(--surface-secondary);
         border-color: var(--color-border-primary);
@@ -159,11 +162,11 @@
           var(--shadow-global-spread) var(--shadow-global-color);
       }
 
-      &--select {
+      &__select {
         color: var(--color-text-title);
       }
 
-      &--arrow {
+      &__arrow {
         color: var(--surface-secondary);
         transform: scale(0.5) rotate(180deg);
       }

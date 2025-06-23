@@ -12,20 +12,20 @@ const Checkbox = ({
   return (
     <label className={`x-checkbox ${disabled ? 'x-checkbox--disabled' : ''} x-checkbox--label-${labelPosition}`}>
       {label && labelPosition === 'left' && (
-        <span className="x-checkbox--label x-font-16">{label}</span>
+        <span className="x-checkbox__label x-font-16">{label}</span>
       )}
 
       <input
         type="checkbox"
-        className="x-checkbox--input"
+        className="x-checkbox__input"
         checked={checked}
         onChange={(e) => onChange?.(e.target.checked)}
         disabled={disabled}
       />
-      <span className="x-checkbox--custom" />
+      <span className="x-checkbox__custom" />
 
       {label && labelPosition === 'right' && (
-        <span className="x-checkbox--label x-font-16">{label}</span>
+        <span className="x-checkbox__label x-font-16">{label}</span>
       )}
     </label>
   );

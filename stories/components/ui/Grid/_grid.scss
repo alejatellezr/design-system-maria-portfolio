@@ -1,0 +1,52 @@
+.x-grid {
+  overflow-x: auto;
+  font-family: sans-serif;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  &__header-row,
+  &__filter-row,
+  &__row {
+    background-color: white;
+  }
+
+  &__header-row {
+    background: #f8f8f8;
+    font-weight: bold;
+  }
+
+  &__filter-row {
+    background: #f0f0f0;
+  }
+
+  &__cell {
+    padding: 10px;
+    border: 1px solid #eee;
+
+    &--header {
+      text-align: left;
+    }
+
+    &--filter {
+      padding: 6px;
+    }
+  }
+
+  input[type='checkbox'] {
+    cursor: pointer;
+  }
+
+  select,
+  input[type='text'] {
+    width: 100%;
+    padding: 4px 6px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+}

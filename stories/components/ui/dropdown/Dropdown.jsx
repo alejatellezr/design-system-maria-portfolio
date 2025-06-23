@@ -24,25 +24,25 @@ export const Dropdown = ({
     <div
       className={`x-dropdown x-dropdown--${status} ${status === "hover" ? "x-dropdown--hover" : ""} ${isOpen ? "x-dropdown--active" : ""} ${status === "disabled" ? "x-dropdown--disabled" : ""} x-dropdown--${direction}`}
     >
-      <label className="x-dropdown--label">{label}</label>
-      <div className="x-dropdown--toggleContainer">
+      <label className="x-dropdown__label">{label}</label>
+      <div className="x-dropdown__toggleContainer">
         <div
-          className={`x-dropdown--toggle`}
+          className={`x-dropdown__toggle`}
           onClick={() => status !== "disabled" && setIsOpen(!isOpen)}
         >
-          <span className={`x-dropdown--select`}>
+          <span className={`x-dropdown__select`}>
             {selectedOption?.label || "Select..."}
           </span>
           <IconTriangleInvertedFilled
-            className={`x-dropdown--arrow`}
+            className={`x-dropdown__arrow`}
           />
         </div>
         {isOpen && (
-          <ul className="x-dropdown--menu">
+          <ul className="x-dropdown__menu">
             {options.map((opt) => (
               <li
                 key={opt.value}
-                className={`x-dropdown--option ${
+                className={`x-dropdown__option ${
                   selected === opt.value ? "x-dropdown--option__active" : ""
                 }`}
                 onClick={() => handleSelect(opt.value)}

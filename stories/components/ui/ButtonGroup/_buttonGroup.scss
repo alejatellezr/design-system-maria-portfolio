@@ -1,0 +1,45 @@
+@import "/stories/styles/abstracts/variables.scss";
+@import "/stories/styles/abstracts/mixins.scss";
+@import "/stories/styles/abstracts/primitives.scss";
+
+.x-button-group {
+  width: fit-content;
+  border-width: var(--size-global-stroke-width);
+  border-style: solid;
+  border-color: var(--color-border-secondary);
+  border-radius: var(--border-radius-m);
+  overflow: hidden;
+
+  .x-button {
+    min-width: var(--size-global-default-width);
+    border-width: var(--size-global-stroke-width);
+    border-style: solid;
+    border-color: var(--color-border-secondary);
+    border-radius: var(--border-radius-none);
+  }
+
+  &--column {
+    @include flex-column(flex-start, flex-start);
+    .x-button {
+      width: 100%;
+      border-left: var(--size-none-stroke-width);
+      border-top: var(--size-none-stroke-width);
+      border-right: var(--size-none-stroke-width);
+      &:last-child {
+        border-bottom: var(--size-none-stroke-width);
+      }
+    }
+  }
+
+  &--row {
+    @include flex-row(flex-start, flex-start);
+    .x-button {
+      border-left: var(--size-none-stroke-width);
+      border-top: var(--size-none-stroke-width);
+      border-bottom: var(--size-none-stroke-width);
+      &:last-child {
+        border-right: var(--size-none-stroke-width);
+      }
+    }
+  }
+}
