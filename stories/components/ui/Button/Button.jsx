@@ -2,6 +2,8 @@ import React from 'react';
 import * as TablerIcons from '@tabler/icons-react';
 import PropTypes from 'prop-types';
 
+
+
 import './_button.scss';
 
 /** Primary UI component for user interaction */
@@ -44,7 +46,7 @@ export const Button = ({
         <Icon size={IconSize} color={iconColor} stroke={iconStroke} />
       )}
 
-      {!iconOnly && label && <span className="x-button__label">{label}</span>}
+      {!iconOnly && label && <span className="x-button__label x-font-16">{label}</span>}
 
       {Icon && iconPosition === "right" && (
         <Icon size={IconSize} color={iconColor} stroke={iconStroke} />

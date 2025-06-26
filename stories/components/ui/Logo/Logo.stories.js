@@ -1,6 +1,7 @@
 // Logo.stories.js
 import React from 'react';
 import { Logo } from './Logo';
+import { useDarkMode } from 'storybook-dark-mode';
 
 export default {
   title: 'UI/Logo',
@@ -10,21 +11,26 @@ export default {
       control: 'radio',
       options: ['logo', 'logotype'],
     },
-    theme: {
-      control: 'radio',
-      options: ['light', 'dark'],
-    },
     width: { control: { type: 'number', min: 40, max: 300, step: 10 } },
     height: { control: { type: 'number', min: 20, max: 100, step: 5 } },
   },
 };
 
-const Template = (args) => <Logo {...args} />;
+const Template = (args) => {
+  const isDark = useDarkMode?.();
+  const resolvedTheme = args.theme ?? (isDark ? 'dark' : 'light');
+  return <Logo {...args} theme={resolvedTheme} />;
+};
 
+export const AutoTheme = Template.bind({});
+AutoTheme.args = {
+  type: 'logotype',
+  width: 120,
+  height: 40,
+};
 export const LogotypeDark = Template.bind({});
 LogotypeDark.args = {
   type: 'logotype',
-  theme: 'dark',
   width: 200,
   height: 40,
 };
