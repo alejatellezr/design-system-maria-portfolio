@@ -1,19 +1,19 @@
 import { fn } from '@storybook/test';
-import { Button } from './Button';
+
+import { ButtonMenuIcon } from './ButtonMenuIcon';
+
 
 export default {
-  title: 'UI/Button',
-  component: Button,
+  title: 'UI/ButtonMenuIcon',
+  component: ButtonMenuIcon,
   parameters: {
-    // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: 'centered',
     pseudo: {
       hover: ['hover'], // Enable hover simulation
     },
   },
-  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   //tags: ['autodocs'],
-  // More on argTypes: https://storybook.js.org/docs/api/argtypes
+
   argTypes: {
     iconName: {
       control: 'text',
@@ -33,7 +33,7 @@ export default {
     },
     status: {
       control: 'radio',
-      options: ['default', 'hover', 'disabled'],
+      options: ['default', 'hover', 'disabled', 'active'],
       description: 'Simulate button status',
     },
 
@@ -44,8 +44,8 @@ export default {
     status: 'default',
     label: 'Button',
     iconPosition: 'left',
-    iconName: 'IconHeart',
-    iconOnly: false,
+    iconName: 'IconBellFilled',
+    iconOnly: true,
     style: 'solid',
    },
 };
