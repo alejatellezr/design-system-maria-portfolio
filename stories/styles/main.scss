@@ -1,6 +1,61 @@
 @import "/stories/styles/abstracts/variables.scss";
 
+// Base body styling
 body {
-  background-color:var(--surface-primary);
+  background-color: var(--surface-primary);
   color: var(--color-text-default);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+// Ensure Storybook UI elements respect our theme
+.sbdocs {
+  background-color: var(--surface-primary);
+  color: var(--color-text-default);
+  
+  // Style docs content
+  .sbdocs-content {
+    background-color: var(--surface-primary);
+    color: var(--color-text-default);
+  }
+  
+  // Style code blocks in docs
+  pre {
+    background-color: var(--surface-fourth) !important;
+    color: var(--color-text-default) !important;
+  }
+  
+  // Style inline code
+  code {
+    background-color: var(--surface-fourth) !important;
+    color: var(--color-text-default) !important;
+  }
+}
+
+// Ensure canvas backgrounds match theme
+.sb-show-main {
+  background-color: var(--surface-primary);
+}
+
+// Dark mode specific overrides for better Storybook integration
+.x-dark-mode {
+  .sbdocs {
+    background-color: var(--surface-primary);
+    color: var(--color-text-default);
+  }
+  
+  .sb-show-main {
+    background-color: var(--surface-primary);
+  }
+}
+
+// Light mode class for consistency (even though it's default)
+.x-light-mode {
+  .sbdocs {
+    background-color: var(--surface-primary);
+    color: var(--color-text-default);
+  }
+  
+  .sb-show-main {
+    background-color: var(--surface-primary);
+  }
 }
