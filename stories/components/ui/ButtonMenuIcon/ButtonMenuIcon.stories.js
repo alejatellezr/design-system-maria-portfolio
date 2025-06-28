@@ -19,17 +19,13 @@ export default {
       control: 'text',
       description: 'Name of the Tabler icon, e.g. IconUser or IconHome',
     },
-    iconPosition: {
-      control: 'radio',
-      options: ['left', 'right'],
-    },
     iconOnly:{
       control: 'boolean',
       description: 'If true, only the icon will be displayed without label',
     },
     style: {
       control: 'select',
-      options: ['solid', 'outline', 'flat'],
+      options: ['primary', 'secondary'],
     },
     status: {
       control: 'radio',
@@ -43,10 +39,10 @@ export default {
     onClick: fn(),
     status: 'default',
     label: 'Button',
-    iconPosition: 'left',
     iconName: 'IconBellFilled',
     iconOnly: true,
-    style: 'solid',
+    visualOnly: 'icon',
+    style: 'primary',
    },
 };
 
@@ -55,51 +51,38 @@ export const Solid = {
   args: {
     primary: true,
     label: 'Button',
-    style:'solid',
-    status: 'default',
+    style:'primary',
+    status: 'active',
   },
 };
 
-export const Outline = {
+
+export const ImageIcon = {
   args: {
+    label: 'Profile',
+    visualOnly: 'image',
+    status: 'primary',
+    showIcon: false,
+    iconImage: 'https://i0.wp.com/www.mariaalejandratellez.com/wp-content/uploads/2025/04/maria-alejandra-tellez-portfolio-image.jpg'
+  },
+};
+
+export const SolidSecondary = {
+  args: {
+    primary: true,
     label: 'Button',
-    style:'outline',
-    status: 'default',
+    style:'secondary',
+    status: 'active',
   },
 };
 
-export const Flat = {
+
+export const ImageIconSecondary = {
   args: {
-    label: 'Button',
-    style:'flat',
-    status: 'default',
+    label: 'Profile',
+    visualOnly: 'image',
+    style: 'secondary',
+    showIcon: false,
+    iconImage: 'https://i0.wp.com/www.mariaalejandratellez.com/wp-content/uploads/2025/04/maria-alejandra-tellez-portfolio-image.jpg'
   },
 };
-
-
-export const RightIcon = {
-  args: {
-    label: 'Next',
-    iconName: 'IconArrowRight',
-    iconPosition: 'right',
-    status: 'default',
-  },
-};
-
-export const LeftIcon = {
-  args: {
-    label: 'Back',
-    iconName: 'IconArrowLeft',
-    iconPosition: 'left',
-    status: 'default',
-  },
-};
-
-export const OnlyIcon = {
-  args: {
-    iconPosition: 'left',
-    status: 'default',
-    iconOnly: true,
-  },
-};
-

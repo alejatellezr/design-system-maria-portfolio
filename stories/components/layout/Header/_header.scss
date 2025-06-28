@@ -1,0 +1,17 @@
+@import "/stories/styles/abstracts/variables.scss";
+@import "/stories/styles/abstracts/mixins.scss";
+@import "/stories/styles/abstracts/primitives.scss";
+
+.x-header{
+    @include flex-space-between;
+    background-color: var(--surface-primary);
+    min-width: var(--size-desktop-min-width);
+    max-width: var(--size-desktop-max-width);
+    padding: var(--gap-s) var(--gap-ml);
+
+    &__right-column{
+        @include flex;
+        gap: var(--gap-s);
+        align-items: center;
+    }
+}
