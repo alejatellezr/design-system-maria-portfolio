@@ -77,17 +77,3 @@ channel.addListener("DARK_MODE", (isDark) => {
     });
   }
 });
-
-// Also listen for global updates
-channel.addListener("updateGlobals", (data) => {
-  if (data.globals && data.globals.theme) {
-    const isDark = data.globals.theme === "dark";
-    const newTheme = isDark ? "dark" : "light";
-    if (newTheme !== currentManagerTheme) {
-      currentManagerTheme = newTheme;
-      addons.setConfig({
-        theme: isDark ? darkTheme : lightTheme,
-      });
-    }
-  }
-});

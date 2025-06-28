@@ -4,43 +4,11 @@ import { useDarkMode } from "storybook-dark-mode";
 import { themes } from "@storybook/theming";
 import "/stories/styles/main.scss";
 
-// Global types for theme switching in toolbar
-export const globalTypes = {
-  theme: {
-    name: "Theme",
-    description: "Global theme for components",
-    defaultValue: "light",
-    toolbar: {
-      icon: "circlehollow",
-      items: [
-        { value: "light", title: "Light Mode", icon: "sun" },
-        { value: "dark", title: "Dark Mode", icon: "moon" },
-      ],
-      showName: true,
-      dynamicTitle: true,
-    },
-  },
-};
-
-// Enhanced decorator to sync storybook-dark-mode with context and apply CSS classes
+// Simplified decorator that only applies CSS classes based on dark mode state
 const withDarkModeSync = (Story, context) => {
   const isDark = useDarkMode();
 
   useEffect(() => {
-    // Sync global theme manually for DocsContainer and other components
-    const expected = isDark ? "dark" : "light";
-    if (context.globals.theme !== expected) {
-      // Update globals to sync with dark mode state
-      context.globals.theme = expected;
-
-      // Emit update to sync toolbar
-      if (window.__STORYBOOK_ADDONS_CHANNEL__) {
-        window.__STORYBOOK_ADDONS_CHANNEL__.emit("updateGlobals", {
-          globals: { theme: expected },
-        });
-      }
-    }
-
     // Apply theme class to document root for manager theming
     document.documentElement.classList.toggle("x-dark-mode", isDark);
 
@@ -91,7 +59,6 @@ const preview = {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
-      exclude: ["theme"], // Hide theme from controls panel since we have the dark mode toggle
     },
     backgrounds: {
       disable: true, // Disable default backgrounds since we handle theming differently
