@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Dropdown } from './Dropdown/Dropdown';
+import { Dropdown } from './Dropdown';
 
 export default {
   title: 'UI/Dropdown',
