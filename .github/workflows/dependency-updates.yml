@@ -1,0 +1,182 @@
+name: 🔄 Dependency Updates
+
+on:
+  schedule:
+    # Run every Monday at 9 AM UTC
+    - cron: '0 9 * * 1'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  dependency-updates:
+    name: 🔄 Update Dependencies
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: 📚 Install dependencies
+        run: npm ci
+        
+      - name: 🔍 Check for updates
+        run: |
+          echo "🔍 Checking for dependency updates..."
+          npm outdated --json > outdated.json || true
+          
+          if [ -s outdated.json ] && [ "$(cat outdated.json)" != "{}" ]; then
+            echo "📦 Updates available:"
+            cat outdated.json
+            echo "HAS_UPDATES=true" >> $GITHUB_ENV
+          else
+            echo "✅ All dependencies are up to date"
+            echo "HAS_UPDATES=false" >> $GITHUB_ENV
+          fi
+          
+      - name: 🔄 Update patch and minor versions
+        if: env.HAS_UPDATES == 'true'
+        run: |
+          echo "🔄 Updating patch and minor versions..."
+          npx npm-check-updates -u --target minor
+          npm install
+          
+      - name: 🧪 Test updates
+        if: env.HAS_UPDATES == 'true'
+        run: |
+          echo "🧪 Testing updated dependencies..."
+          npm run build-storybook
+          
+      - name: 📤 Create PR for updates
+        if: env.HAS_UPDATES == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore: update dependencies'
+          title: '🔄 chore: automated dependency updates'
+          body: |
+            ## 🔄 Automated Dependency Updates
+            
+            This PR contains automated updates to patch and minor versions of dependencies.
+            
+            ### Changes
+            - Updated dependencies to latest patch/minor versions
+            - Verified Storybook build still works
+            
+            ### Testing
+            - [x] Storybook build successful
+            - [ ] Manual testing required
+            
+            ### Notes
+            - Only patch and minor updates are included (no breaking changes)
+            - Please review and test before merging
+            
+            _This PR was created automatically by the dependency update workflow._
+          branch: chore/dependency-updates
+          delete-branch: true
+
+  security-audit:
+    name: 🔒 Security Audit
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: 📚 Install dependencies
+        run: npm ci
+        
+      - name: 🔒 Run security audit
+        run: |
+          echo "🔒 Running security audit..."
+          npm audit --audit-level=moderate --json > audit.json || true
+          
+          # Check if there are vulnerabilities
+          if jq -e '.vulnerabilities | length > 0' audit.json > /dev/null; then
+            echo "⚠️ Security vulnerabilities found:"
+            npm audit
+            
+            # Try to fix automatically
+            echo "🔧 Attempting automatic fixes..."
+            npm audit fix
+            
+            # Check if fixes resolved issues
+            npm audit --audit-level=moderate --json > audit-after-fix.json || true
+            
+            if jq -e '.vulnerabilities | length > 0' audit-after-fix.json > /dev/null; then
+              echo "❌ Some vulnerabilities could not be auto-fixed"
+              echo "SECURITY_ISSUES=true" >> $GITHUB_ENV
+            else
+              echo "✅ All vulnerabilities resolved"
+              echo "SECURITY_FIXES=true" >> $GITHUB_ENV
+            fi
+          else
+            echo "✅ No security vulnerabilities found"
+          fi
+          
+      - name: 📤 Create security fix PR
+        if: env.SECURITY_FIXES == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'fix: resolve security vulnerabilities'
+          title: '🔒 fix: automated security vulnerability fixes'
+          body: |
+            ## 🔒 Security Vulnerability Fixes
+            
+            This PR contains automated fixes for security vulnerabilities found by npm audit.
+            
+            ### Changes
+            - Applied `npm audit fix` to resolve security issues
+            - Updated vulnerable dependencies to secure versions
+            
+            ### Testing
+            - [x] Security audit passed after fixes
+            - [ ] Manual testing required
+            
+            ### Priority
+            **🚨 HIGH PRIORITY** - Security fixes should be reviewed and merged promptly.
+            
+            _This PR was created automatically by the security audit workflow._
+          branch: fix/security-vulnerabilities
+          delete-branch: true
+          
+      - name: 🚨 Create security issue
+        if: env.SECURITY_ISSUES == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '🚨 Security vulnerabilities require manual attention',
+              body: `## 🚨 Security Alert
+              
+              Automated security fixes could not resolve all vulnerabilities.
+              
+              ### Action Required
+              - Review the security audit output
+              - Manually update vulnerable dependencies
+              - Test for breaking changes
+              
+              ### Commands to run locally:
+              \`\`\`bash
+              npm audit
+              npm audit fix
+              \`\`\`
+              
+              _This issue was created automatically by the security audit workflow._`,
+              labels: ['security', 'high-priority', 'dependencies']
+            })

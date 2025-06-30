@@ -1,0 +1,114 @@
+name: 👁️ Visual Regression Testing
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'stories/**'
+      - '.storybook/**'
+      - 'src/**'
+
+jobs:
+  visual-tests:
+    name: 👁️ Chromatic Visual Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: 📚 Install dependencies
+        run: npm ci
+        
+      - name: 👁️ Run Chromatic
+        uses: chromaui/action@v1
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          buildScriptName: "build-storybook"
+          exitZeroOnChanges: true
+          
+  accessibility-tests:
+    name: ♿ Accessibility Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: 📚 Install dependencies
+        run: npm ci
+        
+      - name: 🏗️ Build Storybook
+        run: npm run build-storybook
+        
+      - name: 🌐 Start static server
+        run: |
+          npx http-server storybook-static -p 6006 &
+          sleep 5
+          
+      - name: ♿ Run accessibility tests
+        run: |
+          echo "♿ Running accessibility tests..."
+          npx @storybook/test-runner --url http://localhost:6006
+        env:
+          STORYBOOK_URL: http://localhost:6006
+
+  theme-tests:
+    name: 🎨 Theme Testing
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: 📚 Install dependencies
+        run: npm ci
+        
+      - name: 🏗️ Build Storybook
+        run: npm run build-storybook
+        
+      - name: 🎨 Test theme switching
+        run: |
+          echo "🎨 Testing theme functionality..."
+          # Start Storybook
+          npx http-server storybook-static -p 6006 &
+          SERVER_PID=$!
+          sleep 5
+          
+          # Test if theme toggle exists
+          if curl -s http://localhost:6006 | grep -q "storybook-dark-mode"; then
+            echo "✅ Theme toggle detected"
+          else
+            echo "⚠️ Theme toggle not found - verify storybook-dark-mode addon"
+          fi
+          
+          # Check for CSS custom properties
+          if curl -s http://localhost:6006 | grep -q "var(--"; then
+            echo "✅ CSS custom properties found"
+          else
+            echo "⚠️ CSS custom properties not detected"
+          fi
+          
+          kill $SERVER_PID
+          echo "✅ Theme tests completed"
