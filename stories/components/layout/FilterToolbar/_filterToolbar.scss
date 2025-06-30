@@ -1,0 +1,39 @@
+@import "/stories/styles/abstracts/variables.scss";
+@import "/stories/styles/abstracts/mixins.scss";
+@import "/stories/styles/abstracts/primitives.scss";
+
+.x-filter-toolbar {
+  @include flex-column(center, center);
+  padding: var(--gap-xl);
+  background: var(--surface-primary);
+  border-radius: var(--gap-ml);
+  min-width: var(--size-desktop-min-width);
+  max-width: var(--size-desktop-max-width);
+
+  &__header {
+    @include flex-space-between;
+    width: 100%;
+  }
+
+  &__left {
+    @include flex-center;
+    gap:var(--gap-xl);
+  }
+
+  
+  &__title {
+    color: var(--color-text-title);
+    margin: var(--gap-s);
+  }
+
+
+  &__right {
+    @include flex;
+    gap:var(--gap-ml);
+  }
+
+ 
+  &__icon-button {
+
+  }
+}

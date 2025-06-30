@@ -2,7 +2,7 @@
 @import "/stories/styles/abstracts/mixins.scss";
 @import "/stories/styles/abstracts/primitives.scss";
 
-.x-button-menu-icon {
+.x-button-menu {
   @include flex-column(center, center);
   cursor: pointer;
   position: relative;
@@ -15,7 +15,7 @@
   transition: var(--base-transition);
   padding: var(--gap-s);
 
-  &__image{
+  &__image {
     border-radius: var(--border-radius-total);
   }
 
@@ -25,7 +25,7 @@
     cursor: not-allowed;
   }
 
-  &::after{
+  &::after {
     content: "";
     position: absolute;
     top: 8px;
@@ -44,15 +44,14 @@
       opacity: 1;
     }
   }
- 
 }
 
-.x-button-menu-icon__solid {
+.x-button-menu__primary {
   background-color: var(--surface-fourth);
   color: var(--color-icon-default);
   border-color: var(--surface-fourth);
 
-  &.x-button-menu-icon {
+  &.x-button-menu {
     &--hover,
     &:hover {
       background-color: var(--surface-secondary);
@@ -70,48 +69,96 @@
   }
 }
 
-.x-button-menu-icon__outline {
-  background-color: var(--button-outline-background-default);
-  color: var(--button-outline-text-default);
-  border-color: var(--button-outline-border-default);
+.x-button-menu__secondary {
+  @include flex;
+  flex-wrap: wrap;
+  flex-direction: inherit;
+  justify-content: flex-start;
+  min-width: var(--size-global-inputs-width);
+  width: var(--size-global-dropdown-min-width);
+  max-width: var(--size-global-dropdown-max-width);
+  min-height: auto;
+  border-radius: var(--border-radius-m);
+  background-color: var(--surface-primary);
+  color: var(--surface-secondary);
+  border-color: var(--surface-primary);
 
-  &.x-button-menu-icon {
+  &__image {
+    border-radius: var(--border-radius-m);
+    border-color: var(--surface-fourth);
+  }
+
+  &.x-button-menu {
     &--hover,
     &:hover {
-      background-color: var(--button-outline-background-hover);
-      color: var(--button-outline-text-hover);
-      border-color: var(--button-outline-border-hover);
+      background-color: var(--surface-fifth);
+      color: var(--color-highlight);
+      border-color: var(--surface-fifth);
     }
 
     &--disabled,
     &:disabled,
     [disabled] {
-      background-color: var(--button-outline-background-disabled);
-      color: var(--button-outline-text-disabled);
-      border-color: var(--button-outline-border-disabled);
+      background-color: var(--surface-fourth);
+      color: var(--color-text-disabled);
+      border-color: var(--surface-fourth);
+    }
+
+    &--active {
+      background-color: var(--surface-secondary);
+      color: var(--surface-primary);
+      border-color: var(--surface-secondary);
+      &::after {
+        opacity: 0;
+      }
     }
   }
 }
 
-.x-button-menu-icon__flat {
-  background-color: var(--button-flat-background-default);
-  color: var(--button-flat-text-default);
-  border-color: var(--button-flat-border-default);
+.x-button-menu__tertiary {
+  @include flex-column(center, center);
+  width: var(--size-desktop-menu-collapse-width);
+  min-height: auto;
+  border-radius: var(--border-radius-m);
+  background-color: var(--surface-primary);
+  color: var(--surface-secondary);
+  border-color: var(--surface-primary);
 
-  &.x-button-menu-icon {
+  &__image {
+    border-radius: var(--border-radius-m);
+    border-color: var(--surface-fourth);
+  }
+  .x-button-menu {
+    &__label {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      width: calc(100% - 16px);
+    }
+  }
+  &.x-button-menu {
     &--hover,
     &:hover {
-      background-color: var(--button-flat-background-hover);
-      color: var(--button-flat-text-hover);
-      border-color: var(--button-flat-border-hover);
+      background-color: var(--surface-fifth);
+      color: var(--color-highlight);
+      border-color: var(--surface-fifth);
     }
 
     &--disabled,
     &:disabled,
     [disabled] {
-      background-color: var(--button-flat-background-disabled);
-      color: var(--button-flat-text-disabled);
-      border-color: var(--button-flat-border-disabled);
+      background-color: var(--surface-fourth);
+      color: var(--color-text-disabled);
+      border-color: var(--surface-fourth);
+    }
+
+    &--active {
+      background-color: var(--surface-secondary);
+      color: var(--surface-primary);
+      border-color: var(--surface-secondary);
+      &::after {
+        opacity: 0;
+      }
     }
   }
 }
