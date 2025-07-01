@@ -1,22 +1,15 @@
-import React, { useEffect } from 'react';
-import { DocsContainer as BaseContainer } from '@storybook/addon-docs';
-import { themes } from '@storybook/theming';
+import React from "react";
+import { DocsContainer as BaseContainer } from "@storybook/addon-docs";
+import { themes } from "@storybook/theming";
 
 export const DocsContainer = ({ context, children }) => {
-  const isDark = context.globals?.theme === 'dark';
+  // Get theme from globals context (no hooks allowed in DocsContainer)
+  const isDark = context.globals?.theme === "dark";
   const theme = isDark ? themes.dark : themes.light;
 
-  useEffect(() => {
-    // Wait until iframe DOM is ready
-    const iframe = document.getElementById('storybook-preview-iframe');
-    if (!iframe) return;
-
-    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
-    if (!iframeDoc?.body) return;
-
-    // Toggle custom class in iframe <body>
-    iframeDoc.body.classList.toggle('x-dark-mode', isDark);
-  }, [isDark]);
+  // Apply theme classes immediately without useEffect
+  // The theme sync will be handled by the preview decorator
+  const themeClass = isDark ? "x-dark-mode" : "";
 
   return (
     <BaseContainer
@@ -31,7 +24,7 @@ export const DocsContainer = ({ context, children }) => {
         },
       }}
     >
-      {children}
+      <div className={themeClass}>{children}</div>
     </BaseContainer>
   );
 };
