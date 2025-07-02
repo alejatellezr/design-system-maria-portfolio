@@ -1,6 +1,4 @@
-@import "/stories/styles/abstracts/variables.scss";
-@import "/stories/styles/abstracts/mixins.scss";
-@import "/stories/styles/abstracts/primitives.scss";
+@import "/stories/styles/main.scss";
 
 .x-filter-toolbar {
   @include flex-column(center, center);
