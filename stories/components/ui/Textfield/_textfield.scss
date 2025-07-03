@@ -1,9 +1,6 @@
-@import "/stories/styles/abstracts/variables.scss";
-@import "/stories/styles/abstracts/mixins.scss";
-@import "/stories/styles/abstracts/primitives.scss";
+@import "/stories/styles/main.scss";
 
 .x-textfield {
-
   min-width: var(--size-global-dropdown-min-width);
   max-width: var(--size-global-dropdown-max-width);
 

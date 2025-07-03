@@ -1,0 +1,60 @@
+@import "/stories/styles/main.scss";
+
+.x-creative-card {
+  gap: var(--gap-xxl);
+  padding: var(--gap-xl) var(--gap-xxl);
+  background-color: var(--surface-primary);
+  transition: var(--base-transition);
+
+
+  &--desktop {
+    @include flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    min-width: var(--size-desktop-min-width);
+    max-width: var(--size-desktop-max-width);
+  }
+
+  &--mobile {
+    @include flex-column(flex-start, flex-start);
+    flex-wrap: wrap;
+    width: var(--size-mobile-width);
+  }
+
+
+  &__image {
+    height: auto;
+    border-radius: var(--border-radius-m);
+    background-color: var(--surface-fourth);
+    transition: var(--base-transition);
+  }
+
+  &__name {
+    color: var(--color-text-title);
+    margin: var(--gap-xl);
+    transition: var(--base-transition);
+  }
+
+  &__row{
+    @include flex-row(flex-start, center);
+    gap: var(--gap-m);
+    width: 100%;
+  }
+
+  &__currency {
+    margin: var(--gap-xs);
+    transition: var(--base-transition);
+  }
+
+  &__subitem-label{
+    width: 120px;
+    color:var(--color-text-title);
+    margin: var(--gap-s);
+  }
+
+  &__subitem-value{
+    color:var(--color-text-default);
+    margin: var(--gap-s);
+  }
+
+}

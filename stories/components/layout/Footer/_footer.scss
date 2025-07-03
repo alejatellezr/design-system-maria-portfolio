@@ -1,15 +1,13 @@
 @import "/stories/styles/main.scss";
 
-.x-header{
+.x-footer{
     @include flex-space-between;
     background-color: var(--surface-primary);
     min-width: var(--size-desktop-min-width);
     max-width: var(--size-desktop-max-width);
-    padding: var(--gap-s) var(--gap-ml);
+    padding: var(--gap-xs) var(--gap-ml);
 
-    &__right-column{
-        @include flex;
-        gap: var(--gap-s);
-        align-items: center;
+    &__disclaimer{
+        color: var(--color-text-title);
     }
 }

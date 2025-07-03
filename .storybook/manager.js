@@ -4,7 +4,7 @@ import { themes, create } from "@storybook/theming";
 // Create custom themes that align with your design system
 const lightTheme = create({
   base: "light",
-  brandTitle: "Design System",
+  brandTitle: "Design System Maria Tellez Portfolio",
   brandUrl: "#",
   brandTarget: "_self",
 
@@ -32,7 +32,7 @@ const lightTheme = create({
 
 const darkTheme = create({
   base: "dark",
-  brandTitle: "Design System",
+  brandTitle: "esign System Maria Tellez Portfolio",
   brandUrl: "#",
   brandTarget: "_self",
 

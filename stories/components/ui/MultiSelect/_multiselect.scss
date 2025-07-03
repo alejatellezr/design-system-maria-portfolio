@@ -1,7 +1,4 @@
-@import "/stories/styles/abstracts/variables.scss";
-@import "/stories/styles/abstracts/mixins.scss";
-@import "/stories/styles/abstracts/primitives.scss";
-
+@import "/stories/styles/main.scss";
 .x-multiselect {
   @include flex-row(center, center);
   gap: var(--gap-s);
