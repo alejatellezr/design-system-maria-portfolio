@@ -35,6 +35,6 @@ IconOnly.args = {
   buttons: [
     { iconName: 'IconHome', iconOnly: true, label: 'Home', style: 'solid', active: false },
     { iconName: 'IconSettings', iconOnly: true, label: 'Settings', style: 'outline', active: false },
-    { iconName: 'IconUser', iconOnly: true, label: 'Profile', style: 'flat', active: active },
+    { iconName: 'IconUser', iconOnly: true, label: 'Profile', style: 'flat', active: true },
   ],
 };

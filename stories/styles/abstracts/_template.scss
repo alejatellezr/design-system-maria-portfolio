@@ -1,31 +1,68 @@
 // Base body styling
 body {
-  background-color: var(--surface-primary);
+  background-color: var(--surface-third);
   color: var(--color-text-default);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: var(--base-transition);
 }
 
 // Ensure Storybook UI elements respect our theme
 .sbdocs {
-  background-color: var(--surface-primary);
+  background-color: var(--surface-fourth);
   color: var(--color-text-default);
-  
+
+  .sbdocs-preview,
+  .docblock-argstable {
+    border-color: var(--color-border-secondary);
+    border-width: var(--size-global-stroke-width);
+    border-style: solid;
+    box-shadow: var(--shadow-global-position-x) var(--shadow-global-position-y)
+      var(--shadow-global-blur) var(--shadow-global-spread)
+      var(--shadow-global-color);
+  }
   // Style docs content
   .sbdocs-content {
     background-color: var(--surface-primary);
     color: var(--color-text-default);
   }
-  
+
+  .sbdocs-title,
+  h3,
+  .solid-secondary {
+    color: var(--color-text-title);
+  }
+
+  p {
+    color: var(--color-text-default);
+    font-size: var(--font-size-default);
+  }
+
   // Style code blocks in docs
   pre {
     background-color: var(--surface-fourth) !important;
     color: var(--color-text-default) !important;
   }
-  
+
   // Style inline code
   code {
     background-color: var(--surface-fourth) !important;
     color: var(--color-text-default) !important;
+  }
+
+  .docblock-argstable-head th,
+  tbody.docblock-argstable-body > tr > *,
+  .sb-bar {
+    background-color: var(--surface-fourth);
+    color: var(--color-text-default);
+  }
+  .docblock-argstable{
+    tr {
+    background-color: var(--surface-primary);
+  }
+  }
+  
+
+  .docs-story {
+    background-color: var(--surface-primary);
   }
 }
 
@@ -37,10 +74,22 @@ body {
 // Dark mode specific overrides for better Storybook integration
 .x-dark-mode {
   .sbdocs {
-    background-color: var(--surface-primary);
+    background-color: var(--surface-fourth);
     color: var(--color-text-default);
+
+    .docblock-argstable {
+      textarea,
+      span {
+        background-color: var(--surface-primary);
+        color: var(--color-text-default);
+        border-color: var(--color-border-primary);
+      }
+      tr {
+        background-color: var(--surface-primary);
+      }
+    }
   }
-  
+
   .sb-show-main {
     background-color: var(--surface-primary);
   }
@@ -49,10 +98,10 @@ body {
 // Light mode class for consistency (even though it's default)
 .x-light-mode {
   .sbdocs {
-    background-color: var(--surface-primary);
+    background-color: var(--surface-fourth);
     color: var(--color-text-default);
   }
-  
+
   .sb-show-main {
     background-color: var(--surface-primary);
   }

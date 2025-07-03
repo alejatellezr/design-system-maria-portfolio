@@ -46,8 +46,8 @@
   --color-icon-disabled: var(--color-disabled);
 
   --shadow-global-position-x: 0px;
-  --shadow-global-position-y: 8px;
-  --shadow-global-blur: 4px;
+  --shadow-global-position-y: 4px;
+  --shadow-global-blur: 12px;
   --shadow-global-spread: 4px;
   --shadow-global-color: #0000000e;
 
@@ -221,7 +221,7 @@
     --color-icon-default: var(--color-white);
     --color-icon-hover: var(--color-highlight);
     --color-icon-disabled: var(--color-disabled);
-    --shadow-global-color: #0000000e;
+    --shadow-global-color: #cbcbcb0e;
 
     --color-link-default: var(--color-highlight);
     --color-link-hover: var(--color-text-title);
@@ -240,7 +240,7 @@
     --graph-color-other: #d5d6c7;
 
     --color-border-primary: #585858;
-    --color-border-secondary: #161616;
+    --color-border-secondary: #272727;
     --color-border-graph: #424242;
     --color-border-third: var(--color-highlight);
 
@@ -268,11 +268,11 @@
     --button-solid-border-disabled: var(--surface-fourth);
     --button-solid-text-disabled: var(--color-disabled);
 
-    --button-outline-background-default: var(--surface-fifth);
+    --button-outline-background-default: var(--surface-primary);
     --button-outline-border-default: var(--color-secondary);
     --button-outline-text-default: var(--color-white);
 
-    --button-outline-background-hover: var(--color-highlight);
+    --button-outline-background-hover: var(--surface-fifth);
     --button-outline-border-hover: var(--color-highlight);
     --button-outline-text-hover: var(--color-white);
 
@@ -282,7 +282,7 @@
 
     --button-flat-background-default: var(--surface-primary);
     --button-flat-border-default: var(--surface-primary);
-    --button-flat-text-default: var(--color-secondary);
+    --button-flat-text-default: var(--color-text-default);
 
     --button-flat-background-hover: var(--surface-fifth);
     --button-flat-border-hover: var(--surface-fifth);
