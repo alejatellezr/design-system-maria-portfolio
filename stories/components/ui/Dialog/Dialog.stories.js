@@ -1,9 +1,10 @@
 // Dialog.stories.js
-import React, { useState } from 'react';
-import Dialog from './Dialog';
+import React, { useState } from "react";
+import Dialog from "./Dialog";
+import { Button } from "./../Button/Button";
 
 export default {
-  title: 'UI/Dialog',
+  title: "UI/Dialog",
   component: Dialog,
 };
 
@@ -12,15 +13,30 @@ const Template = (args) => {
 
   const handleClose = () => setIsOpen(false);
   const handleConfirm = () => {
-    alert('Confirmed!');
+    alert("Confirmed!");
     setIsOpen(false);
   };
 
   return (
     <>
-      <button onClick={() => setIsOpen(true)}>Open Dialog</button>
-      <Dialog {...args} isOpen={isOpen} onClose={handleClose} onConfirm={handleConfirm}>
-        This is a sample dialog content. Confirm or cancel below.
+      <Button
+        className=""
+        label="Open Dialog"
+        iconName=""
+        iconOnly={false}
+        style="outline"
+        status="default"
+        onClick={() => setIsOpen(true)}
+      />
+      <Dialog
+        {...args}
+        isOpen={isOpen}
+        onClose={handleClose}
+        onConfirm={handleConfirm}
+      >
+        <p className="x-font-16">
+          This is a sample dialog content. Confirm or cancel below.
+        </p>
       </Dialog>
     </>
   );
@@ -28,5 +44,6 @@ const Template = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {
-  title: 'Confirm Action',
+  title: "Please Confirm",
+  informative: false,
 };

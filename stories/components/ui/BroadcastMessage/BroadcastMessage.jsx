@@ -37,7 +37,7 @@ export const BroadcastMessage = ({
   return (
     <article className={`x-broadcast x-broadcast--${style}`} {...props}>
       <div className="x-broadcast__message">
-        <div className="x-broadcast__icon">{Icon && <Icon stroke={2} size="24"  />}</div>
+        <div className="x-broadcast__icon">{Icon && <Icon stroke={2} size="24"/>}</div>
         <div className="x-broadcast__textBlock">
           <h3 className="x-broadcast__title x-font-16-bold">{messageTitle}</h3>
           <p className="x-broadcast__text x-font-16">{messageText}</p>

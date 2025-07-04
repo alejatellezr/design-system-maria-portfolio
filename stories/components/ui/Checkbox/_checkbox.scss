@@ -51,7 +51,7 @@
     }
   }
 
-  &__input:checked + .x-checkbox--custom {
+  &__input:checked + .x-checkbox__custom {
     background-color: var(--color-highlight);
     &::after {
       opacity: 1;
@@ -89,7 +89,7 @@
       &--label {
         color: var(--color-text-disabled);
       }
-      &__input:checked + .x-checkbox--custom {
+      &__input:checked + .x-checkbox__custom {
         background-color: var(--color-icon-disabled);
       }
     }
