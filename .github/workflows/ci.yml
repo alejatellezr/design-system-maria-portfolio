@@ -108,7 +108,7 @@ jobs:
           echo "🏗️ Building Storybook..."
           npm run build-storybook 2>&1 | tee storybook-build.log
 
-          # Check for webpack errors
+          # Check for actual build failures (not warnings)
           if grep -q "Failed to build" storybook-build.log; then
             echo "❌ Storybook build failed"
             cat storybook-build.log
@@ -127,7 +127,30 @@ jobs:
             exit 1
           fi
 
-          echo "✅ Storybook build successful"
+          if grep -q "Error:" storybook-build.log && ! grep -q "Process completed with exit code 1" storybook-build.log; then
+            echo "❌ Build error detected"
+            cat storybook-build.log
+            exit 1
+          fi
+
+          # Check if build completed successfully
+          if grep -q "Preview built" storybook-build.log && [ -d "storybook-static" ]; then
+            echo "✅ Storybook build successful"
+            
+            # Report warnings but don't fail
+            if grep -q "WARN.*Sass @import rules are deprecated" storybook-build.log; then
+              echo "⚠️ SASS deprecation warnings detected - consider migrating @import to @use"
+              echo "📖 See: https://sass-lang.com/d/import"
+            fi
+            
+            if grep -q "asset size limit" storybook-build.log; then
+              echo "⚠️ Bundle size warnings detected - consider optimization"
+            fi
+          else
+            echo "❌ Storybook build failed - no output directory found"
+            cat storybook-build.log
+            exit 1
+          fi
         env:
           NODE_OPTIONS: --max_old_space_size=4096
 
@@ -146,6 +169,25 @@ jobs:
           name: storybook-build-logs-${{ github.sha }}
           path: storybook-build.log
           retention-days: 3
+
+      - name: 📝 SASS Migration Suggestions
+        if: success()
+        run: |
+          # Count warnings for reporting
+          SASS_WARNINGS=$(grep -c "Sass @import rules are deprecated" storybook-build.log || echo "0")
+
+          if [ "$SASS_WARNINGS" -gt 0 ]; then
+            echo "📝 SASS Migration Recommendations:"
+            echo ""
+            echo "🔄 To fix $SASS_WARNINGS SASS deprecation warnings, consider:"
+            echo "1. Replace @import with @use/@forward in SASS files"
+            echo "2. Update import paths to use relative paths instead of absolute"
+            echo "3. Use the automated migrator: sass-migrator division **/*.scss"
+            echo ""
+            echo "📖 Learn more: https://sass-lang.com/documentation/at-rules/use"
+          else
+            echo "✅ No SASS deprecation warnings found"
+          fi
 
   webpack-validation:
     name: ⚙️ Webpack Configuration Check
