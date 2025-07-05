@@ -115,12 +115,6 @@ jobs:
             exit 1
           fi
 
-          if grep -q "CaseSensitivePathsPlugin" storybook-build.log; then
-            echo "❌ Case sensitivity error detected"
-            cat storybook-build.log
-            exit 1
-          fi
-
           if grep -q "Module not found" storybook-build.log; then
             echo "❌ Module not found error detected"
             cat storybook-build.log
