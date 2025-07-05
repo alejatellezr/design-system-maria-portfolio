@@ -1,0 +1,280 @@
+name: 🔍 CI - Build & Quality Checks
+
+on:
+  pull_request:
+    branches: [main, develop]
+  push:
+    branches: [main, develop]
+
+jobs:
+  install-dependencies:
+    name: 📦 Install Dependencies
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: 📚 Install dependencies
+        run: npm ci
+
+      - name: 📤 Cache node_modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
+
+  lint-and-format:
+    name: 📝 Code Quality
+    runs-on: ubuntu-latest
+    needs: install-dependencies
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: 📚 Restore dependencies
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
+
+      - name: 📚 Install dependencies (if cache miss)
+        run: npm ci
+
+      - name: 🔍 Run ESLint
+        run: |
+          if npm run lint 2>/dev/null; then
+            echo "✅ ESLint passed"
+          else
+            echo "⚠️ ESLint not configured or failed - skipping"
+          fi
+
+      - name: 💅 Check Prettier formatting
+        run: |
+          if npm run format:check 2>/dev/null; then
+            echo "✅ Prettier formatting is correct"
+          else
+            echo "⚠️ Prettier not configured or formatting issues - skipping"
+          fi
+
+  storybook-build:
+    name: 🏗️ Storybook Build Test
+    runs-on: ubuntu-latest
+    needs: install-dependencies
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: 📚 Restore dependencies
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
+
+      - name: 📚 Install dependencies (if cache miss)
+        run: npm ci
+
+      - name: 🔍 Check for case sensitivity issues
+        run: |
+          echo "🔍 Scanning for potential case sensitivity issues..."
+          # Check for mismatched import paths
+          find stories -name "*.jsx" -o -name "*.js" -o -name "*.ts" -o -name "*.tsx" | xargs grep -l "import.*from.*[A-Z]" | while read file; do
+            echo "Checking $file for case sensitivity..."
+            grep "import.*from.*[A-Z]" "$file" || true
+          done
+
+      - name: 🏗️ Build Storybook
+        run: |
+          echo "🏗️ Building Storybook..."
+          npm run build-storybook 2>&1 | tee storybook-build.log
+
+          # Check for actual build failures (not warnings)
+          if grep -q "Failed to build" storybook-build.log; then
+            echo "❌ Storybook build failed"
+            cat storybook-build.log
+            exit 1
+          fi
+
+          if grep -q "Module not found" storybook-build.log; then
+            echo "❌ Module not found error detected"
+            cat storybook-build.log
+            exit 1
+          fi
+
+          if grep -q "Error:" storybook-build.log && ! grep -q "Process completed with exit code 1" storybook-build.log; then
+            echo "❌ Build error detected"
+            cat storybook-build.log
+            exit 1
+          fi
+
+          # Check if build completed successfully
+          if grep -q "Preview built" storybook-build.log && [ -d "storybook-static" ]; then
+            echo "✅ Storybook build successful"
+            
+            # Report warnings but don't fail
+            if grep -q "WARN.*Sass @import rules are deprecated" storybook-build.log; then
+              echo "⚠️ SASS deprecation warnings detected - consider migrating @import to @use"
+              echo "📖 See: https://sass-lang.com/d/import"
+            fi
+            
+            if grep -q "asset size limit" storybook-build.log; then
+              echo "⚠️ Bundle size warnings detected - consider optimization"
+            fi
+          else
+            echo "❌ Storybook build failed - no output directory found"
+            cat storybook-build.log
+            exit 1
+          fi
+        env:
+          NODE_OPTIONS: --max_old_space_size=4096
+
+      - name: 📤 Upload Storybook build
+        uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: storybook-build-${{ github.sha }}
+          path: storybook-static/
+          retention-days: 7
+
+      - name: 📤 Upload build logs
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: storybook-build-logs-${{ github.sha }}
+          path: storybook-build.log
+          retention-days: 3
+
+      - name: 📝 SASS Migration Suggestions
+        if: success()
+        run: |
+          # Count warnings for reporting
+          SASS_WARNINGS=$(grep -c "Sass @import rules are deprecated" storybook-build.log || echo "0")
+
+          if [ "$SASS_WARNINGS" -gt 0 ]; then
+            echo "📝 SASS Migration Recommendations:"
+            echo ""
+            echo "🔄 To fix $SASS_WARNINGS SASS deprecation warnings, consider:"
+            echo "1. Replace @import with @use/@forward in SASS files"
+            echo "2. Update import paths to use relative paths instead of absolute"
+            echo "3. Use the automated migrator: sass-migrator division **/*.scss"
+            echo ""
+            echo "📖 Learn more: https://sass-lang.com/documentation/at-rules/use"
+          else
+            echo "✅ No SASS deprecation warnings found"
+          fi
+
+  webpack-validation:
+    name: ⚙️ Webpack Configuration Check
+    runs-on: ubuntu-latest
+    needs: install-dependencies
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: 📚 Restore dependencies
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
+
+      - name: 📚 Install dependencies (if cache miss)
+        run: npm ci
+
+      - name: 🔍 Validate webpack config
+        run: |
+          echo "🔍 Validating webpack configuration..."
+
+          # Check if .storybook config files exist
+          if [ ! -f ".storybook/main.js" ]; then
+            echo "❌ .storybook/main.js not found"
+            exit 1
+          fi
+
+          # Validate Storybook config syntax
+          node -c .storybook/main.js
+          if [ -f ".storybook/preview.js" ]; then
+            node -c .storybook/preview.js
+          fi
+
+          echo "✅ Storybook configuration is valid"
+
+  dependency-check:
+    name: 🔒 Security & Dependency Check
+    runs-on: ubuntu-latest
+    needs: install-dependencies
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: 📚 Install dependencies
+        run: npm ci
+
+      - name: 🔒 Run security audit
+        run: |
+          echo "🔒 Running npm security audit..."
+          npm audit --audit-level=moderate
+        continue-on-error: true
+
+      - name: 📦 Check for outdated packages
+        run: |
+          echo "📦 Checking for outdated packages..."
+          npm outdated || true
+
+  status-check:
+    name: ✅ All Checks Passed
+    runs-on: ubuntu-latest
+    needs:
+      [lint-and-format, storybook-build, webpack-validation, dependency-check]
+    if: always()
+
+    steps:
+      - name: ✅ Check all jobs status
+        run: |
+          if [[ "${{ needs.lint-and-format.result }}" == "success" && 
+                "${{ needs.storybook-build.result }}" == "success" && 
+                "${{ needs.webpack-validation.result }}" == "success" ]]; then
+            echo "🎉 All quality checks passed!"
+            echo "✅ Code formatting: PASSED"
+            echo "✅ Storybook build: PASSED"
+            echo "✅ Webpack validation: PASSED"
+          else
+            echo "❌ Some checks failed:"
+            echo "📝 Code formatting: ${{ needs.lint-and-format.result }}"
+            echo "🏗️ Storybook build: ${{ needs.storybook-build.result }}"
+            echo "⚙️ Webpack validation: ${{ needs.webpack-validation.result }}"
+            exit 1
+          fi

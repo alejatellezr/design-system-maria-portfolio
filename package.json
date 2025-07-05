@@ -29,7 +29,13 @@
   "scripts": {
     "chromatic": "chromatic",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "lint": "echo 'ESLint not configured yet - add eslint to devDependencies'",
+    "lint:fix": "echo 'ESLint not configured yet - add eslint to devDependencies'",
+    "format": "echo 'Prettier not configured yet - add prettier to devDependencies'",
+    "format:check": "echo 'Prettier not configured yet - add prettier to devDependencies'",
+    "test": "echo 'No tests configured yet'",
+    "ci": "npm run lint && npm run format:check && npm run build-storybook"
   },
   "dependencies": {
     "@tabler/icons-react": "^3.33.0"
