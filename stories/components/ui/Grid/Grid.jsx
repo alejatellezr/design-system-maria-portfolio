@@ -40,7 +40,7 @@ const Grid = ({ columns = [], data = [], showFilters = true }) => {
   };
 
   return (
-    <div className="x-grid">
+    <section className="x-grid">
       <table className="x-grid__table">
         <thead>
           <tr className="x-grid__header-row">
@@ -114,7 +114,7 @@ const Grid = ({ columns = [], data = [], showFilters = true }) => {
           ))}
         </tbody>
       </table>
-    </div>
+    </section>
   );
 };
 
