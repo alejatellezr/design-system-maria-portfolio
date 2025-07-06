@@ -1,0 +1,109 @@
+name: 🛡️ Branch Protection
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  check-file-changes:
+    name: 📁 File Changes Validation
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 📁 Check for sensitive file changes
+        run: |
+          echo "📁 Checking for changes to sensitive files..."
+
+          # Get changed files
+          git diff --name-only origin/${{ github.base_ref }}...${{ github.sha }} > changed_files.txt
+
+          # Check for package.json changes
+          if grep -q "package.json" changed_files.txt; then
+            echo "⚠️ package.json was modified - ensure dependencies are necessary"
+          fi
+
+          # Check for .storybook config changes
+          if grep -q ".storybook/" changed_files.txt; then
+            echo "⚠️ Storybook configuration was modified - ensure build still works"
+          fi
+
+          # Check for webpack config changes
+          if grep -q "webpack" changed_files.txt; then
+            echo "⚠️ Webpack configuration was modified - ensure compatibility"
+          fi
+
+          # Prevent direct changes to build output
+          if grep -q "storybook-static/" changed_files.txt; then
+            echo "❌ Build output files should not be committed"
+            exit 1
+          fi
+
+          echo "✅ File changes validation passed"
+
+  size-check:
+    name: 📏 Bundle Size Check
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+
+    steps:
+      - name: 📥 Checkout base branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.base_ref }}
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: 📚 Install dependencies (base)
+        run: npm ci
+
+      - name: 🏗️ Build Storybook (base)
+        run: npm run build-storybook
+
+      - name: 📏 Get base bundle size
+        run: |
+          BASE_SIZE=$(du -s storybook-static | cut -f1)
+          echo "BASE_SIZE=$BASE_SIZE" >> $GITHUB_ENV
+          echo "Base bundle size: $BASE_SIZE KB"
+
+      - name: 📥 Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+
+      - name: 📚 Install dependencies (PR)
+        run: npm ci
+
+      - name: 🏗️ Build Storybook (PR)
+        run: npm run build-storybook
+
+      - name: 📏 Compare bundle sizes
+        run: |
+          PR_SIZE=$(du -s storybook-static | cut -f1)
+          BASE_SIZE=${{ env.BASE_SIZE }}
+          DIFF=$((PR_SIZE - BASE_SIZE))
+          DIFF_PERCENT=$((DIFF * 100 / BASE_SIZE))
+
+          echo "Base size: $BASE_SIZE KB"
+          echo "PR size: $PR_SIZE KB"
+          echo "Difference: $DIFF KB ($DIFF_PERCENT%)"
+
+          if [ $DIFF_PERCENT -gt 10 ]; then
+            echo "❌ Bundle size increased by more than 10%"
+            exit 1
+          elif [ $DIFF_PERCENT -gt 5 ]; then
+            echo "⚠️ Bundle size increased by $DIFF_PERCENT% - consider optimization"
+          else
+            echo "✅ Bundle size change is acceptable"
+          fi
