@@ -1,31 +1,35 @@
 // Checkbox.jsx
-import React from 'react';
-import './_checkbox.scss';
+import React, { useEffect, useRef } from "react";
+import "./_checkbox.scss";
 
-const Checkbox = ({
-  checked = false,
-  onChange,
-  disabled = false,
-  label = '',
-  labelPosition = 'right',
-}) => {
+const Checkbox = (args) => {
+  const checkboxRef = useRef(null);
+
+  useEffect(() => {
+    if (checkboxRef.current) {
+      setIsChecked(args.checked);
+    }
+  }, [args.checked]);
+
   return (
-    <label className={`x-checkbox ${disabled ? 'x-checkbox--disabled' : ''} x-checkbox--label-${labelPosition}`}>
-      {label && labelPosition === 'left' && (
-        <span className="x-checkbox__label x-font-16">{label}</span>
+    <label
+      className={`x-checkbox ${
+        args.disabled ? "x-checkbox--disabled" : ""
+      } x-checkbox--label-${args.labelPosition}`}
+    >
+      {args.label && args.labelPosition === "left" && (
+        <span className="x-checkbox__label x-font-16">{args.label}</span>
       )}
 
-      <input
-        type="checkbox"
-        className="x-checkbox__input"
-        checked={checked}
-        onChange={(e) => onChange?.(e.target.checked)}
-        disabled={disabled}
+      <input type="checkbox" className="x-checkbox__input" {...args} />
+      <span
+        className={`x-checkbox__custom ${
+          args.indeterminate ? "is-indeterminate" : ""
+        }`}
       />
-      <span className="x-checkbox__custom" />
 
-      {label && labelPosition === 'right' && (
-        <span className="x-checkbox__label x-font-16">{label}</span>
+      {args.label && args.labelPosition === "right" && (
+        <span className="x-checkbox__label x-font-16">{args.label}</span>
       )}
     </label>
   );
