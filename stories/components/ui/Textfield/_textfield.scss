@@ -21,7 +21,7 @@
   }
 
   &__input {
-    padding: var(--gap-s);
+    padding:var(--gap-none) var(--gap-s);
     height: var(--size-global-default-height);
     border-radius: var(--border-radius-m);
     border-bottom-left-radius: var(--border-radius-none);

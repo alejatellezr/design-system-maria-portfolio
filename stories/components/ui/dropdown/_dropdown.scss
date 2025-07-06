@@ -47,6 +47,7 @@
     transition: var(--base-transition);
     color: var(--color-text-default);
     padding: var(--gap-none) var(--gap-s) var(--gap-none) var(--gap-m);
+    text-align: start;
   }
 
   &__arrow {
@@ -86,6 +87,7 @@
     padding: var(--gap-s) var(--gap-ml);
     border-radius: var(--border-radius-m);
     color: var(--surface-secondary);
+    text-align: start;
     cursor: pointer;
     transition: var(--base-transition);
 

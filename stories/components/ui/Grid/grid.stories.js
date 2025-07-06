@@ -1,42 +1,73 @@
-import React from 'react';
-import Grid from './Grid';
+import React from "react";
+import Grid from "./Grid";
+import ChipStatus from "../ChipStatus/ChipStatus";
 
 export default {
-  title: 'UI/Grid',
+  title: "UI/Grid",
   component: Grid,
 };
 
 const columns = [
-  { key: 'name', label: 'Name', filter: 'text' },
-  { key: 'age', label: 'Age', filter: 'text' },
-  { key: 'email', label: 'Email', filter: 'text' },
+  { key: "name", label: "Name", filter: "text" },
+  { key: "level", label: "Level", filter: "text" },
   {
-    key: 'status',
-    label: 'Status',
-    filter: 'select',
-    options: ['Active', 'Inactive'],
+    key: "status",
+    label: "Status",
+    filter: "select",
+    options: ["Owned", "Competitor","Prospect"],
+    render: (value) => (
+      <ChipStatus
+        label={value}
+        type={value}
+      />
+    ),
   },
 ];
 
 const data = [
-  { name: 'Alice', age: 30, email: 'alice@example.com', status: 'Active' },
-  { name: 'Bob', age: 40, email: 'bob@example.com', status: 'Inactive' },
-  { name: 'Carol', age: 22, email: 'carol@example.com', status: 'Active' },
-  { name: 'Dave', age: 28, email: 'dave@example.com', status: 'Inactive' },
+  {
+    id: "row-1",
+    name: "MART MINAS",
+    level: "Advertiser",
+    status: "Owned",
+  },
+  {
+    id: "row-2",
+    name: "SUPERMERCADOS BH",
+    level: "Advertiser",
+    status: "Owned",
+  },
+  {
+    id: "row-3",
+    name: "SUPERMERCADOS EPA",
+    level: "Advertiser",
+    status: "Owned",
+  },
+  {
+    id: "row-4",
+    name: "RADIO VERDES MARES",
+    level: "Advertiser",
+    status: "Prospect",
+  },
+  {
+    id: "row-5",
+    name: "SUPERMERCADO VERDEMAR",
+    level: "Advertiser",
+    status: "Prospect",
+  },
+  {
+    id: "row-6",
+    name: "SUPERMERCADO EXITO",
+    level: "Advertiser",
+    status: "Competitor",
+  },
 ];
 
 const Template = (args) => <Grid {...args} />;
 
-export const WithFilters = Template.bind({});
-WithFilters.args = {
+export const WithChips = Template.bind({});
+WithChips.args = {
   columns,
   data,
   showFilters: true,
-};
-
-export const WithoutFilters = Template.bind({});
-WithoutFilters.args = {
-  columns,
-  data,
-  showFilters: false,
 };

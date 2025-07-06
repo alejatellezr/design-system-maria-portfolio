@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import "./_dropdown.scss";
 
-export const Dropdown = ({
+const Dropdown = ({
   label,
   options,
   selected,
@@ -56,6 +56,7 @@ export const Dropdown = ({
     </div>
   );
 };
+export default Dropdown;
 
 Dropdown.propTypes = {
   label: PropTypes.string,

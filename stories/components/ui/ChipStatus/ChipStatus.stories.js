@@ -15,7 +15,7 @@ export default {
     type: {
       control: 'radio',
       defaultValue: 'owned',
-      options: ['owned', 'competitor', 'prospective'],
+      options: ['Owned', 'Competitor', 'Prospect'],
       description: 'Simulate component status',
     },
   },
@@ -26,5 +26,5 @@ const Template = (args) => <ChipStatus {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   label: 'Owned',
-  type: 'owned',
+  type: 'Owned',
 };
