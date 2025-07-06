@@ -1,4 +1,3 @@
-// Checkbox.jsx
 import React, { useEffect, useRef } from "react";
 import "./_checkbox.scss";
 

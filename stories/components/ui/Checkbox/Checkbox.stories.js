@@ -1,4 +1,3 @@
-// Checkbox.stories.js
 import React, { useState, useEffect } from 'react';
 import Checkbox from "./Checkbox";
 import "./_checkbox.scss";
