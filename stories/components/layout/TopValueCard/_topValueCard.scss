@@ -1,0 +1,32 @@
+@import "/stories/styles/main.scss";
+
+.x-top-value-card {
+  @include flex;
+  flex-wrap: wrap;
+  gap: var(--gap-xl);
+  min-width: var(--size-global-dropdown-min-width);
+  max-width: var(--size-global-dropdown-max-width);
+  border-radius: var(--border-radius-m);
+  padding: var(--gap-xxl) var(--gap-xxl);
+
+  &--column {
+    flex-direction: column;
+  }
+
+  &--row {
+    flex-direction: row;
+  }
+
+  &__title {
+    margin: var(--gap-none);
+    color: var(--color-text-title);
+  }
+
+  &__value-container {
+    @include flex;
+  }
+
+  &__currency {
+    margin: var(--gap-none);
+  }
+}
