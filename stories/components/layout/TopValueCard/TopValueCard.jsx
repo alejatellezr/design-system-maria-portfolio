@@ -8,7 +8,7 @@ import {
 import "./_topValueCard.scss";
 
 export const TopValueCard = ({
-  direction = "row",
+  direction = "column",
   viewport = "desktop",
   status = "positive",
   TopCardTitle = "Total Spend",
@@ -17,9 +17,8 @@ export const TopValueCard = ({
   TopCardCurrencyValue = "$",
   TopCardCurrencyAmount = "1000",
 }) => {
-
   return (
-    <div
+    <section
       className={`x-top-value-card x-top-value-card--${direction} x-top-value-card--${status} x-top-value-card--${viewport}`}
     >
       <h3 className={`x-top-value-card__title x-font-subtitle`}>
@@ -34,16 +33,17 @@ export const TopValueCard = ({
             {TopCardCurrencyAmount}
           </span>
         </h4>
+
         <div className={`x-top-value-card__behaviour`}>
-          <IconTriangleFilled />
-          <IconTriangleInvertedFilled />
+          {status === "positive" && <IconTriangleFilled />}
+          {status === "negative" && <IconTriangleInvertedFilled />}
           <p className="x-top-value-card__behaviour-percentage x-font-16-bold">
             {TopCardPercentage}
           </p>
         </div>
+        <p className="x-top-value-card__note x-font-16">{TopCardNote}</p>
       </div>
-      <p className="x-top-value-card__note x-font-16">{TopCardNote}</p>
-    </div>
+    </section>
   );
 };
 

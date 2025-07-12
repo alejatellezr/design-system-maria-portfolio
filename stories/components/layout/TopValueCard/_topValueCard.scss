@@ -17,16 +17,68 @@
     flex-direction: row;
   }
 
+  &--positive {
+    .x-top-value-card {
+      &__currency {
+        color: var(--color-success);
+        background-color: var(--color-background-success);
+      }
+
+      &__behaviour {
+        color: var(--color-success);
+      }
+
+      &__behaviour-percentage {
+        color: var(--color-success);
+      }
+    }
+  }
+
+  &--negative {
+    .x-top-value-card {
+      &__currency {
+        color: var(--color-error);
+        background-color: var(--color-background-error);
+      }
+
+      &__behaviour {
+        color: var(--color-error);
+      }
+
+      &__behaviour-percentage {
+        color: var(--color-error);
+      }
+    }
+  }
+
   &__title {
+    width: 100%;
     margin: var(--gap-none);
     color: var(--color-text-title);
   }
 
   &__value-container {
     @include flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: var(--gap-xxs);
   }
 
   &__currency {
     margin: var(--gap-none);
+    padding: var(--gap-m);
+    border-radius: var(--gap-ml);
+    background-color: var(--surface-fourth);
+  }
+
+  &__behaviour-percentage {
+    margin: var(--gap-none);
+    line-height: var(--line-height-xxs);
+  }
+
+  &__note {
+    margin: var(--gap-none);
+    width: 100%;
+    color: (--color-text-default);
   }
 }

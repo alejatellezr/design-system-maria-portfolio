@@ -10,9 +10,9 @@ export default {
     layout: "fullscreen",
   },
   args: {
-    direction: "row",
+    direction: "column",
     viewport: "desktop",
-    status: "default",
+    status: "positive",
     CreativePosition: "1",
     creativeImagePath:
       "https://www.mariaalejandratellez.com/wp-content/uploads/2025/07/creative-image-portfolio-001.png",
@@ -28,15 +28,27 @@ const Template = (args) => {
   return <TopValueCard {...args} />;
 };
 
-export const Desktop = Template.bind({});
-Desktop.args = {
-  direction: "row",
-  viewport: "desktop",
-  status: "default",
-  CreativePosition: "1",
-  creativeImagePath:
-    "https://www.mariaalejandratellez.com/wp-content/uploads/2025/07/creative-image-portfolio-001.png",
-  CreativeName: "Creative Name",
-  CreativeCurrencyValue: "$",
-  CreativeCurrencyAmount: "1000",
+export const Positive = Template.bind({});
+Positive.args = {
+  direction: "column",
+  viewpor: "desktop",
+  status: "positive",
+  TopCardTitle: "Total Spend",
+  TopCardNote: "Compared to previous period ",
+  TopCardPercentage: "15%",
+  TopCardCurrencyValue: "$",
+  TopCardCurrencyAmount: "1000",
+};
+
+export const Negative = {
+  args: {
+    direction: "column",
+    viewpor: "desktop",
+    status: "negative",
+    TopCardTitle: "Total Spend",
+    TopCardNote: "Compared to previous period ",
+    TopCardPercentage: "15%",
+    TopCardCurrencyValue: "$",
+    TopCardCurrencyAmount: "1000",
+  },
 };
