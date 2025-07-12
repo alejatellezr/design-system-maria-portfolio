@@ -1,6 +1,7 @@
 @import "/stories/styles/main.scss";
 .x-chip-status {
   @include flex-center;
+  text-align: center;
   width: var(--size-stepper-width);
   position: relative;
   color: var(--color-text-default);
@@ -12,6 +13,7 @@
   gap: var(--gap-s);
   transition: var(--base-transition);
   height: var(--size-global-icon-height);
+  margin: var(--gap-none);
 
   &__label {
     text-overflow: ellipsis;
@@ -33,7 +35,7 @@
     border-radius: var(--border-radius-m);
   }
 
-  &--owned {
+  &--Owned {
     border-color: var(--graph-color-1);
     &:after {
       background-color: var(--graph-color-1);
@@ -43,7 +45,7 @@
     }
   }
 
-  &--competitor {
+  &--Prospect {
     border-color: var(--graph-color-2);
     &:after {
       background-color: var(--graph-color-2);
@@ -53,7 +55,7 @@
     }
   }
 
-  &--prospective {
+  &--Competitor {
     border-color: var(--graph-color-3);
     &:after {
       background-color: var(--graph-color-3);

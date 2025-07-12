@@ -32,6 +32,7 @@
   }
 
   &__position {
+    width: 60px;
     color: var(--color-text-title);
     margin: var(--gap-s);
     transition: var(--base-transition);
@@ -48,11 +49,20 @@
     color: var(--color-text-title);
     margin: var(--gap-xs);
     transition: var(--base-transition);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    line-clamp: 1;
+    width: calc(100% - 16px);
   }
 
   &__currency {
     margin: var(--gap-xs);
     transition: var(--base-transition);
+  }
+
+  &__text-box{
+    width: -webkit-fill-available;
   }
 
   &:hover,

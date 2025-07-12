@@ -1,0 +1,101 @@
+import React from "react";
+import CreativeTop from "./CreativeTop";
+
+// Sample mock data for testing the component in Storybook
+const mockAdvertisers = [
+  {
+    id: 1,
+    image: "https://www.mariaalejandratellez.com/wp-content/uploads/2025/07/creative-image-portfolio-001.png",
+    name: "ANIVERSÁRIO MART MINAS",
+    currencySymbol: "$",
+    amount: "80K",
+  },
+  {
+    id: 2,
+    image: "https://www.mariaalejandratellez.com/wp-content/uploads/2025/07/creative-image-portfolio-002.png",
+    name: "Continue em movimento, Do Exercicio as crompas no BH!",
+    currencySymbol: "$",
+    amount: "18K",
+  },
+  {
+    id: 3,
+    image: "https://www.mariaalejandratellez.com/wp-content/uploads/2025/07/creative-image-portfolio-003.png",
+    name: "Cheio de prêmios para você",
+    currencySymbol: "$",
+    amount: "23K",
+  },
+  {
+    id: 4,
+    image: "https://www.mariaalejandratellez.com/wp-content/uploads/2025/07/creative-image-portfolio-004.png",
+    name: "ANIVERSÁRIO BH 24 ANOS",
+    currencySymbol: "$",
+    amount: "45K",
+  },
+  {
+    id: 5,
+    image: "https://www.mariaalejandratellez.com/wp-content/uploads/2025/07/creative-image-portfolio-005.png",
+    name: "Ceias de Réveillon Verdemar",
+    currencySymbol: "$",
+    amount: "12K",
+  },
+  {
+    id: 6,
+    image: "https://www.mariaalejandratellez.com/wp-content/uploads/2025/07/creative-image-portfolio-006.png",
+    name: "Preço baixo é no Mart Minas",
+    currencySymbol: "$",
+    amount: "78K",
+  },
+  {
+    id: 7,
+    image: "https://www.mariaalejandratellez.com/wp-content/uploads/2025/07/creative-image-portfolio-007.png",
+    name: "DOCE DE LEITE VERDEMAR",
+    currencySymbol: "$",
+    amount: "4K",
+  },
+  {
+    id: 8,
+    image: "https://www.mariaalejandratellez.com/wp-content/uploads/2025/07/creative-image-portfolio-008.png",
+    name: "12 de Dezembro",
+    currencySymbol: "$",
+    amount: "7K",
+  },
+  {
+    id: 9,
+    image: "https://www.mariaalejandratellez.com/wp-content/uploads/2025/07/creative-image-portfolio-009.png",
+    name: "nas Lojas de Minas Gerais",
+    currencySymbol: "$",
+    amount: "6K",
+  },
+  {
+    id: 10,
+    image: "https://www.mariaalejandratellez.com/wp-content/uploads/2025/07/creative-image-portfolio-010.png",
+    name: "QUINTA FERIA EPA",
+    currencySymbol: "$",
+    amount: "2K",
+  },
+];
+
+export default {
+  title: "layout/CreativeTop",
+  component: CreativeTop,
+  argTypes: {
+    viewport: {
+      control: { type: "radio" },
+      options: ["desktop", "mobile"],
+    },
+  },
+};
+
+const Template = (args) => <CreativeTop {...args} />;
+
+export const Default = Template.bind({});
+Default.args = {
+  topAdvertisers: mockAdvertisers,
+  viewport: "desktop",
+};
+
+export const MobileView = Template.bind({});
+MobileView.args = {
+  topAdvertisers: mockAdvertisers,
+  viewport: "mobile",
+};

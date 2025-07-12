@@ -1,54 +1,83 @@
 @import "/stories/styles/main.scss";
 
 .x-grid {
-  overflow-x: auto;
-  font-family: sans-serif;
-  border: 1px solid #ddd;
-  border-radius: 6px;
+  overflow: auto;
+  border-radius: var(--border-radius-m);
+  border-width: var(--size-global-stroke-width);
+  border-color: var(--color-border-primary);
+  border-style: solid;
 
   &__table {
     width: 100%;
     border-collapse: collapse;
   }
 
-  &__header-row,
-  &__filter-row,
-  &__row {
-    background-color: white;
-  }
-
   &__header-row {
-    background: #f8f8f8;
-    font-weight: bold;
+    background-color: var(--surface-primary);
+    height: var(--size-grid-default-height);
+    border-width: var(--size-global-stroke-width);
+    border-color: var(--color-border-primary);
+    border-style: solid;
+    border-top: none;
   }
 
   &__filter-row {
-    background: #f0f0f0;
+    background-color: var(--surface-primary);
+    border-width: var(--size-global-stroke-width);
+    border-color: var(--color-border-primary);
+    border-style: solid;
+    border-top: none;
   }
 
   &__cell {
-    padding: 10px;
-    border: 1px solid #eee;
+    min-width: var(--size-grid-min-width);
+    border-width: var(--size-global-stroke-width);
+    border-color: var(--color-border-primary);
+    border-style: solid;
+    border-left: none;
+    border-top: none;
+    border-bottom: none;
+    padding: var(--gap-xs) var(--gap-s);
+
+    &:last-of-type {
+      border: none;
+    }
 
     &--header {
       text-align: left;
+      color:var(--color-text-title);
     }
 
     &--filter {
-      padding: 6px;
+      padding: var(--gap-s) var(--gap-s);
+      .x-textfield__input {
+        width: -webkit-fill-available;
+      }
     }
   }
 
-  input[type='checkbox'] {
-    cursor: pointer;
-  }
+  &__row {
+    min-height: var(--size-grid-default-height);
+    border-width: var(--size-global-stroke-width);
+    border-color: var(--color-border-primary);
+    border-style: solid;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    background-color: var(--color-grid-even-default);
+    transition: var(--base-transition);
+    color:var(--color-text-default);
 
-  select,
-  input[type='text'] {
-    width: 100%;
-    padding: 4px 6px;
-    font-size: 14px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
+    &:nth-child(odd) {
+      background-color: var(--color-grid-odd-default);
+    }
+    &:hover {
+      background-color: var(--color-grid-even-hover);
+      .x-grid__row {
+        &:nth-child(odd) {
+          background-color: var(--color-grid-odd-hover);
+        }
+      }
+    }
   }
 }
