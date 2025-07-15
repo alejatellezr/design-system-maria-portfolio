@@ -99,17 +99,9 @@ const ChartLine = ({ showPotentialProspects = false, datasets, labels }) => {
   }, [datasets, labels, themeVersion]);
 
   const options = useMemo(() => {
-    // Helper function to get CSS custom property with fallback
-    const getCSSProperty = (property, fallback) => {
-      const value = getComputedStyle(document.documentElement)
-        .getPropertyValue(property)
-        .trim();
-      return value || fallback;
-    };
-
-    const labelColor = getCSSProperty("--color-text-default", "#000000");
-    const gridColor = getCSSProperty("--color-border-graph", "#e0e0e0");
-    const fontFamily = getCSSProperty(
+    const labelColor = safeGetComputedStyle("--color-text-default", "#000000");
+    const gridColor = safeGetComputedStyle("--color-border-graph", "#e0e0e0");
+    const fontFamily = safeGetComputedStyle(
       "--font-family-graphs",
       "system-ui, -apple-system, sans-serif"
     );
