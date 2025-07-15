@@ -54,7 +54,6 @@ const ChartLine = ({ showPotentialProspects = false, datasets, labels }) => {
       }
     };
     checkThemeChange();
-    const interval = setInterval(checkThemeChange, 200);
 
     // listen for class changes on documentElement
     const observer = new MutationObserver(() => {
