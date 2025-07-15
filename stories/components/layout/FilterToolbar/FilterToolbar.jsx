@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { ButtonGroup } from "../../ui/ButtonGroup/ButtonGroup";
 import { ButtonMenuIcon } from "../../ui/ButtonMenuIcon/ButtonMenuIcon";
-import { Dropdown } from "../../ui/dropdown/Dropdown";
+import Dropdown from "../../ui/dropdown/Dropdown";
 import "./_filterToolbar.scss";
 
 export const FilterToolbar = () => {

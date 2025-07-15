@@ -131,6 +131,8 @@
   --color-border-secondary: #f2f2f2;
   --color-border-graph: #f2f2f2;
   --color-border-third: var(--color-highlight);
+  --color-bg-tooltip: rgba(0, 0, 0, 0.8);
+  --color-border-tooltip: #e9e9e6;
 
   --color-error: #d70000;
   --color-success: #0aa81c;
@@ -202,95 +204,97 @@
   --size-desktop-menu-max-width: 400px;
 
   --base-transition: all 0.3s ease-in-out;
+}
 
-  .x-dark-mode {
-    --color-primary: var(--color-black);
-    --color-secondary: #e41655;
-    --color-disabled: #adada8;
-    --color-highlight: var(--color-secondary);
+.x-dark-mode {
+  --color-primary: var(--color-black);
+  --color-secondary: #e41655;
+  --color-disabled: #adada8;
+  --color-highlight: var(--color-secondary);
 
-    --color-text-title: var(--color-white);
-    --color-text-default: #f4f4f4;
+  --color-text-title: var(--color-white);
+  --color-text-default: #f4f4f4;
 
-    --surface-primary: #090909;
-    --surface-secondary: var(--color-white);
-    --surface-third: #f4f4f4;
-    --surface-fourth: #100f0f;
-    --surface-fifth: #592837;
-    --surface-dialog-mask: #a2a2a230;
+  --surface-primary: #090909;
+  --surface-secondary: var(--color-white);
+  --surface-third: #f4f4f4;
+  --surface-fourth: #100f0f;
+  --surface-fifth: #592837;
+  --surface-dialog-mask: #a2a2a230;
 
-    --color-icon-default: var(--color-white);
-    --color-icon-hover: var(--color-highlight);
-    --color-icon-disabled: var(--color-disabled);
-    --shadow-global-color: #cbcbcb0e;
+  --color-icon-default: var(--color-white);
+  --color-icon-hover: var(--color-highlight);
+  --color-icon-disabled: var(--color-disabled);
+  --shadow-global-color: #cbcbcb0e;
 
-    --color-link-default: var(--color-highlight);
-    --color-link-hover: var(--color-text-title);
-    --color-link-disabled: var(--color-disabled);
+  --color-link-default: var(--color-highlight);
+  --color-link-hover: var(--color-text-title);
+  --color-link-disabled: var(--color-disabled);
 
-    --graph-color-1: #e41655;
-    --graph-color-2: #ff9900;
-    --graph-color-3: #07daff;
-    --graph-color-4: #2bda1b;
-    --graph-color-5: #bf15bd;
-    --graph-color-6: #5179f1;
-    --graph-color-7: #0013ff;
-    --graph-color-8: #ea478b;
-    --graph-color-9: #d5e014;
-    --graph-color-10: #58c4ff;
-    --graph-color-other: #d5d6c7;
+  --graph-color-1: #e41655;
+  --graph-color-2: #ff9900;
+  --graph-color-3: #07daff;
+  --graph-color-4: #2bda1b;
+  --graph-color-5: #bf15bd;
+  --graph-color-6: #5179f1;
+  --graph-color-7: #0013ff;
+  --graph-color-8: #ea478b;
+  --graph-color-9: #d5e014;
+  --graph-color-10: #58c4ff;
+  --graph-color-other: #d5d6c7;
 
-    --color-border-primary: #585858;
-    --color-border-secondary: #272727;
-    -graph--color-border: #a2a2a2;
-    --color-border-third: var(--color-highlight);
+  --color-border-primary: #585858;
+  --color-border-secondary: #272727;
+  --color-border-graph: #a2a2a2;
+  --color-border-third: var(--color-highlight);
+  --color-bg-tooltip: rgba(255, 255, 255, 0.9);
+  --color-border-tooltip: #585858;
 
-    --color-error: #ec0909;
-    --color-success: #10e127;
-    --color-warning: #ff9d06;
-    --color-background-error: #8c7979;
-    --color-background-success: #78877a;
-    --color-background-warning: #9f9381;
+  --color-error: #ec0909;
+  --color-success: #10e127;
+  --color-warning: #ff9d06;
+  --color-background-error: #8c7979;
+  --color-background-success: #78877a;
+  --color-background-warning: #9f9381;
 
-    --color-grid-even-default: #1a1a1a;
-    --color-grid-odd-default: #131313;
-    --color-grid-even-hover: #0f0f0f;
-    --color-grid-odd-hover: #0c0c0c;
+  --color-grid-even-default: #1a1a1a;
+  --color-grid-odd-default: #131313;
+  --color-grid-even-hover: #0f0f0f;
+  --color-grid-odd-hover: #0c0c0c;
 
-    --button-solid-background-default: var(--color-secondary);
-    --button-solid-border-default: var(--color-secondary);
-    --button-solid-text-default: var(--color-white);
+  --button-solid-background-default: var(--color-secondary);
+  --button-solid-border-default: var(--color-secondary);
+  --button-solid-text-default: var(--color-white);
 
-    --button-solid-background-hover: var(--surface-fifth);
-    --button-solid-border-hover: var(--surface-fifth);
-    --button-solid-text-hover: var(--color-highlight);
+  --button-solid-background-hover: var(--surface-fifth);
+  --button-solid-border-hover: var(--surface-fifth);
+  --button-solid-text-hover: var(--color-highlight);
 
-    --button-solid-background-disabled: var(--surface-fourth);
-    --button-solid-border-disabled: var(--surface-fourth);
-    --button-solid-text-disabled: var(--color-disabled);
+  --button-solid-background-disabled: var(--surface-fourth);
+  --button-solid-border-disabled: var(--surface-fourth);
+  --button-solid-text-disabled: var(--color-disabled);
 
-    --button-outline-background-default: var(--surface-primary);
-    --button-outline-border-default: var(--color-secondary);
-    --button-outline-text-default: var(--color-white);
+  --button-outline-background-default: var(--surface-primary);
+  --button-outline-border-default: var(--color-secondary);
+  --button-outline-text-default: var(--color-white);
 
-    --button-outline-background-hover: var(--surface-fifth);
-    --button-outline-border-hover: var(--color-highlight);
-    --button-outline-text-hover: var(--color-white);
+  --button-outline-background-hover: var(--surface-fifth);
+  --button-outline-border-hover: var(--color-highlight);
+  --button-outline-text-hover: var(--color-white);
 
-    --button-outline-background-disabled: var(--surface-primary);
-    --button-outline-border-disabled: var(--color-border-primary);
-    --button-outline-text-disabled: var(--color-disabled);
+  --button-outline-background-disabled: var(--surface-primary);
+  --button-outline-border-disabled: var(--color-border-primary);
+  --button-outline-text-disabled: var(--color-disabled);
 
-    --button-flat-background-default: var(--surface-primary);
-    --button-flat-border-default: var(--surface-primary);
-    --button-flat-text-default: var(--color-text-default);
+  --button-flat-background-default: var(--surface-primary);
+  --button-flat-border-default: var(--surface-primary);
+  --button-flat-text-default: var(--color-text-default);
 
-    --button-flat-background-hover: var(--surface-fifth);
-    --button-flat-border-hover: var(--surface-fifth);
-    --button-flat-text-hover: var(--color-highlight);
+  --button-flat-background-hover: var(--surface-fifth);
+  --button-flat-border-hover: var(--surface-fifth);
+  --button-flat-text-hover: var(--color-highlight);
 
-    --button-flat-background-disabled: var(--surface-fourth);
-    --button-flat-border-disabled: var(--surface-fourth);
-    --button-flat-text-disabled: var(--color-disabled);
-  }
+  --button-flat-background-disabled: var(--surface-fourth);
+  --button-flat-border-disabled: var(--surface-fourth);
+  --button-flat-text-disabled: var(--color-disabled);
 }
