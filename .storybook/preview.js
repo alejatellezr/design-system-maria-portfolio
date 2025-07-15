@@ -64,7 +64,7 @@ const preview = {
       disable: true, // Disable default backgrounds since we handle theming differently
     },
   },
-  tags: ["autodocs"],
+  tags: ["autodocs", "autodocs"],
 };
 
 export default preview;

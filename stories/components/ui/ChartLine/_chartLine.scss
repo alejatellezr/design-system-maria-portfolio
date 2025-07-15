@@ -1,0 +1,39 @@
+@import "/stories/styles/main.scss";
+
+:root {
+  --graph-color-1: #e41655;
+  --graph-color-2: #1e73f8;
+  --graph-color-3: #ffbf00;
+  --graph-color-4: #1ad430;
+  --graph-color-5: #9700a7;
+  --graph-color-6: #ff7300;
+  --graph-color-7: #f598bb;
+  --graph-color-8: #7c56f1;
+  --graph-color-9: #121a52;
+  --graph-color-10: #000000;
+  --graph-color-other: #d5d6c7;
+
+  --color-border-primary: #e9e9e6;
+  --color-border-secondary: #f2f2f2;
+  --color-border-graph: #f2f2f2;
+  --color-border-third: var(--color-highlight);
+
+.x-dark-theme {
+  --graph-color-1: #e41655;
+  --graph-color-2: #ff9900;
+  --graph-color-3: #07daff;
+  --graph-color-4: #2bda1b;
+  --graph-color-5: #bf15bd;
+  --graph-color-6: #5179f1;
+  --graph-color-7: #0013ff;
+  --graph-color-8: #ea478b;
+  --graph-color-9: #d5e014;
+  --graph-color-10: #58c4ff;
+  --graph-color-other: #d5d6c7;
+
+  --color-border-primary: #585858;
+  --color-border-secondary: #272727;
+  --color-border-graph: #a2a2a2;
+  --color-border-third: var(--color-highlight);
+}
+}

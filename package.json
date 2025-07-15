@@ -10,6 +10,7 @@
     "@storybook/addon-webpack5-compiler-babel": "^3.0.6",
     "@storybook/addon-webpack5-compiler-swc": "^3.0.0",
     "@storybook/blocks": "8.6.12",
+    "@storybook/manager-api": "8.6.12",
     "@storybook/react": "8.6.12",
     "@storybook/react-webpack5": "8.6.12",
     "@storybook/test": "8.6.12",
@@ -38,6 +39,8 @@
     "ci": "npm run lint && npm run format:check && npm run build-storybook"
   },
   "dependencies": {
-    "@tabler/icons-react": "^3.33.0"
+    "@tabler/icons-react": "^3.33.0",
+    "chart.js": "^4.5.0",
+    "react-chartjs-2": "^5.3.0"
   }
 }
