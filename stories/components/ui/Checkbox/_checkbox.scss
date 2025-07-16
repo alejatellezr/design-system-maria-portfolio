@@ -14,7 +14,7 @@
   &__custom {
     width: var(--size-xs-icon-width);
     height: var(--size-xs-icon-height);
-    border-width: 3px;
+    border-width: var(--size-input-stroke-width);
     border-style: solid;
     border-color: var(--color-highlight);
     border-radius: var(--border-radius-xs);

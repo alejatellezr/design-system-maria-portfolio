@@ -1,10 +1,14 @@
 import ChartLine from "./ChartLine";
+import { safeGetComputedStyle, getGraphColors, getChartColors } from "../../../utils/themeColors";
+
 
 const pointRadius = 4;
 const pointHoverRadius = 6;
 const pointBorderWidth = 2;
 const tension = 0;
 const borderDash = [12, 8];
+const currentColors = getGraphColors();
+const currentSurfaceColor = getChartColors()[2]
 
 export default {
   title: "UI/ChartLine",
@@ -33,9 +37,11 @@ CustomStyledData.args = {
     {
       label: "OWNED CURRENT YEAR",
       data: [
-        180000, 180000, 250000, 290000, 320000, 300000, 310000, 295000, 310000,
+        180000, 180000, 25000, 290000, 320000, 300000, 310000, 295000, 310000,
         320000, 350000, 120000,
       ],
+      borderColor: currentColors[0],
+      backgroundColor: currentSurfaceColor,
       fill: false,
       pointRadius,
       pointHoverRadius,
@@ -46,9 +52,11 @@ CustomStyledData.args = {
     {
       label: "PROSPECT Previous YEAR",
       data: [
-        300000, 180000, 270000, 420000, 390000, 370000, 190000, 200000, 180000,
+        300000, 18000, 270000, 420000, 390000, 370000, 190000, 200000, 180000,
         230000, 270000, 250000,
       ],
+      borderColor: currentColors[1],
+      backgroundColor: currentSurfaceColor,
       fill: false,
       pointRadius,
       pointHoverRadius,
@@ -62,6 +70,8 @@ CustomStyledData.args = {
         400000, 180000, 370000, 390000, 450000, 430000, 410000, 430000, 410000,
         400000, 390000, 300000,
       ],
+      borderColor: currentColors[0],
+      backgroundColor: currentSurfaceColor,
       borderDash,
       fill: false,
       pointRadius,
@@ -76,6 +86,8 @@ CustomStyledData.args = {
         250000, 180000, 260000, 310000, 330000, 290000, 300000, 270000, 260000,
         310000, 320000, 310000,
       ],
+      borderColor: currentColors[1],
+      backgroundColor: currentSurfaceColor,
       borderDash,
       fill: false,
       pointRadius,
@@ -110,6 +122,8 @@ CustomStyledDataProspects.args = {
         180000, 180000, 250000, 290000, 320000, 300000, 310000, 295000, 310000,
         320000, 350000, 120000,
       ],
+      borderColor: currentColors[0],
+      backgroundColor: currentSurfaceColor,
       fill: false,
       pointRadius,
       pointHoverRadius,
@@ -123,6 +137,8 @@ CustomStyledDataProspects.args = {
         300000, 180000, 270000, 420000, 390000, 370000, 190000, 200000, 180000,
         230000, 270000, 250000,
       ],
+      borderColor: currentColors[1],
+      backgroundColor: currentSurfaceColor,
       fill: false,
       pointRadius,
       pointHoverRadius,
@@ -136,6 +152,8 @@ CustomStyledDataProspects.args = {
         200000, 180000, 230000, 250000, 240000, 230000, 190000, 180000, 170000,
         190000, 200000, 180000,
       ],
+      borderColor: currentColors[2],
+      backgroundColor: currentSurfaceColor,
       fill: false,
       pointRadius: pointRadius,
       pointHoverRadius: pointHoverRadius,
@@ -149,6 +167,8 @@ CustomStyledDataProspects.args = {
         400000, 18000, 370000, 390000, 450000, 430000, 410000, 430000, 410000,
         400000, 390000, 300000,
       ],
+      borderColor: currentColors[1],
+      backgroundColor: currentSurfaceColor,
       borderDash,
       fill: false,
       pointRadius,
@@ -163,6 +183,8 @@ CustomStyledDataProspects.args = {
         250000, 180000, 260000, 310000, 330000, 290000, 300000, 270000, 260000,
         310000, 320000, 310000,
       ],
+      borderColor: currentColors[1],
+      backgroundColor: currentSurfaceColor,
       borderDash,
       fill: false,
       pointRadius,
@@ -177,13 +199,15 @@ CustomStyledDataProspects.args = {
         180000, 200000, 230000, 190000, 250000, 190000, 180000, 170000, 200000,
         240000, 180000, 230000,
       ],
-      borderDash: borderDash,
+      borderColor: currentColors[2],
+      backgroundColor: currentSurfaceColor,
+      borderDash,
       fill: false,
-      pointRadius: pointRadius,
-      pointHoverRadius: pointHoverRadius,
+      pointRadius,
+      pointHoverRadius,
       pointStyle: "crossRot",
-      pointBorderWidth: pointBorderWidth,
-      tension: tension,
+      pointBorderWidth,
+      tension,
     },
   ],
 };

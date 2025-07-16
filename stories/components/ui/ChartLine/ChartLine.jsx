@@ -1,5 +1,6 @@
 // ChartLine.jsx
 import { useEffect, useMemo, useState, useRef } from "react";
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,7 +12,7 @@ import {
   Filler,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import { getGraphColors, getChartColors } from "../../../utils/themeColors";
+import { safeGetComputedStyle, getGraphColors, getChartColors } from "../../../utils/themeColors";
 
 ChartJS.register(
   CategoryScale,
@@ -33,7 +34,7 @@ const ChartLine = ({ showPotentialProspects = false, datasets, labels }) => {
         .getPropertyValue("--color-text-default")
         .trim();
       const currentGridColor = getComputedStyle(document.documentElement)
-        .getPropertyValue("--color-border-graph")
+        .getPropertyValue("--color-border-primary")
         .trim();
 
       // Store current values in data attributes to compare
@@ -78,17 +79,17 @@ const ChartLine = ({ showPotentialProspects = false, datasets, labels }) => {
 
   const data = useMemo(() => {
     // Get current theme colors dynamically
-    const currentColors = getGraphColors();
-    const currentSurfaceColor = getChartColors()[2];
+    //const currentColors = getGraphColors();
+    //const currentSurfaceColor = getChartColors()[2];
 
     // Update dataset colors with current theme colors
     const updatedDatasets =
       datasets?.filter(Boolean).map((dataset, index) => {
-        const colorIndex = index % currentColors.length;
+        //const colorIndex = index % currentColors.length;
         return {
           ...dataset,
-          borderColor: currentColors[colorIndex],
-          backgroundColor: currentSurfaceColor,
+         // borderColor: currentColors[colorIndex],
+         // backgroundColor: currentSurfaceColor,
         };
       }) || [];
 
@@ -100,10 +101,10 @@ const ChartLine = ({ showPotentialProspects = false, datasets, labels }) => {
 
   const options = useMemo(() => {
     const labelColor = safeGetComputedStyle("--color-text-default", "#000000");
-    const gridColor = safeGetComputedStyle("--color-border-graph", "#e0e0e0");
+    const gridColor = safeGetComputedStyle("--color-border-primary", "#e0e0e0");
     const fontFamily = safeGetComputedStyle(
       "--font-family-graphs",
-      "system-ui, -apple-system, sans-serif"
+      "sans-serif"
     );
 
     return {
@@ -125,11 +126,11 @@ const ChartLine = ({ showPotentialProspects = false, datasets, labels }) => {
         tooltip: {
           titleColor: labelColor,
           bodyColor: labelColor,
-          backgroundColor: getCSSProperty(
-            "--color-bg-tooltip",
+          backgroundColor: safeGetComputedStyle(
+            "--surface-primary",
             "rgba(0, 0, 0, 0.8)"
           ),
-          borderColor: getCSSProperty("--color-border-tooltip", "transparent"),
+          borderColor: safeGetComputedStyle("--color-text-default", "transparent"),
           borderWidth: 1,
         },
       },
