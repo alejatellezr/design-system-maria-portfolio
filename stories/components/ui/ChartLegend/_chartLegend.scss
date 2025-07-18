@@ -15,14 +15,45 @@
 
   &__icon {
     width: var(--size-xs-icon-width);
-    height: var(--size-xs-icon-height);
-    border-radius: var(--border-radius-xs);
     border-width: var(--size-input-stroke-width);
-    border-style: solid;
     border-color: var(--graph-color-other);
     background-color: var(--graph-color-other);
     position: relative;
     transition: var(--base-transition);
+
+    &--cube {
+      height: var(--size-xs-icon-height);
+      border-radius: var(--border-radius-xs);
+    }
+
+    &--line {
+      height: 1px;
+      border-width: var(--size-bold-stroke-width);
+
+      &.x-chart-legend__icon {
+        &--solid {
+          border-style: solid;
+          border-left: none;
+          border-right: none;
+          border-bottom: none;
+        }
+
+        &--dashed {
+          border-style: dashed;
+          border-left: none;
+          border-right: none;
+          border-bottom: none;
+        }
+      }
+    }
+
+    &--solid {
+      border-style: solid;
+    }
+
+    &--dashed {
+      border-style: dashed;
+    }
   }
 
   &__label {
