@@ -1,0 +1,63 @@
+@import "/stories/styles/main.scss";
+
+.x-chart-legend {
+  @include flex;
+  gap: var(--gap-l);
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  &__item {
+    @include flex-center;
+    gap: var(--gap-xs);
+  }
+
+  &__icon {
+    width: var(--size-xs-icon-width);
+    border-width: var(--size-input-stroke-width);
+    border-color: var(--graph-color-other);
+    background-color: var(--graph-color-other);
+    position: relative;
+    transition: var(--base-transition);
+
+    &--cube {
+      height: var(--size-xs-icon-height);
+      border-radius: var(--border-radius-xs);
+    }
+
+    &--line {
+      height: 1px;
+      border-width: var(--size-bold-stroke-width);
+
+      &.x-chart-legend__icon {
+        &--solid {
+          border-style: solid;
+          border-left: none;
+          border-right: none;
+          border-bottom: none;
+        }
+
+        &--dashed {
+          border-style: dashed;
+          border-left: none;
+          border-right: none;
+          border-bottom: none;
+        }
+      }
+    }
+
+    &--solid {
+      border-style: solid;
+    }
+
+    &--dashed {
+      border-style: dashed;
+    }
+  }
+
+  &__label {
+    margin: 0;
+    color: var(--color-text-default);
+  }
+}

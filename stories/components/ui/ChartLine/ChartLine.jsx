@@ -1,5 +1,6 @@
 // ChartLine.jsx
-import { useEffect, useMemo, useState, useRef } from "react";
+import React, { useEffect, useMemo, useState, useRef } from "react";
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,7 +12,12 @@ import {
   Filler,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import { getGraphColors, getChartColors } from "../../../utils/themeColors";
+import {
+  safeGetComputedStyle,
+  getGraphColors,
+  getChartColors,
+} from "../../../utils/themeColors";
+import ChartLegend from "../ChartLegend/ChartLegend";
 
 ChartJS.register(
   CategoryScale,
@@ -23,9 +29,10 @@ ChartJS.register(
   Filler
 );
 
-const ChartLine = ({ showPotentialProspects = false, datasets, labels }) => {
+const ChartLine = React.memo(({ datasets, labels, legendData }) => {
   const [themeVersion, setThemeVersion] = useState(0);
   const chartRef = useRef(null);
+  const prevColorsRef = useRef({ text: "", grid: "" });
 
   useEffect(() => {
     const checkThemeChange = () => {
@@ -33,16 +40,14 @@ const ChartLine = ({ showPotentialProspects = false, datasets, labels }) => {
         .getPropertyValue("--color-text-default")
         .trim();
       const currentGridColor = getComputedStyle(document.documentElement)
-        .getPropertyValue("--color-border-graph")
+        .getPropertyValue("--color-border-primary")
         .trim();
 
-      // Store current values in data attributes to compare
       const lastTextColor =
-        document.documentElement.dataset.lastTextColor || "";
+        document.documentElement.dataset.lastTextColor ?? currentTextColor;
       const lastGridColor =
-        document.documentElement.dataset.lastGridColor || "";
+        document.documentElement.dataset.lastGridColor ?? currentGridColor;
 
-      // Check if CSS variables changed
       const colorsChanged =
         currentTextColor !== lastTextColor ||
         currentGridColor !== lastGridColor;
@@ -50,9 +55,14 @@ const ChartLine = ({ showPotentialProspects = false, datasets, labels }) => {
       if (colorsChanged) {
         document.documentElement.dataset.lastTextColor = currentTextColor;
         document.documentElement.dataset.lastGridColor = currentGridColor;
+
+        // ✅ Add a console log for debug
+        console.log("Theme change detected");
+
         setThemeVersion((prev) => prev + 1);
       }
     };
+
     checkThemeChange();
 
     // listen for class changes on documentElement
@@ -66,29 +76,29 @@ const ChartLine = ({ showPotentialProspects = false, datasets, labels }) => {
     });
 
     return () => {
-      clearInterval(interval);
+      //clearInterval(interval);
       observer.disconnect();
     };
   }, []);
 
   // Force component to re-render when datasets or labels change
   useEffect(() => {
-    setThemeVersion((prev) => prev + 1);
+    //setThemeVersion((prev) => prev + 1);
   }, [datasets, labels]);
 
   const data = useMemo(() => {
     // Get current theme colors dynamically
-    const currentColors = getGraphColors();
-    const currentSurfaceColor = getChartColors()[2];
+    //const currentColors = getGraphColors();
+    //const currentSurfaceColor = getChartColors()[2];
 
     // Update dataset colors with current theme colors
     const updatedDatasets =
       datasets?.filter(Boolean).map((dataset, index) => {
-        const colorIndex = index % currentColors.length;
+        //const colorIndex = index % currentColors.length;
         return {
           ...dataset,
-          borderColor: currentColors[colorIndex],
-          backgroundColor: currentSurfaceColor,
+          // borderColor: currentColors[colorIndex],
+          // backgroundColor: currentSurfaceColor,
         };
       }) || [];
 
@@ -100,10 +110,10 @@ const ChartLine = ({ showPotentialProspects = false, datasets, labels }) => {
 
   const options = useMemo(() => {
     const labelColor = safeGetComputedStyle("--color-text-default", "#000000");
-    const gridColor = safeGetComputedStyle("--color-border-graph", "#e0e0e0");
+    const gridColor = safeGetComputedStyle("--color-border-primary", "#e0e0e0");
     const fontFamily = safeGetComputedStyle(
       "--font-family-graphs",
-      "system-ui, -apple-system, sans-serif"
+      "sans-serif"
     );
 
     return {
@@ -111,6 +121,7 @@ const ChartLine = ({ showPotentialProspects = false, datasets, labels }) => {
       maintainAspectRatio: false,
       plugins: {
         legend: {
+          display: false,
           position: "bottom",
           labels: {
             color: labelColor,
@@ -125,11 +136,14 @@ const ChartLine = ({ showPotentialProspects = false, datasets, labels }) => {
         tooltip: {
           titleColor: labelColor,
           bodyColor: labelColor,
-          backgroundColor: getCSSProperty(
-            "--color-bg-tooltip",
+          backgroundColor: safeGetComputedStyle(
+            "--surface-primary",
             "rgba(0, 0, 0, 0.8)"
           ),
-          borderColor: getCSSProperty("--color-border-tooltip", "transparent"),
+          borderColor: safeGetComputedStyle(
+            "--color-text-default",
+            "transparent"
+          ),
           borderWidth: 1,
         },
       },
@@ -166,14 +180,15 @@ const ChartLine = ({ showPotentialProspects = false, datasets, labels }) => {
     };
   }, [themeVersion]);
 
+  console.log("ChartLine data.legendData:", legendData);
   return (
     <Line
       key={`chart-${themeVersion}`}
       ref={chartRef}
       data={data}
       options={options}
-      redraw={true}
+      redraw={false}
     />
   );
-};
+});
 export default ChartLine;

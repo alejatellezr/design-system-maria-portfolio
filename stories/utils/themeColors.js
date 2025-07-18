@@ -1,11 +1,13 @@
-const safeGetComputedStyle = (variableName) => {
+export const safeGetComputedStyle = (variableName, fallback = "") => {
   if (typeof window === "undefined" || !document?.documentElement) {
-    return "";
+    return fallback;
   }
 
-  return getComputedStyle(document.documentElement)
+  const value = getComputedStyle(document.documentElement)
     .getPropertyValue(variableName)
     .trim();
+
+  return value || fallback;
 };
 
 export const getGraphColors = () => [
