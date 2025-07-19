@@ -2,19 +2,26 @@ import React, { useState, useMemo, useRef } from "react";
 import ChartLine from "./../../ui/ChartLine/ChartLine";
 import { ButtonGroup } from "./../../ui/ButtonGroup/ButtonGroup";
 import Switch from "./../../ui/Switch/Switch";
-import { ChartLegend } from "./../../ui/ChartLegend/ChartLegend";
+import ChartLegend from "./../../ui/ChartLegend/ChartLegend";
 import "./_widgetOverview.scss";
 import {
   safeGetComputedStyle,
   getGraphColors,
   getChartColors,
 } from "../../../utils/themeColors";
-
-const pointRadius = 4;
-const pointHoverRadius = 6;
-const pointBorderWidth = 2;
-const tension = 0;
-const borderDash = [12, 8];
+import {
+  labelsMonths,
+  labelsQuarter,
+  labelsSemester,
+  datasetsOverview,
+  datasetsOverviewQuarter,
+  datasetsOverviewSemester,
+  datasetsProspects,
+  datasetsProspectsQuarter,
+  datasetsProspectsSemester,
+  legendDataOverview,
+  legendDataProspects,
+} from "../../../utils/ChartLineData";
 
 const WidgetOverview = () => {
   const [showPotentialProspects, setShowPotentialProspects] = useState(false);
@@ -26,108 +33,46 @@ const WidgetOverview = () => {
 
   const textColor = chartColors[1];
   const toggleProspects = () => setShowPotentialProspects((prev) => !prev);
-  console.log("WidgetOverview component loaded");
-  console.log({
-    ChartLine,
-    ButtonGroup,
-    Switch,
-    ChartLegend,
-  });
-  const labels = useMemo(
-    () => [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ],
-    []
-  );
 
-  const datasets = useMemo(
-    () => [
-      {
-        label: "OWNED CURRENT YEAR",
-        data: [
-          180000, 180000, 25000, 290000, 320000, 300000, 310000, 295000, 310000,
-          320000, 350000, 120000,
-        ],
-        borderColor: currentColors[0],
-        backgroundColor: currentSurfaceColor,
-        fill: false,
-        pointRadius,
-        pointHoverRadius,
-        pointBorderWidth,
-        pointStyle: "circle",
-        tension,
-      },
-      {
-        label: "PROSPECT Previous YEAR",
-        data: [
-          300000, 18000, 270000, 420000, 390000, 370000, 190000, 200000, 180000,
-          230000, 270000, 250000,
-        ],
-        borderColor: currentColors[1],
-        backgroundColor: currentSurfaceColor,
-        fill: false,
-        pointRadius,
-        pointHoverRadius,
-        pointBorderWidth,
-        pointStyle: "rectRounded",
-        tension,
-      },
-      {
-        label: "OWNED PREVIOUS YEAR",
-        data: [
-          400000, 180000, 370000, 390000, 450000, 430000, 410000, 430000,
-          410000, 400000, 390000, 300000,
-        ],
-        borderColor: currentColors[0],
-        backgroundColor: currentSurfaceColor,
-        borderDash,
-        fill: false,
-        pointRadius,
-        pointHoverRadius,
-        pointBorderWidth,
-        pointStyle: "circle",
-        tension,
-      },
-      {
-        label: "PROSPECT CURRENT YEAR",
-        data: [
-          250000, 180000, 260000, 310000, 330000, 290000, 300000, 270000,
-          260000, 310000, 320000, 310000,
-        ],
-        borderColor: currentColors[1],
-        backgroundColor: currentSurfaceColor,
-        borderDash,
-        fill: false,
-        pointRadius,
-        pointHoverRadius,
-        pointBorderWidth,
-        pointStyle: "rectRounded",
-        tension,
-      },
-    ],
-    [currentColors, currentSurfaceColor]
-  );
-
-  const chartData = useMemo(
-    () => ({
-      labels,
-      datasets,
-    }),
-    [labels, datasets]
-  );
 
   const [selectedPeriod, setSelectedPeriod] = useState("Month");
+  const labels = useMemo(() => {
+    switch (selectedPeriod) {
+      case "Quarter":
+        return labelsQuarter;
+      case "Semester":
+        return labelsSemester;
+      default:
+        return labelsMonths;
+    }
+  }, [selectedPeriod]);
+  const datasets = useMemo(() => {
+    if (showPotentialProspects) {
+      switch (selectedPeriod) {
+        case "Quarter":
+          return datasetsProspectsQuarter;
+        case "Semester":
+          return datasetsProspectsSemester;
+        default:
+          return datasetsProspects;
+      }
+    } else {
+      switch (selectedPeriod) {
+        case "Quarter":
+          return datasetsOverviewQuarter;
+        case "Semester":
+          return datasetsOverviewSemester;
+        default:
+          return datasetsOverview;
+      }
+    }
+  }, [showPotentialProspects, selectedPeriod]);
+
+  const legendData = useMemo(() => {
+    return showPotentialProspects ? legendDataProspects : legendDataOverview;
+  }, [showPotentialProspects]);
+  const chartData = useMemo(() => ({ labels, datasets }), [labels, datasets]);
+
   const handlePeriodChange = (label) => {
     setSelectedPeriod(label);
   };
@@ -154,6 +99,14 @@ const WidgetOverview = () => {
     onClick: () => handleViewChange(label),
   }));
 
+  console.log("WidgetOverview render", {
+    selectedPeriod,
+    showPotentialProspects,
+    chartData,
+    legendData,
+    periodButtons,
+    viewButtons,
+  });
   return (
     <div className="x-widget-overview">
       <div className="x-widget-overview__header">
@@ -169,16 +122,15 @@ const WidgetOverview = () => {
         <ButtonGroup orientation="row" buttons={viewButtons} />
       </div>
       <div className="x-widget-overview__chart-wrapper">
-      {/****/}<ChartLine  datasets={chartData.datasets} labels={chartData.labels} />
+        <ChartLine
+          key={`${selectedPeriod}-${showPotentialProspects}`}
+          data={chartData}
+          legendData={legendData}
+        />
       </div>
-      {/**<ChartLegend
-        items={[
-          { label: 'OWNED', color: '#DB2C66', style: 'solid' },
-          { label: 'PROSPECT', color: '#2C66DB', style: 'solid' },
-          { label: 'PREVIOUS YEAR', color: '#2C66DB', style: 'dashed' },
-          { label: 'CURRENT YEAR', color: '#DB2C66', style: 'dashed' },
-        ]}
-      />**/}
+      <div className="x-widget-overview__legend">
+      <ChartLegend legendData={legendData} />
+      </div>
     </div>
   );
 };
