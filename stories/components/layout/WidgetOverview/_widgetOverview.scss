@@ -36,3 +36,8 @@
     }
   }
 }
+.x-widget-overview__chart-wrapper {
+  position: relative;
+  height: 300px; // or whatever fixed/relative height you need
+  width: 100%;
+}

@@ -168,7 +168,9 @@ const WidgetOverview = () => {
         <ButtonGroup orientation="row" buttons={periodButtons} />
         <ButtonGroup orientation="row" buttons={viewButtons} />
       </div>
-      <ChartLine datasets={chartData.datasets} labels={chartData.labels} />
+      <div className="x-widget-overview__chart-wrapper">
+      {/****/}<ChartLine  datasets={chartData.datasets} labels={chartData.labels} />
+      </div>
       {/**<ChartLegend
         items={[
           { label: 'OWNED', color: '#DB2C66', style: 'solid' },
