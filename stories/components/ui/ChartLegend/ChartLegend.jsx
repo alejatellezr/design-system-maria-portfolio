@@ -1,6 +1,7 @@
 // src/components/ChartLegend.jsx
 
 import React from "react";
+
 import "./_chartLegend.scss";
 
 const ChartLegend = ({ legendData }) => {
