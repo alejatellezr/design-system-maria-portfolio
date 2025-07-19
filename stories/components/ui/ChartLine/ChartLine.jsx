@@ -40,14 +40,16 @@ const ChartLine = React.memo(({ datasets, labels, legendData }) => {
         .getPropertyValue("--color-text-default")
         .trim();
       const currentGridColor = getComputedStyle(document.documentElement)
-        .getPropertyValue("--color-border-primary")
+        .getPropertyValue("--color-border-graph")
         .trim();
 
+      // Store current values in data attributes to compare
       const lastTextColor =
-        document.documentElement.dataset.lastTextColor ?? currentTextColor;
+        document.documentElement.dataset.lastTextColor || "";
       const lastGridColor =
-        document.documentElement.dataset.lastGridColor ?? currentGridColor;
+        document.documentElement.dataset.lastGridColor || "";
 
+      // Check if CSS variables changed
       const colorsChanged =
         currentTextColor !== lastTextColor ||
         currentGridColor !== lastGridColor;
@@ -55,16 +57,11 @@ const ChartLine = React.memo(({ datasets, labels, legendData }) => {
       if (colorsChanged) {
         document.documentElement.dataset.lastTextColor = currentTextColor;
         document.documentElement.dataset.lastGridColor = currentGridColor;
-
-        // ✅ Add a console log for debug
-        console.log("Theme change detected");
-
         setThemeVersion((prev) => prev + 1);
       }
     };
-
     checkThemeChange();
-
+    const interval = setInterval(checkThemeChange, 200);
     // listen for class changes on documentElement
     const observer = new MutationObserver(() => {
       checkThemeChange();
@@ -76,14 +73,14 @@ const ChartLine = React.memo(({ datasets, labels, legendData }) => {
     });
 
     return () => {
-      //clearInterval(interval);
+      clearInterval(interval);
       observer.disconnect();
     };
   }, []);
 
   // Force component to re-render when datasets or labels change
   useEffect(() => {
-    //setThemeVersion((prev) => prev + 1);
+    setThemeVersion((prev) => prev + 1);
   }, [datasets, labels]);
 
   const data = useMemo(() => {
