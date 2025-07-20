@@ -4,17 +4,25 @@ import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import "./_chartDoughnut.scss";
 import { safeGetComputedStyle } from "../../../utils/themeColors";
-import {labelColor,currentTextColor,cutout,legendSetup,tooltipSetup,hoverOffset,borderWidth} from "../../../utils/ChartDoughnutData";
+import {
+  labelColor,
+  currentTextColor,
+  cutout,
+  legendSetup,
+  tooltipSetup,
+  hoverOffset,
+  borderWidth,
+} from "../../../utils/ChartDoughnutData";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const ChartDoughnut = ({ data, labels,colors }) => {
+const ChartDoughnut = ({ data, labels, colors }) => {
   const [themeVersion, setThemeVersion] = useState(0);
   const chartRef = useRef(null);
 
   // Check for theme changes
   useEffect(() => {
     const checkThemeChange = () => {
-    const currentChartTextColor = currentTextColor;
+      const currentChartTextColor = currentTextColor;
 
       const lastTextColor =
         document.documentElement.dataset.lastTextColor || "";
@@ -55,17 +63,19 @@ const ChartDoughnut = ({ data, labels,colors }) => {
         },
       ],
     };
-  }, [data, labels,colors, themeVersion]);
+  }, [data, labels, colors, themeVersion]);
 
   const options = useMemo(() => {
-    return {
-      cutout:cutout,
-      plugins: {
-        legend: legendSetup,
-        tooltip: tooltipSetup,
-      },
-    };
-  }, [themeVersion, labelColor]);
+  return {
+    responsive: true,
+    maintainAspectRatio: false,
+    cutout: cutout,
+    plugins: {
+      legend: legendSetup,
+      tooltip: tooltipSetup,
+    },
+  };
+}, [themeVersion]);
 
   return (
     <Doughnut

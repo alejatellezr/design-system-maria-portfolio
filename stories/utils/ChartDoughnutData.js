@@ -17,8 +17,12 @@ export const currentColors = getGraphColors();
 export const cutout = "35%";
 export const hoverOffset = 50;
 export const borderWidth = 2;
+export const currentSurfaceColor = getChartColors()[2];
+export const tooltipSurfaceColor = getChartColors()[3];
+export const textColor = getChartColors()[1];
+export const tooltipTextColor = currentSurfaceColor;
 export const legendSetup = {
-  display: true,
+  display: false,
   position: "bottom",
   labels: {
     usePointStyle: true,
@@ -38,9 +42,28 @@ export const tooltipSetup = {
     },
   },
 };
+/**Overview Graph - START */
 export const labelsOverview = ["OWNED", "PROSPECTS"];
 export const dataOverview = [40, 60];
 export const dataBackgroudColorOverview = [currentColors[0], currentColors[1]];
+export const legendDataOverview = [
+  {
+    label: "OWNED",
+    style: "cube",
+    borderColor: currentColors[0],
+    backgroundColor: currentSurfaceColor,
+    fill: false,
+  },
+  {
+    label: "PROSPECTS",
+    style: "cube",
+    borderColor: currentColors[1],
+    backgroundColor: currentSurfaceColor,
+    fill: false,
+  },
+];
+/**Overview Graph - END */
+/**Prospects Graph - START */
 export const labelsProspects = ["OWNED", "PROSPECTS", "POTENTIAL PROSPECTS"];
 export const dataProspects = [30, 50, 20];
 export const dataBackgroudColorProspects = [
@@ -48,3 +71,27 @@ export const dataBackgroudColorProspects = [
   currentColors[1],
   currentColors[2],
 ];
+export const legendDataProspects = [
+  {
+    label: "OWNED",
+    style: "cube",
+    borderColor: currentColors[0],
+    backgroundColor: currentSurfaceColor,
+    fill: false,
+  },
+  {
+    label: "PROSPECTS",
+    style: "cube",
+    borderColor: currentColors[1],
+    backgroundColor: currentSurfaceColor,
+    fill: false,
+  },
+  {
+    label: "POTENTIAL PROSPECTS",
+    style: "cube",
+    borderColor: currentColors[2],
+    backgroundColor: currentSurfaceColor,
+    fill: false,
+  },
+];
+/**Prospects Graph - END */

@@ -2,7 +2,7 @@ import React from 'react';
 import WidgetOverview from './WidgetOverview';
 
 export default {
-  title: 'UI/WidgetOverview',
+  title: 'layout/WidgetOverview',
   component: WidgetOverview,
 };
 
