@@ -1,7 +1,7 @@
 @import "/stories/styles/main.scss";
 
 .x-menu {
-  @include flex-column(center, center);
+  @include flex-column(flex-start, center);
   gap: var(--gap-s);
   background-color: var(--surface-primary);
   width: var(--size-desktop-menu-collapse-width);
