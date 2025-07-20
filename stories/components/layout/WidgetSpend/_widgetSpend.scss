@@ -1,6 +1,9 @@
 @import "/stories/styles/main.scss";
-.x-widget-overview {
+
+.x-widget-spend {
   @include flex-column(flex-start, stretch);
+  min-width: 200px;
+  max-width: 450px;
   padding: var(--gap-xxl) var(--gap-xxl);
   background-color: var(--surface-primary);
   border-radius: var(--border-radius-m);
@@ -16,16 +19,19 @@
   &__title {
     color: var(--color-text-title);
     margin: var(--gap-none) var(--gap-none);
+  
   }
 
-  &__controls {
-    @include flex-space-between;
+  &__chart {
+    width: 100%;
+    gap: var(--gap-m);
+    @include flex;
+    flex-wrap: wrap;
   }
 
   &__chart-wrapper {
-    position: relative;
-    height: 300px; 
     width: 100%;
+    max-width: 320px;
   }
 
   &__legend{

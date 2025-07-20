@@ -11,7 +11,9 @@ export const tension = 0;
 export const borderDash = [12, 8];
 export const currentColors = getGraphColors();
 export const currentSurfaceColor = getChartColors()[2];
+export const tooltipSurfaceColor = getChartColors()[3];
 export const textColor = getChartColors()[1];
+export const tooltipTextColor = currentSurfaceColor;
 export const labelColor = safeGetComputedStyle("--color-text-default", "#000000");
 export const gridColor = safeGetComputedStyle("--color-border-primary", "#e0e0e0");
 export const fontFamily = safeGetComputedStyle("--font-family-graphs", "sans-serif");
@@ -50,10 +52,10 @@ export const legendDataSetUp = {
 /**Legend Graph - END */
 /**tooltip Graph - START */
 export const tooltipSetUp = {
-  titleColor: labelColor,
-  bodyColor: labelColor,
-  backgroundColor: currentSurfaceColor,
-  borderColor: safeGetComputedStyle("--color-text-default", "transparent"),
+  titleColor: tooltipTextColor,
+  bodyColor: tooltipTextColor,
+  backgroundColor: tooltipSurfaceColor,
+  borderColor: safeGetComputedStyle(gridColor, "transparent"),
   borderWidth: 1,
 };
 /**tooltip Graph - END */

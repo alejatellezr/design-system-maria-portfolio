@@ -34,7 +34,6 @@ const WidgetOverview = () => {
   const textColor = chartColors[1];
   const toggleProspects = () => setShowPotentialProspects((prev) => !prev);
 
-
   const [selectedPeriod, setSelectedPeriod] = useState("Month");
   const labels = useMemo(() => {
     switch (selectedPeriod) {
@@ -108,7 +107,7 @@ const WidgetOverview = () => {
     viewButtons,
   });
   return (
-    <div className="x-widget-overview">
+    <section className="x-widget-overview">
       <div className="x-widget-overview__header">
         <h2 className="x-widget-overview__title x-font-subtitle">Overview</h2>
         <Switch
@@ -129,9 +128,9 @@ const WidgetOverview = () => {
         />
       </div>
       <div className="x-widget-overview__legend">
-      <ChartLegend legendData={legendData} />
+        <ChartLegend legendData={legendData} />
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -31,7 +31,7 @@ const Template = (args) => {
 export const Positive = Template.bind({});
 Positive.args = {
   direction: "column",
-  viewpor: "desktop",
+  viewport: "desktop",
   status: "positive",
   TopCardTitle: "Total Spend",
   TopCardNote: "Compared to previous period ",
@@ -43,7 +43,7 @@ Positive.args = {
 export const Negative = {
   args: {
     direction: "column",
-    viewpor: "desktop",
+    viewport: "desktop",
     status: "negative",
     TopCardTitle: "Total Spend",
     TopCardNote: "Compared to previous period ",
