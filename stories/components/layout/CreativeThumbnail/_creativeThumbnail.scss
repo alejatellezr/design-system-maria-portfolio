@@ -52,7 +52,9 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    line-clamp: 1;
+    word-wrap:break-word;
+    word-break: break-all;
+    line-clamp: 2;
     width: calc(100% - 16px);
   }
 

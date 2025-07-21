@@ -8,6 +8,10 @@
   max-width: var(--size-global-dropdown-max-width);
   border-radius: var(--border-radius-m);
   padding: var(--gap-xxl) var(--gap-xxl);
+  box-shadow: var(--shadow-global-position-x) var(--shadow-global-position-y)
+    var(--shadow-global-blur) var(--shadow-global-spread)
+    var(--shadow-global-color);
+  background-color: var(--surface-primary);
 
   &--column {
     flex-direction: column;

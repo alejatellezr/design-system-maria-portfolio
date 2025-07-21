@@ -1,10 +1,22 @@
 @import "/stories/styles/main.scss";
 .x-creative-top {
   @include flex-column(flex-start, flex-start);
+  box-shadow: var(--shadow-global-position-x) var(--shadow-global-position-y)
+    var(--shadow-global-blur) var(--shadow-global-spread)
+    var(--shadow-global-color);
+  background-color: var(--surface-primary);
+  border-radius: var(--gap-ml);
+  overflow: hidden;
+
+  &__title{
+    padding: var(--gap-none) var(--gap-ml);
+    color: var(--color-text-title);
+  }
 
   &__list {
     @include flex-column(flex-start, flex-start);
   }
+
   &--mobile {
     .x-creative-top {
       &__list {
