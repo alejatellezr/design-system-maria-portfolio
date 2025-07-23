@@ -39,7 +39,7 @@ const BottomMenuItems = [
     visualOnly: "icon",
   },
   {
-    label: "User Profile",
+    label: "Profile",
     icon: "IconUser",
     visualOnly: "icon",
   },
@@ -48,8 +48,8 @@ const BottomMenuItems = [
 const menuStatusText = "Open Menu";
 const chevronIcon = "IconChevronRight";
 
-export const Menu = ({ scheme = "light" }) => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+export const Menu = () => {
+  const [isCollapsed, setIsCollapsed] = useState(true);
 
   const toggleMenu = () => {
     setIsCollapsed((prev) => !prev);
@@ -57,7 +57,6 @@ export const Menu = ({ scheme = "light" }) => {
 
   const statusClass = isCollapsed ? "collapsed" : "open";
   const LogoType = isCollapsed ? "logo" : "logotype";
-  const LogoTheme = scheme;
 
   const menuItems = rawMenuItems.map((item) => ({
     ...item,
@@ -80,7 +79,7 @@ export const Menu = ({ scheme = "light" }) => {
         onClick={toggleMenu}
       />
       <div className="x-menu__logo">
-        <Logo type={LogoType} theme={LogoTheme} width={200} height={40} />
+        <Logo type={LogoType} width={200} height={40} />
       </div>
 
       <nav className="x-menu__nav">

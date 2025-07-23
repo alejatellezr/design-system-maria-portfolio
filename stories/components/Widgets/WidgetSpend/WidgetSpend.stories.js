@@ -2,7 +2,7 @@ import React from "react";
 import WidgetSpend from "./WidgetSpend";
 
 export default {
-  title: "layout/WidgetSpend",
+  title: "widgets/WidgetSpend",
   component: WidgetSpend,
 };
 

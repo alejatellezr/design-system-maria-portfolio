@@ -44,7 +44,7 @@
 
   &__widgets-small-charts{
    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: 1fr 1fr 2fr;
     gap: var(--gap-ml);
     width: 100%;
   }
@@ -54,7 +54,8 @@
   }
 
   &__widgets-right {
-    min-width: var(--size-desktop-menu-min-width);
+    min-width: 500px;
+    height: 100%;
     max-width: var(--size-desktop-menu-max-width);
   }
 }

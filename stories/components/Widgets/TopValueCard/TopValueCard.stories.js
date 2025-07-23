@@ -3,7 +3,7 @@ import { useDarkMode } from "storybook-dark-mode";
 import { TopValueCard } from "./TopValueCard";
 
 export default {
-  title: "layout/TopValueCard",
+  title: "widgets/TopValueCard",
   component: TopValueCard,
   tags: ["autodocs"],
   parameters: {

@@ -17,44 +17,19 @@ export default {
 };
 
 const Template = (args) => {
-  const isDark = useDarkMode?.();
-  const resolvedTheme = args.theme ?? (isDark ? 'dark' : 'light');
-  return <Logo {...args} theme={resolvedTheme} />;
+  return <Logo {...args}/>;
 };
 
-export const AutoTheme = Template.bind({});
-AutoTheme.args = {
-  type: 'logotype',
-  width: 120,
-  height: 40,
-};
-export const LogotypeDark = Template.bind({});
-LogotypeDark.args = {
+export const Logotype = Template.bind({});
+Logotype.args = {
   type: 'logotype',
   width: 200,
   height: 40,
 };
 
-export const LogotypeLight = Template.bind({});
-LogotypeLight.args = {
-  type: 'logotype',
-  theme: 'light',
-  width: 200,
-  height: 40,
-};
-
-export const LogoOnlyDark = Template.bind({});
-LogoOnlyDark.args = {
+export const LogoOnly = Template.bind({});
+LogoOnly.args = {
   type: 'logo',
-  theme: 'dark',
-  width: 40,
-  height: 40,
-};
-
-export const LogoOnlyLight = Template.bind({});
-LogoOnlyLight.args = {
-  type: 'logo',
-  theme: 'light',
   width: 40,
   height: 40,
 };

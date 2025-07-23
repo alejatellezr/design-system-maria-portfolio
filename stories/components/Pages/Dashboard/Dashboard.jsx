@@ -2,12 +2,12 @@ import React from "react";
 import { Header } from "../../layout/Header/Header";
 import { Footer } from "../../layout/Footer/Footer";
 import { Menu } from "../../layout/Menu/Menu";
-import WidgetOverview from "../../layout/WidgetOverview/WidgetOverview";
-import WidgetSpend from "../../layout/WidgetSpend/WidgetSpend";
+import WidgetOverview from "../../Widgets/WidgetOverview/WidgetOverview";
+import WidgetSpend from "../../Widgets/WidgetSpend/WidgetSpend";
 import CreativeTop from "../../layout/CreativeTop/CreativeTop";
 import { mockAdvertisers } from "../../../utils/CreativesData";
 import { FilterToolbar } from "../../layout/FilterToolbar/FilterToolbar";
-import { TopValueCard } from "../../layout/TopValueCard/TopValueCard";
+import { TopValueCard } from "../../Widgets/TopValueCard/TopValueCard";
 import "./_dashboard.scss";
 
 const Dashboard = () => {
