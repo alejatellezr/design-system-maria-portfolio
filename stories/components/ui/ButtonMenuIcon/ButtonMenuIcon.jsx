@@ -73,7 +73,7 @@ export const ButtonMenuIcon = ({
       {renderVisual()}
 
       {(style === "secondary" || style === "tertiary") && label && (
-        <span className="x-button-menu__label x-font-14">{label}</span>
+        <span className="x-button-menu__label x-font-16">{label}</span>
       )}
     </button>
   );

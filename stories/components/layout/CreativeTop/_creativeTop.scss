@@ -1,10 +1,33 @@
 @import "/stories/styles/main.scss";
 .x-creative-top {
   @include flex-column(flex-start, flex-start);
+  box-shadow: var(--shadow-global-position-x) var(--shadow-global-position-y)
+    var(--shadow-global-blur) var(--shadow-global-spread)
+    var(--shadow-global-color);
+  background-color: var(--surface-primary);
+  border-radius: var(--gap-ml);
+  overflow: hidden;
+  min-width: var(--size-global-dropdown-min-width);
+  max-width: var(--size-global-dropdown-max-width);
+  overflow: auto;
+
+  &__title {
+    padding: var(--gap-none) var(--gap-ml);
+    color: var(--color-text-title);
+  }
 
   &__list {
     @include flex-column(flex-start, flex-start);
+    list-style: none;
+    width: 100%;
+    margin: var(--gap-none);
+    padding: var(--gap-none);
   }
+
+  &__item {
+    width: 100%;
+  }
+
   &--mobile {
     .x-creative-top {
       &__list {

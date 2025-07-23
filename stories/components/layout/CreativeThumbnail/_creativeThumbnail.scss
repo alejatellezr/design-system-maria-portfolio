@@ -18,7 +18,7 @@
   }
 
   &--desktop {
-    min-width: var(--size-global-dropdown-min-width);
+    min-width:150px;
     max-width: var(--size-global-dropdown-max-width);
   }
 
@@ -52,7 +52,9 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    line-clamp: 1;
+    word-wrap:break-word;
+    word-break: break-all;
+    line-clamp: 2;
     width: calc(100% - 16px);
   }
 
@@ -63,6 +65,7 @@
 
   &__text-box{
     width: -webkit-fill-available;
+    overflow: hidden;
   }
 
   &:hover,

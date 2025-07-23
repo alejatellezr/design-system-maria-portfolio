@@ -2,12 +2,12 @@ import React from "react";
 import { Header } from "../../layout/Header/Header";
 import { Footer } from "../../layout/Footer/Footer";
 import { Menu } from "../../layout/Menu/Menu";
-import WidgetOverview from "../../layout/WidgetOverview/WidgetOverview";
-import WidgetSpend from "../../layout/WidgetSpend/WidgetSpend";
+import WidgetOverview from "../../Widgets/WidgetOverview/WidgetOverview";
+import WidgetSpend from "../../Widgets/WidgetSpend/WidgetSpend";
 import CreativeTop from "../../layout/CreativeTop/CreativeTop";
 import { mockAdvertisers } from "../../../utils/CreativesData";
 import { FilterToolbar } from "../../layout/FilterToolbar/FilterToolbar";
-import { TopValueCard } from "../../layout/TopValueCard/TopValueCard";
+import { TopValueCard } from "../../Widgets/TopValueCard/TopValueCard";
 import "./_dashboard.scss";
 
 const Dashboard = () => {
@@ -60,8 +60,8 @@ const Dashboard = () => {
       <section className="x-dashboard__main">
         <Menu />
         <section className="x-dashboard__panel">
-          <FilterToolbar />
-          <article className="x-dashboard__dashboard">
+          <FilterToolbar className="x-dashboard__filter" />
+          <article className="x-dashboard__widgets">
             <div className="x-dashboard__widgets-left">
               <div className="x-dashboard__widgets-small-charts">
                 <TopValueCard
@@ -84,15 +84,16 @@ const Dashboard = () => {
                   direction={NegativeCard.direction}
                   viewport={NegativeCard.viewport}
                 />
-                <WidgetSpend />
+                <WidgetSpend className="x-dashboard__widgets-trend" />
               </div>
               <WidgetOverview />
             </div>
-            <CreativeTop
-            className="x-dashboard__widgets-right"
-              topAdvertisers={topCreatives.topAdvertisers}
-              viewport={topCreatives.viewport}
-            />
+            <div className="x-dashboard__widgets-right">
+              <CreativeTop
+                topAdvertisers={topCreatives.topAdvertisers}
+                viewport={topCreatives.viewport}
+              />
+            </div>
           </article>
         </section>
       </section>

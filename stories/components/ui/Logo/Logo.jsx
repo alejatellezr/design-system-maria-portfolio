@@ -7,35 +7,31 @@ import { useDarkMode } from "storybook-dark-mode";
  */
 export const Logo = ({
   type = "logotype",
-  theme, // 'light' | 'dark'
   width = 200,
   height = 40,
   className = "",
   ...props
 }) => {
-  const [isLight, setIsLight] = useState(theme === "light");
+  const [isLight, setIsLight] = useState(true);
 
   useEffect(() => {
     const checkIsLight = () => {
-      if (theme === "dark") {
-        const isDarkMode =
-          document.body.classList.contains("x-dark-mode") ||
-          document.documentElement.classList.contains("x-dark-mode");
-        setIsLight(!isDarkMode);
-      } else {
-        setIsLight(theme === "light");
-      }
+      const isDarkMode =
+        document.body.classList.contains("x-dark-mode") ||
+        document.documentElement.classList.contains("x-dark-mode");
+
+      setIsLight(!isDarkMode);
     };
 
-    // Initial checks
-    checkIsLight();
+    checkIsLight(); // Initial check
 
-    // Watch for class changes
     const observer = new MutationObserver(checkIsLight);
+
     observer.observe(document.body, {
       attributes: true,
       attributeFilter: ["class"],
     });
+
     observer.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ["class"],
@@ -44,10 +40,9 @@ export const Logo = ({
     return () => {
       observer.disconnect();
     };
-  }, [theme]);
+  }, []);
 
   const isLogoOnly = type === "logo";
-  const classModifier = `x-logo--${theme}`;
 
   const renderLogo = () => {
     if (isLogoOnly) {
@@ -66,10 +61,7 @@ export const Logo = ({
   };
 
   return (
-    <div
-      className={`x-logo ${classModifier} x-logo--${type} ${className}`}
-      {...props}
-    >
+    <div className={`x-logo x-logo--${type} ${className}`} {...props}>
       {renderLogo()}
     </div>
   );
@@ -218,7 +210,6 @@ const DarkLogotypeSVG = ({ width, height }) => (
 
 Logo.propTypes = {
   type: PropTypes.oneOf(["logo", "logotype"]),
-  theme: PropTypes.oneOf(["light", "dark"]),
   width: PropTypes.number,
   height: PropTypes.number,
   className: PropTypes.string,

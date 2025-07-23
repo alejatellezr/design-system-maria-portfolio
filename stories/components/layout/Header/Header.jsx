@@ -18,7 +18,7 @@ export const Header = ({
   return (
     <header className={`x-header`}>
       <div className="x-header__left-column">
-        <Logo type="logotype" theme={scheme} width={200} height={40} />
+        <Logo type="logotype" width={200} height={40} />
       </div>
       <div className="x-header__right-column">
         {user ? (

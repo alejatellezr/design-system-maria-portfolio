@@ -12,17 +12,28 @@
 
   &__main {
     @include flex;
-    flex-wrap: wrap;
     gap: var(--gap-none);
     width: 100%;
-    height: 95vh;;
   }
 
-  &__dashboard {
+  &__panel {
     @include flex;
     flex-wrap: wrap;
     gap: var(--gap-ml);
-    margin: var(--gap-ml);
+    padding: var(--gap-ml);
+    background-color: var(--surface-fourth);
+    width: fit-content;
+  }
+
+  &__filter{
+    width: 100%;
+  }
+
+  &__widgets{
+    width: 100%;
+    height: 100%;
+    @include flex;
+    gap: var(--gap-ml);
   }
 
   &__widgets-left {
@@ -30,8 +41,21 @@
     gap: var(--gap-ml);
     width: 100%;
   }
-  &__widgets-right{
-    min-width: var(--size-desktop-menu-min-width);
+
+  &__widgets-small-charts{
+   display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    gap: var(--gap-ml);
+    width: 100%;
+  }
+
+  &__widgets-trend{
+    width: 100%;
+  }
+
+  &__widgets-right {
+    min-width: 500px;
+    height: 100%;
     max-width: var(--size-desktop-menu-max-width);
   }
 }

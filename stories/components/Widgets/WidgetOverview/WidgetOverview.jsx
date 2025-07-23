@@ -1,8 +1,8 @@
 import React, { useState, useMemo, useRef } from "react";
-import ChartLine from "./../../ui/ChartLine/ChartLine";
-import { ButtonGroup } from "./../../ui/ButtonGroup/ButtonGroup";
-import Switch from "./../../ui/Switch/Switch";
-import ChartLegend from "./../../ui/ChartLegend/ChartLegend";
+import ChartLine from "../../ui/ChartLine/ChartLine";
+import { ButtonGroup } from "../../ui/ButtonGroup/ButtonGroup";
+import Switch from "../../ui/Switch/Switch";
+import ChartLegend from "../../ui/ChartLegend/ChartLegend";
 import "./_widgetOverview.scss";
 import {
   safeGetComputedStyle,

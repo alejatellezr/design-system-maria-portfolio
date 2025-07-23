@@ -8,9 +8,9 @@ const CreativeTop = ({ topAdvertisers = [], viewport = "desktop" }) => {
   return (
     <div className={`x-creative-top x-creative-top--${viewport}`}>
       <h2 className="x-creative-top__title x-font-subtitle">Top Creatives</h2>
-      <div className="x-creative-top__list">
+      <ul className="x-creative-top__list">
         {topAdvertisers.slice(0, 10).map((advertiser, index) => (
-          <CreativeThumbnail
+          <li className="x-creative-top__item"><CreativeThumbnail
             key={advertiser.id || index}
             CreativePosition={(index + 1).toString()}
             creativeImagePath={advertiser.image}
@@ -20,9 +20,9 @@ const CreativeTop = ({ topAdvertisers = [], viewport = "desktop" }) => {
             viewport={viewport}
             status="default"
             direction="row"
-          />
+          /></li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 };

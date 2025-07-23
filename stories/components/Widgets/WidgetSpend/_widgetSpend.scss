@@ -3,7 +3,6 @@
 .x-widget-spend {
   @include flex-column(flex-start, stretch);
   min-width: 200px;
-  max-width: 450px;
   padding: var(--gap-xxl) var(--gap-xxl);
   background-color: var(--surface-primary);
   border-radius: var(--border-radius-m);
@@ -26,17 +25,17 @@
     width: 100%;
     gap: var(--gap-m);
     @include flex;
-    flex-wrap: wrap;
   }
 
   &__chart-wrapper {
     width: 100%;
-    max-width: 320px;
+    max-width: 90px;
+    height: 90px;
   }
 
   &__legend{
-    @include flex-row(center, center);
     width: 100%;
+    @include flex-row(flex-start, flex-start);
     gap: var(--gap-m);
   }
 }

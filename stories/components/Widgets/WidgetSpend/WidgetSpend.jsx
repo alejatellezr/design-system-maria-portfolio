@@ -15,7 +15,7 @@ import {
   legendDataOverview,
   legendDataProspects,
 } from "../../../utils/ChartDoughnutData";
-import ChartLegend from "./../../ui/ChartLegend/ChartLegend";
+import ChartLegend from "../../ui/ChartLegend/ChartLegend";
 
 const WidgetSpend = ({ title = "Spend" }) => {
   const [showProspects, setShowProspects] = useState(false);

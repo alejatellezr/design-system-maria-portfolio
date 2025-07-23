@@ -5,8 +5,12 @@
   padding: var(--gap-xl);
   background: var(--surface-primary);
   border-radius: var(--gap-ml);
+  width: 100%;
   min-width: var(--size-desktop-min-width);
   max-width: var(--size-desktop-max-width);
+  box-shadow: var(--shadow-global-position-x) var(--shadow-global-position-y)
+    var(--shadow-global-blur) var(--shadow-global-spread)
+    var(--shadow-global-color);
 
   &__header {
     @include flex-space-between;
@@ -15,20 +19,16 @@
 
   &__left {
     @include flex-center;
-    gap:var(--gap-xl);
+    gap: var(--gap-xl);
   }
 
-  
   &__title {
     color: var(--color-text-title);
     margin: var(--gap-s);
   }
 
-
   &__right {
     @include flex;
-    gap:var(--gap-ml);
+    gap: var(--gap-ml);
   }
-
-
 }
