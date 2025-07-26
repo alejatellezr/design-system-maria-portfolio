@@ -1,74 +1,65 @@
 import { jsxDEV as _jsxDEV } from "react/jsx-dev-runtime";
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import {
+  leftTabs,
+  MeasureDropdown,
+  TimePeriodDropdown,
+  tabOptions,
+  allMediaOptions,
+  allMarketsOptions,
+  GridAccountsColumns,
+  GridAccountsData,
+  GridPropertyData,
+  AdditionalSettingsRollup,
+} from "../../../utils/FilterToolbarData";
 import { ButtonGroup } from "../../ui/ButtonGroup/ButtonGroup";
 import { ButtonMenuIcon } from "../../ui/ButtonMenuIcon/ButtonMenuIcon";
 import Dropdown from "../../ui/dropdown/Dropdown";
+import TabsGroup from "../../ui/TabGroup/TabsGroup";
+import { Search } from "../../ui/Search/Search";
+import MultiSelect from "../../ui/MultiSelect/MultiSelect";
 import "./_filterToolbar.scss";
+import { Button } from "../../ui/Button/Button";
+import Checkbox from "../../ui/Checkbox/Checkbox";
+import Grid from "../../ui/Grid/Grid";
+import RadioButtonGroup from "../../ui/RadioButtonGroup/RadioButtonGroup";
 
 export const FilterToolbar = () => {
-  const [activeTab, setActiveTab] = useState("Overview");
+  const [activePreview, setActivePreview] = useState("Overview");
   const [showSettings, setShowSettings] = useState(false);
   const [selectedMeasure, setSelectedMeasure] = useState("dollars");
   const [selectedTimePeriod, setSelectedTimePeriod] = useState("01");
 
-  const leftTabs = {
-    orientation: "row",
-    buttons: [
-      {
-        iconName: "null",
-        iconOnly: false,
-        label: "Overview",
-        style: "solid",
-        active: true,
-      },
-      {
-        iconName: "null",
-        iconOnly: false,
-        label: "Overview & Prospective",
-        style: "outline",
-        active: false,
-      },
-    ],
+  const [activeTab, setActiveTab] = useState(tabOptions[0]);
+
+  const [valueSearch, setValueSearch] = useState("");
+
+  const [selectedMedias, setSelectedMedias] = useState(["National TV"]);
+  const [selectedMarkets, setSelectedMarkets] = useState(["ALL MARKETS"]);
+
+  const [isCheckedCompetitiveProspects, setIsCheckedCompetitiveProspects] =
+    useState(false);
+  const [isIndeterminate, setIsIndeterminate] = useState(false);
+
+  const handleChange = (e) => {
+    const checked = e.target.checked;
+    setIsCheckedCompetitiveProspects(checked);
+    setIsIndeterminate(false);
   };
 
-  const MeasureDropdown = {
-    label: "Measure",
-    selected: "dollars",
-    options: [
-      { value: "dollars", label: "Dollars" },
-      { value: "units", label: "Units" },
-      { value: "impressions", label: "Impressions" },
-    ],
-    status: "default",
-    direction: "row",
-  };
-
-  const TimePeriodDropdown = {
-    label: "Time Period",
-    selected: "01",
-    options: [
-      { value: "01", label: "Rolling 12 Months" },
-      { value: "02", label: "Rolling 6 Months" },
-      { value: "03", label: "Current Month" },
-      { value: "04", label: "Previous Month" },
-      { value: "05", label: "Current Year" },
-      { value: "06", label: "Previous Year" },
-    ],
-    status: "default",
-    direction: "row",
-  };
+  const [selectedRollUp, setSelectedRollUp] = useState("advertiser");
 
   return (
-    <article className="x-filter-toolbar">
-      <div className="x-filter-toolbar__header">
+    <section className="x-filter-toolbar">
+      <section className="x-filter-toolbar__header">
         <div className="x-filter-toolbar__left">
           <h2 className="x-filter-toolbar__title x-font-title">Trend</h2>
           <ButtonGroup
             orientation={leftTabs.orientation}
             buttons={leftTabs.buttons}
-            activeTab={activeTab}
-            setActiveTab={setActiveTab}
+            activeTab={activePreview}
+            setActiveTab={setActivePreview}
             className="x-filter-toolbar__tabs"
           />
         </div>
@@ -114,13 +105,102 @@ export const FilterToolbar = () => {
             onClick={() => setShowSettings((prev) => !prev)}
           />
         </div>
-      </div>
+      </section>
       {showSettings && (
-        <div className="x-filter-toolbar__content">
-          <p>Filter settings content...</p>
-        </div>
+        <section className="x-filter-toolbar__content">
+          <TabsGroup tabs={tabOptions} onChange={(tab) => setActiveTab(tab)} />
+          {activeTab.value === "media" && (
+            <article className="x-filter-toolbar__section x-filter-toolbar__section--media">
+              <MultiSelect
+                options={allMediaOptions}
+                selected={selectedMedias}
+                onChange={setSelectedMedias}
+              />
+            </article>
+          )}
+
+          {activeTab.value === "accounts" && (
+            <article className="x-filter-toolbar__section x-filter-toolbar__section--accounts">
+              <Search
+                value={valueSearch}
+                placeholder="Search Accounts..."
+                onChange={(e) => setValueSearch(e.target.value)}
+              />
+              <Checkbox
+                checked={isCheckedCompetitiveProspects}
+                indeterminate={isIndeterminate}
+                onChange={handleChange}
+                label="Activate Competitive Prospects"
+                labelPosition="right"
+              />
+              <Grid
+                columns={GridAccountsColumns}
+                data={GridAccountsData}
+                showFilters={true}
+              />
+            </article>
+          )}
+
+          {activeTab.value === "property" && (
+            <article className="x-filter-toolbar__section x-filter-toolbar__section--property">
+              <Search
+                value={valueSearch}
+                placeholder="Search Properties..."
+                onChange={(e) => setValueSearch(e.target.value)}
+              />
+              <Checkbox
+                checked={isCheckedCompetitiveProspects}
+                indeterminate={isIndeterminate}
+                onChange={handleChange}
+                label="Activate Competitive Prospects"
+                labelPosition="right"
+              />
+              <Grid
+                columns={GridAccountsColumns}
+                data={GridPropertyData}
+                showFilters={true}
+              />
+            </article>
+          )}
+
+          {activeTab.value === "markets" && (
+            <article className="x-filter-toolbar__section x-filter-toolbar__section--markets">
+              <MultiSelect
+                options={allMarketsOptions}
+                selected={selectedMarkets}
+                onChange={setSelectedMarkets}
+              />
+            </article>
+          )}
+
+          {activeTab.value === "additional" && (
+            <article className="x-filter-toolbar__section x-filter-toolbar__section--additional">
+              <p className="x-font-16-bold">Roll up activity by</p>
+              <RadioButtonGroup
+                name="roll-up-activity-by"
+                options={AdditionalSettingsRollup}
+                value={selectedRollUp}
+                onChange={setSelectedRollUp}
+                orientation="row"
+              />
+              <p className="x-font-16-bold">Global Actions</p>
+              <Button label="DUPLICATE THIS DASHBOARD" style="outline" />
+              <Checkbox
+                checked={isCheckedCompetitiveProspects}
+                indeterminate={isIndeterminate}
+                onChange={handleChange}
+                label="Apply Configuration to ALL the Default Dashboards"
+                labelPosition="right"
+              />
+            </article>
+          )}
+          <article className="x-filter-toolbar__section x-filter-toolbar__section--actions">
+            <Button label="CANCEL" style="flat" />
+            <Button label="SAVE" style="solid" />
+          </article>
+        </section>
       )}
-    </article>
+    </section>
   );
 };
 FilterToolbar.propTypes = {

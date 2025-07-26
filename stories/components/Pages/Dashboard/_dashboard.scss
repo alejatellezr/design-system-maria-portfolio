@@ -34,12 +34,14 @@
     height: 100%;
     @include flex;
     gap: var(--gap-ml);
+    align-items: stretch;
   }
 
   &__widgets-left {
     @include flex-column;
     gap: var(--gap-ml);
     width: 100%;
+    flex: 1;
   }
 
   &__widgets-small-charts{
@@ -54,8 +56,10 @@
   }
 
   &__widgets-right {
-    min-width: 500px;
-    height: 100%;
+    min-width: 10px;
     max-width: var(--size-desktop-menu-max-width);
+    height: auto;
+    flex: 0 0 auto; 
+    
   }
 }

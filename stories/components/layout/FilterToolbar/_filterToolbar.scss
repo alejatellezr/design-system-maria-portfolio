@@ -5,7 +5,7 @@
   padding: var(--gap-xl);
   background: var(--surface-primary);
   border-radius: var(--gap-ml);
-  width: 100%;
+  width: -webkit-fill-available;
   min-width: var(--size-desktop-min-width);
   max-width: var(--size-desktop-max-width);
   box-shadow: var(--shadow-global-position-x) var(--shadow-global-position-y)
@@ -30,5 +30,23 @@
   &__right {
     @include flex;
     gap: var(--gap-ml);
+  }
+
+  &__content {
+    @include flex-column;
+    justify-content: flex-end;
+    width: 100%;
+    gap: var(--gap-xl);
+    margin-top: var(--gap-ml);
+  }
+
+  &__section {
+    margin: var(--gap-none) var(--gap-xl);
+
+    &--actions{
+      @include flex;
+      justify-content: flex-end;
+      gap: var(--gap-xl);
+    }
   }
 }
