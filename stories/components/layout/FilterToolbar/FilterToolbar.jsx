@@ -121,18 +121,20 @@ export const FilterToolbar = () => {
 
           {activeTab.value === "accounts" && (
             <article className="x-filter-toolbar__section x-filter-toolbar__section--accounts">
-              <Search
-                value={valueSearch}
-                placeholder="Search Accounts..."
-                onChange={(e) => setValueSearch(e.target.value)}
-              />
-              <Checkbox
-                checked={isCheckedCompetitiveProspects}
-                indeterminate={isIndeterminate}
-                onChange={handleChange}
-                label="Activate Competitive Prospects"
-                labelPosition="right"
-              />
+              <div className="x-filter-toolbar__section--row">
+                <Search
+                  value={valueSearch}
+                  placeholder="Search Accounts..."
+                  onChange={(e) => setValueSearch(e.target.value)}
+                />
+                <Checkbox
+                  checked={isCheckedCompetitiveProspects}
+                  indeterminate={isIndeterminate}
+                  onChange={handleChange}
+                  label="Activate Competitive Prospects"
+                  labelPosition="right"
+                />
+              </div>
               <Grid
                 columns={GridAccountsColumns}
                 data={GridAccountsData}
@@ -143,18 +145,20 @@ export const FilterToolbar = () => {
 
           {activeTab.value === "property" && (
             <article className="x-filter-toolbar__section x-filter-toolbar__section--property">
-              <Search
-                value={valueSearch}
-                placeholder="Search Properties..."
-                onChange={(e) => setValueSearch(e.target.value)}
-              />
-              <Checkbox
-                checked={isCheckedCompetitiveProspects}
-                indeterminate={isIndeterminate}
-                onChange={handleChange}
-                label="Activate Competitive Prospects"
-                labelPosition="right"
-              />
+              <div className="x-filter-toolbar__section--row">
+                <Search
+                  value={valueSearch}
+                  placeholder="Search Properties..."
+                  onChange={(e) => setValueSearch(e.target.value)}
+                />
+                <Checkbox
+                  checked={isCheckedCompetitiveProspects}
+                  indeterminate={isIndeterminate}
+                  onChange={handleChange}
+                  label="Activate Competitive Prospects"
+                  labelPosition="right"
+                />
+              </div>
               <Grid
                 columns={GridAccountsColumns}
                 data={GridPropertyData}
@@ -175,23 +179,27 @@ export const FilterToolbar = () => {
 
           {activeTab.value === "additional" && (
             <article className="x-filter-toolbar__section x-filter-toolbar__section--additional">
-              <p className="x-font-16-bold">Roll up activity by</p>
-              <RadioButtonGroup
-                name="roll-up-activity-by"
-                options={AdditionalSettingsRollup}
-                value={selectedRollUp}
-                onChange={setSelectedRollUp}
-                orientation="row"
-              />
-              <p className="x-font-16-bold">Global Actions</p>
-              <Button label="DUPLICATE THIS DASHBOARD" style="outline" />
-              <Checkbox
-                checked={isCheckedCompetitiveProspects}
-                indeterminate={isIndeterminate}
-                onChange={handleChange}
-                label="Apply Configuration to ALL the Default Dashboards"
-                labelPosition="right"
-              />
+              <div className="x-filter-toolbar__section--block">
+                <p className="x-filter-toolbar__text x-font-16-bold">Roll up activity by</p>
+                <RadioButtonGroup
+                  name="roll-up-activity-by"
+                  options={AdditionalSettingsRollup}
+                  value={selectedRollUp}
+                  onChange={setSelectedRollUp}
+                  orientation="row"
+                />
+              </div>
+              <div className="x-filter-toolbar__section--block">
+                <p className="x-filter-toolbar__text x-font-16-bold">Global Actions</p>
+                <Button label="DUPLICATE THIS DASHBOARD" style="outline" />
+                <Checkbox
+                  checked={isCheckedCompetitiveProspects}
+                  indeterminate={isIndeterminate}
+                  onChange={handleChange}
+                  label="Apply Configuration to ALL the Default Dashboards"
+                  labelPosition="right"
+                />
+              </div>
             </article>
           )}
           <article className="x-filter-toolbar__section x-filter-toolbar__section--actions">

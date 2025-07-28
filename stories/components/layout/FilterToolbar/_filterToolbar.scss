@@ -36,15 +36,37 @@
     @include flex-column;
     justify-content: flex-end;
     width: 100%;
-    gap: var(--gap-xl);
+    gap: var(--gap-xxl);
     margin-top: var(--gap-ml);
   }
 
+  &__text {
+    color: var(--color-text-secondary);
+    margin: var(--gap-none) var(--gap-none);
+  }
+
   &__section {
-    margin: var(--gap-none) var(--gap-xl);
+    @include flex-column;
+    gap: var(--gap-xl);
+    margin: var(--gap-xl) auto var(--gap-none) auto;
+    max-width: 1200px;
+    width: 100%;
+
+    &--row{
+      @include flex;
+      gap: var(--gap-m);
+    }
+
+    &--block {
+      @include flex-column(flex-start, flex-start);
+      gap: var(--gap-s);
+    }
 
     &--actions{
       @include flex;
+      flex-direction: row;
+      align-items: flex-end;
+      width: 100%;
       justify-content: flex-end;
       gap: var(--gap-xl);
     }

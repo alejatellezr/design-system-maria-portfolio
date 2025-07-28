@@ -79,28 +79,28 @@ const MultiSelect = ({
           className={`x-multiselect__input-wrapper`}
           onClick={() => !disabled && setFocused(true)}
         >
-          {selected.map((item) => (
-            <Chip
-              key={item}
-              label={item}
-              onRemove={() => handleRemove(item)}
-              disabled={disabled}
-            />
-          ))}
+          <div className="x-multiselect__input-selections">
+            {selected.map((item) => (
+              <Chip
+                key={item}
+                label={item}
+                onRemove={() => handleRemove(item)}
+                disabled={disabled}
+              />
+            ))}
 
-          <input
-            type="text"
-            className="x-multiselect__input x-font-16"
-            placeholder={placeholder}
-            value={input}
-            disabled={disabled}
-            onChange={(e) => setInput(e.target.value)}
-            onFocus={() => setFocused(true)}
-            onBlur={() => setTimeout(() => setFocused(false), 200)}
-          />
-          {IconTriangle && (
-            <IconTriangle className={`x-multiselect__arrow`} />
-          )}
+            <input
+              type="text"
+              className="x-multiselect__input x-font-16"
+              placeholder={placeholder}
+              value={input}
+              disabled={disabled}
+              onChange={(e) => setInput(e.target.value)}
+              onFocus={() => setFocused(true)}
+              onBlur={() => setTimeout(() => setFocused(false), 200)}
+            />
+          </div>
+          {IconTriangle && <IconTriangle className={`x-multiselect__arrow`} />}
         </div>
 
         {focused && (
@@ -123,15 +123,12 @@ const MultiSelect = ({
           </ul>
         )}
 
-        {(status === "error" || status === "informative") && message &&  (
+        {(status === "error" || status === "informative") && message && (
           <div
             className={`x-multiselect__message x-font-14 x-multiselect__message--${status}`}
           >
-            {status === "error" && 
-            (<IconXboxX stroke={2} />)}
-            {status === "informative" && (
-              <IconInfoCircleFilled stroke={2} />
-            )}
+            {status === "error" && <IconXboxX stroke={2} />}
+            {status === "informative" && <IconInfoCircleFilled stroke={2} />}
             <span>{message}</span>
           </div>
         )}
