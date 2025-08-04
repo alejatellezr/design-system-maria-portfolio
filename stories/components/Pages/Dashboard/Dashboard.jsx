@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Header } from "../../layout/Header/Header";
 import { Footer } from "../../layout/Footer/Footer";
 import { Menu } from "../../layout/Menu/Menu";
@@ -48,19 +48,29 @@ const Dashboard = () => {
     TopCardCurrencyValue: "$",
     TopCardCurrencyAmount: "1000",
   };
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <body className="x-dashboard">
-      <Header
+     {/*} <Header
         user={user}
         onLogin={handleLogin}
         onLogout={handleLogout}
         onCreateAccount={handleCreateAccount}
-        scheme="light"
-      />
-      <section className="x-dashboard__main">
-        <Menu />
+      />*/}
+      <section
+        className={`x-dashboard__main ${
+          isMenuOpen ? "x-dashboard__main--menu-open" : ""
+        }`}
+      >
+        <Menu
+          extraclass="x-dashboard__menu"
+          isOpen={isMenuOpen}
+          toggleMenu={() => setIsMenuOpen((prev) => !prev)}
+        />
         <section className="x-dashboard__panel">
-          <FilterToolbar className="x-dashboard__filter" />
+          <FilterToolbar extraclass="x-dashboard__filter" />
           <article className="x-dashboard__widgets">
             <div className="x-dashboard__widgets-left">
               <div className="x-dashboard__widgets-small-charts">
@@ -98,10 +108,10 @@ const Dashboard = () => {
         </section>
       </section>
 
-      <Footer
+      {/*<Footer
         brandName={footerData.brandName}
         currentYear={footerData.currentYear}
-      />
+      />*/}
     </body>
   );
 };

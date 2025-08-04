@@ -48,12 +48,9 @@ const BottomMenuItems = [
 const menuStatusText = "Open Menu";
 const chevronIcon = "IconChevronRight";
 
-export const Menu = () => {
-  const [isCollapsed, setIsCollapsed] = useState(true);
-
-  const toggleMenu = () => {
-    setIsCollapsed((prev) => !prev);
-  };
+export const Menu = ({ isOpen, toggleMenu, extraclass }) => {
+  const isCollapsed = !isOpen;
+  const parentClass = extraclass || "";
 
   const statusClass = isCollapsed ? "collapsed" : "open";
   const LogoType = isCollapsed ? "logo" : "logotype";
@@ -69,10 +66,10 @@ export const Menu = () => {
   }));
 
   return (
-    <article className={`x-menu x-menu--${statusClass}`}>
+    <aside className={`x-menu x-menu--${statusClass} ${parentClass}`}>
       <ButtonMenuIcon
-        label={menuStatusText}
-        iconName={chevronIcon}
+        label="Open Menu"
+        iconName="IconChevronRight"
         visualOnly="icon"
         style="primary"
         className="x-menu__collpase-button"
@@ -105,7 +102,7 @@ export const Menu = () => {
           />
         ))}
       </nav>
-    </article>
+    </aside>
   );
 };
 

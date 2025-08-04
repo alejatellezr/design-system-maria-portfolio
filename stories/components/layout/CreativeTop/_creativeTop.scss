@@ -7,8 +7,6 @@
   background-color: var(--surface-primary);
   border-radius: var(--gap-ml);
   overflow: hidden;
-  min-width: var(--size-global-dropdown-min-width);
-  max-width: var(--size-global-dropdown-max-width);
   overflow: auto;
 
   &__title {

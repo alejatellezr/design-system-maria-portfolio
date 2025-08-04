@@ -15,7 +15,7 @@ export const currentTextColor = getComputedStyle(document.documentElement)
 
 export const currentColors = getGraphColors();
 export const cutout = "35%";
-export const hoverOffset = 50;
+export const hoverOffset = 12;
 export const borderWidth = 2;
 export const currentSurfaceColor = getChartColors()[2];
 export const tooltipSurfaceColor = getChartColors()[3];

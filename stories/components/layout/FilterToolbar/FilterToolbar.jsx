@@ -25,7 +25,8 @@ import Checkbox from "../../ui/Checkbox/Checkbox";
 import Grid from "../../ui/Grid/Grid";
 import RadioButtonGroup from "../../ui/RadioButtonGroup/RadioButtonGroup";
 
-export const FilterToolbar = () => {
+export const FilterToolbar = (args) => {
+  const extraclass = args.extraclass || "";
   const [activePreview, setActivePreview] = useState("Overview");
   const [showSettings, setShowSettings] = useState(false);
   const [selectedMeasure, setSelectedMeasure] = useState("dollars");
@@ -51,7 +52,7 @@ export const FilterToolbar = () => {
   const [selectedRollUp, setSelectedRollUp] = useState("advertiser");
 
   return (
-    <section className="x-filter-toolbar">
+    <section className={`x-filter-toolbar ${extraclass}`}>
       <section className="x-filter-toolbar__header">
         <div className="x-filter-toolbar__left">
           <h2 className="x-filter-toolbar__title x-font-title">Trend</h2>

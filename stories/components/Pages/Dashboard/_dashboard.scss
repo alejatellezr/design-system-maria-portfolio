@@ -4,16 +4,23 @@
   @include flex;
   flex-wrap: wrap;
   gap: var(--gap-none);
-  min-width: var(--size-desktop-min-width);
-  max-width: 100%;
   width: 100%;
   background-color: var(--surface-fourth);
-  padding: var(--gap-xxl) var(--gap-xxl);
+  padding: var(--gap-none) var(--gap-none);
+  margin: var(--gap-none);
 
   &__main {
-    @include flex;
-    gap: var(--gap-none);
-    width: 100%;
+    display: grid;
+    grid-template-columns: var(--size-desktop-menu-collapse-width) 1fr; // default collapsed
+    transition: grid-template-columns 0.3s ease;
+    &--menu-open {
+      grid-template-columns: var(--size-global-dropdown-min-width) 1fr;
+      .x-dashboard__panel {
+        width: calc(
+          100% - var(--size-global-dropdown-min-width)
+        );
+      }
+    }
   }
 
   &__panel {
@@ -22,14 +29,13 @@
     gap: var(--gap-ml);
     padding: var(--gap-ml);
     background-color: var(--surface-fourth);
-    width: fit-content;
   }
 
-  &__filter{
+  &__filter {
     width: 100%;
   }
 
-  &__widgets{
+  &__widgets {
     width: 100%;
     height: 100%;
     @include flex;
@@ -44,14 +50,14 @@
     flex: 1;
   }
 
-  &__widgets-small-charts{
-   display: grid;
+  &__widgets-small-charts {
+    display: grid;
     grid-template-columns: 1fr 1fr 2fr;
     gap: var(--gap-ml);
     width: 100%;
   }
 
-  &__widgets-trend{
+  &__widgets-trend {
     width: 100%;
   }
 
@@ -59,7 +65,6 @@
     min-width: 10px;
     max-width: var(--size-desktop-menu-max-width);
     height: auto;
-    flex: 0 0 auto; 
-    
+    flex: 0 0 auto;
   }
 }

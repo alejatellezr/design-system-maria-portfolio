@@ -282,13 +282,13 @@ export const legendDataOverview = [
     borderColor: textColor,
     backgroundColor: currentSurfaceColor,
     fill: false,
+    borderDash,
   },
   {
     label: "CURRENT YEAR",
     style: "line",
     borderColor: textColor,
-    backgroundColor: currentSurfaceColor,
-    borderDash,
+    backgroundColor: currentSurfaceColor,    
     fill: false,
   },
 ];
@@ -572,14 +572,13 @@ export const legendDataProspects = [
     borderColor: textColor,
     backgroundColor: currentSurfaceColor,
     fill: false,
+    borderDash,
   },
   {
     label: "CURRENT YEAR",
     style: "line",
     borderColor: textColor,
-    backgroundColor: currentSurfaceColor,
-    borderDash,
-    // fill: false,
+    backgroundColor: currentSurfaceColor,    
   },
 ];
 /**Prospects Graph - END */

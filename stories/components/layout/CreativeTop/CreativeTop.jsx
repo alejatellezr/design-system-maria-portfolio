@@ -1,29 +1,31 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {CreativeThumbnail} from "./../CreativeThumbnail/CreativeThumbnail";
+import { CreativeThumbnail } from "./../CreativeThumbnail/CreativeThumbnail";
 
 import "./_creativeTop.scss";
 
 const CreativeTop = ({ topAdvertisers = [], viewport = "desktop" }) => {
   return (
-    <div className={`x-creative-top x-creative-top--${viewport}`}>
+    <section className={`x-creative-top x-creative-top--${viewport}`}>
       <h2 className="x-creative-top__title x-font-subtitle">Top Creatives</h2>
       <ul className="x-creative-top__list">
         {topAdvertisers.slice(0, 10).map((advertiser, index) => (
-          <li className="x-creative-top__item"><CreativeThumbnail
-            key={advertiser.id || index}
-            CreativePosition={(index + 1).toString()}
-            creativeImagePath={advertiser.image}
-            CreativeName={advertiser.name}
-            CreativeCurrencyValue={advertiser.currencySymbol}
-            CreativeCurrencyAmount={advertiser.amount}
-            viewport={viewport}
-            status="default"
-            direction="row"
-          /></li>
+          <li className="x-creative-top__item">
+            <CreativeThumbnail
+              key={advertiser.id || index}
+              CreativePosition={(index + 1).toString()}
+              creativeImagePath={advertiser.image}
+              CreativeName={advertiser.name}
+              CreativeCurrencyValue={advertiser.currencySymbol}
+              CreativeCurrencyAmount={advertiser.amount}
+              viewport={viewport}
+              status="default"
+              direction="row"
+            />
+          </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 };
 

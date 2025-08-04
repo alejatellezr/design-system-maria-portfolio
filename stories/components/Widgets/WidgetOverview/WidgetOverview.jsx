@@ -26,10 +26,8 @@ import {
 const WidgetOverview = () => {
   const [showPotentialProspects, setShowPotentialProspects] = useState(false);
   const currentColorsRef = useRef(getGraphColors());
-  const currentColors = currentColorsRef.current;
   const chartColorsRef = useRef(getChartColors());
   const chartColors = chartColorsRef.current;
-  const currentSurfaceColor = chartColors[2];
 
   const textColor = chartColors[1];
   const toggleProspects = () => setShowPotentialProspects((prev) => !prev);

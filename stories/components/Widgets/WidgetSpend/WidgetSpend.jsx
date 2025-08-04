@@ -23,8 +23,8 @@ const WidgetSpend = ({ title = "Spend" }) => {
   const chartData = useMemo(() => {
     const labels = showProspects ? labelsProspects : labelsOverview;
     const chartlegend = showProspects
-      ? legendDataOverview
-      : legendDataProspects;
+      ? legendDataProspects
+      : legendDataOverview;
     const data = showProspects ? dataProspects : dataOverview;
     const backgroundColor = showProspects
       ? dataBackgroudColorProspects
@@ -63,7 +63,7 @@ const WidgetSpend = ({ title = "Spend" }) => {
             colors={chartData.datasets[0].backgroundColor}
           />
         </div>
-        <div className="x-widget-overview__legend">
+        <div className="x-widget-spend__legend">
           <ChartLegend legendData={chartData.chartlegend} />
         </div>
       </div>
