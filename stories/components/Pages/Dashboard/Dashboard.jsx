@@ -8,6 +8,7 @@ import CreativeTop from "../../layout/CreativeTop/CreativeTop";
 import { mockAdvertisers } from "../../../utils/CreativesData";
 import { FilterToolbar } from "../../layout/FilterToolbar/FilterToolbar";
 import { TopValueCard } from "../../Widgets/TopValueCard/TopValueCard";
+import { NegativeCard, PositiveCard } from "../../../utils/DashboardData";
 import "./_dashboard.scss";
 
 const Dashboard = () => {
@@ -25,28 +26,6 @@ const Dashboard = () => {
   const topCreatives = {
     topAdvertisers: mockAdvertisers,
     viewport: "desktop",
-  };
-
-  const PositiveCard = {
-    direction: "column",
-    viewport: "desktop",
-    status: "positive",
-    TopCardTitle: "Total Spend",
-    TopCardNote: "Compared to previous period ",
-    TopCardPercentage: "15%",
-    TopCardCurrencyValue: "$",
-    TopCardCurrencyAmount: "1000",
-  };
-
-  const NegativeCard = {
-    direction: "column",
-    viewport: "desktop",
-    status: "negative",
-    TopCardTitle: "Total Spend",
-    TopCardNote: "Compared to previous period ",
-    TopCardPercentage: "15%",
-    TopCardCurrencyValue: "$",
-    TopCardCurrencyAmount: "1000",
   };
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);

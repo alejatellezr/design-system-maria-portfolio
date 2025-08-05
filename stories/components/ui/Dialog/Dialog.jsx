@@ -28,7 +28,7 @@ const Dialog = ({
           />
         </div>
         <div className="x-dialog__body">{children}</div>
-        {informative && (
+        {!informative && (
           <div className="x-dialog__footer">
             <Button
               className="x-dialog__cancel"

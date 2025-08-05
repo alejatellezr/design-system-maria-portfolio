@@ -5,8 +5,8 @@
     position: fixed;
     top: 0;
     left: 0;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     background-color: var(--surface-dialog-mask);
     z-index: 10000;
     transition: var(--base-transition);
@@ -21,6 +21,9 @@
     border-radius: var(--border-radius-m);
     min-width: var(--size-mobile-width);
     max-width: 95vw;
+    width: 95%;
+    max-height: 95vh;
+    overflow: auto;
     box-shadow: var(--shadow-global-position-x) var(--shadow-global-position-y)
       var(--shadow-global-blur) var(--shadow-global-spread)
       var(--shadow-global-color);
@@ -35,6 +38,10 @@
   &__title{
     margin:var(--gap-none);
     transition: var(--base-transition);
+  }
+
+  &__close{
+    padding: var(--gap-none) var(--gap-xs);
   }
 
   &__body {

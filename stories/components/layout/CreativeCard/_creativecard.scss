@@ -5,14 +5,14 @@
   padding: var(--gap-xl) var(--gap-xxl);
   background-color: var(--surface-primary);
   transition: var(--base-transition);
+  width: calc(100% - var(--gap-xxl) * 4);
 
 
   &--desktop {
     @include flex;
+    width: calc(100% - var(--gap-xxl) * 2);
     justify-content: flex-start;
     align-items: flex-start;
-    min-width: var(--size-desktop-min-width);
-    max-width: var(--size-desktop-max-width);
   }
 
   &--mobile {
@@ -23,15 +23,20 @@
 
 
   &__image {
+    width: 40%;
     height: auto;
     border-radius: var(--border-radius-m);
     background-color: var(--surface-fourth);
     transition: var(--base-transition);
   }
 
+  &__text-box{
+    width: 60%;
+  }
+
   &__name {
     color: var(--color-text-title);
-    margin: var(--gap-xl);
+    margin: var(--gap-m) var(--gap-none);
     transition: var(--base-transition);
   }
 

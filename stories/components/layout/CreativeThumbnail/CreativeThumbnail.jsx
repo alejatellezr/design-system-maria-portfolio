@@ -12,6 +12,7 @@ export const CreativeThumbnail = ({
   CreativeName = "Creative Name",
   CreativeCurrencyValue = "$",
   CreativeCurrencyAmount = "1000",
+  onClick,
 }) => {
   const creativeWidth = viewport === "desktop" ? "60px" : "100px";
   const creativeHeight = viewport === "desktop" ? "60px" : "80px";
@@ -19,6 +20,10 @@ export const CreativeThumbnail = ({
   return (
     <div
       className={`x-creative-thumbnail x-creative-thumbnail--${direction} x-creative-thumbnail--${status} x-creative-thumbnail--${viewport}`}
+      onClick={onClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => e.key === "Enter" && onClick?.()}
     >
       <h4 className={`x-creative-thumbnail__position x-font-title`}>{CreativePosition}.</h4>
       <img
@@ -53,4 +58,5 @@ CreativeThumbnail.propTypes = {
   viewport: PropTypes.oneOf(["desktop", "mobile"]),
   status: PropTypes.oneOf(["default", "hover"]),
   direction: PropTypes.oneOf(["row", "column"]),
+  onClick: PropTypes.func,
 };
