@@ -9,8 +9,7 @@
   position: relative;
   transition: var(--base-transition);
   padding: var(--gap-xl) var(--gap-none);
-  box-shadow: var(--shadow-global-position-x) var(--shadow-global-position-y) var(--shadow-global-blur) var(--shadow-global-spread) var(--shadow-global-color) var(--border-radius-m) 
-              0 0 var(--shadow-global-blur) var(--shadow-global-spread) var(--shadow-global-color);
+  box-shadow: 8px 0 5px -5px var(--shadow-global-color);
 
   &--open {
     width: var(--size-global-dropdown-min-width);

@@ -9,26 +9,31 @@ const rawMenuItems = [
     label: "Trend",
     icon: "IconTrendingUp",
     visualOnly: "icon",
+    status: "active",
   },
   {
     label: "Property",
     icon: "IconSpeakerphone",
     visualOnly: "icon",
+    status: "default",
   },
   {
     label: "Media",
     icon: "IconPhotoVideo",
     visualOnly: "icon",
+    status: "default",
   },
   {
     label: "Market",
     icon: "IconShoppingCart",
     visualOnly: "icon",
+    status: "default",
   },
   {
     label: "Create New Dashboard",
     icon: "IconSquareRoundedPlus",
     visualOnly: "icon",
+    status: "default",
   },
 ];
 
@@ -37,23 +42,22 @@ const BottomMenuItems = [
     label: "Notifications",
     icon: "IconBell",
     visualOnly: "icon",
+    status: "default",
   },
   {
     label: "Profile",
     icon: "IconUser",
     visualOnly: "icon",
+    status: "default",
   },
 ];
 
 const menuStatusText = "Open Menu";
 const chevronIcon = "IconChevronRight";
 
-export const Menu = () => {
-  const [isCollapsed, setIsCollapsed] = useState(true);
-
-  const toggleMenu = () => {
-    setIsCollapsed((prev) => !prev);
-  };
+export const Menu = ({ isOpen, toggleMenu, extraclass }) => {
+  const isCollapsed = !isOpen;
+  const parentClass = extraclass || "";
 
   const statusClass = isCollapsed ? "collapsed" : "open";
   const LogoType = isCollapsed ? "logo" : "logotype";
@@ -69,10 +73,10 @@ export const Menu = () => {
   }));
 
   return (
-    <article className={`x-menu x-menu--${statusClass}`}>
+    <aside className={`x-menu x-menu--${statusClass} ${parentClass}`}>
       <ButtonMenuIcon
-        label={menuStatusText}
-        iconName={chevronIcon}
+        label="Open Menu"
+        iconName="IconChevronRight"
         visualOnly="icon"
         style="primary"
         className="x-menu__collpase-button"
@@ -90,7 +94,7 @@ export const Menu = () => {
             iconName={item.icon}
             visualOnly={item.visualOnly}
             style={item.style}
-            className="x-menu__button"
+            className={`x-menu__button x-button-menu--${item.status}`}
           />
         ))}
         <span className="x-menu__line"></span>
@@ -105,7 +109,7 @@ export const Menu = () => {
           />
         ))}
       </nav>
-    </article>
+    </aside>
   );
 };
 

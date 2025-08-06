@@ -35,7 +35,7 @@ export const CreativeCard = ({
         height={creativeHeight}
       />
       <div className="x-creative-card__text-box">
-        <h4 className={`x-creative-card__position x-font-title`}>
+        <h4 className={`x-creative-card__name x-font-subtitle`}>
           {CreativePosition}. {CreativeName}
         </h4>
         <div className="x-creative-card__row">

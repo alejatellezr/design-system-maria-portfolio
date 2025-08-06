@@ -22,17 +22,17 @@ const tabOptions = [
 ];
 
 const Template = (args) => {
-  const [active, setActive] = useState(tabOptions[0]);
+  const [activeTab, setActiveTab] = useState(tabOptions[0]);
 
   return (
-    <div>
+    <>
       <TabsGroup
         {...args}
         tabs={tabOptions}
-        onChange={(tab) => setActive(tab)}
+        onChange={(tab) => setActiveTab(tab)}
       />
-      <p style={{ marginTop: '16px' }}>Selected tab: {active.label}</p>
-    </div>
+      <p>Selected tab: {activeTab.label}</p>
+    </>
   );
 };
 

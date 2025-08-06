@@ -45,7 +45,7 @@ export const Negative = {
     direction: "column",
     viewport: "desktop",
     status: "negative",
-    TopCardTitle: "Total Spend",
+    TopCardTitle: "Total Count",
     TopCardNote: "Compared to previous period ",
     TopCardPercentage: "15%",
     TopCardCurrencyValue: "$",

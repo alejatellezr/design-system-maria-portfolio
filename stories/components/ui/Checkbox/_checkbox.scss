@@ -1,7 +1,7 @@
 @import "/stories/styles/main.scss";
 
 .x-checkbox {
-  @include flex-center;
+  @include flex;
   cursor: pointer;
   user-select: none;
   gap: var(--gap-xs);

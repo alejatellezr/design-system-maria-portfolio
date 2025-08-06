@@ -4,6 +4,7 @@
   @include flex-center;
   cursor: pointer;
   border-width: var(--size-global-stroke-width);
+  border-color: var(--color-border-primary);
   border-style: solid;
   gap: var(--gap-s);
   border-radius: var(--border-radius-m);

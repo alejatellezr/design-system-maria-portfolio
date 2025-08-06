@@ -3,8 +3,7 @@
 .x-header{
     @include flex-space-between;
     background-color: var(--surface-primary);
-    min-width: var(--size-desktop-min-width);
-    max-width: var(--size-desktop-max-width);
+    width: 100%;
     padding: var(--gap-s) var(--gap-ml);
 
     &__right-column{

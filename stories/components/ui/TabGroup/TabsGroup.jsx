@@ -19,7 +19,7 @@ const TabsGroup = ({
   };
 
   return (
-    <div className={`x-tabs-group x-tabs-group--${orientation}`}>
+    <section className={`x-tabs-group x-tabs-group--${orientation}`}>
       {tabs.map((tab, index) => (
         <Tab
           key={tab.value || index}
@@ -30,7 +30,7 @@ const TabsGroup = ({
           disabled={tab.disabled || disabled}
         />
       ))}
-    </div>
+    </section>
   );
 };
 

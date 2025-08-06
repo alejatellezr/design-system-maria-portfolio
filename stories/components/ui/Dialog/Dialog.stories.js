@@ -45,5 +45,5 @@ const Template = (args) => {
 export const Default = Template.bind({});
 Default.args = {
   title: "Please Confirm",
-  informative: false,
+  informative: true,
 };

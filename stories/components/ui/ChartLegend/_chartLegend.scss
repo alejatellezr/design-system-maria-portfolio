@@ -28,31 +28,26 @@
 
     &--line {
       height: 1px;
-      border-width: var(--size-bold-stroke-width);
 
       &.x-chart-legend__icon {
         &--solid {
-          border-style: solid;
+          width: 30px;
+          background: transparent;
+          border:var(--size-bold-stroke-width) solid var(--color-text-default);
           border-left: none;
           border-right: none;
           border-bottom: none;
         }
 
         &--dashed {
-          border-style: dashed;
+          width: 30px;
+          background: transparent;
+          border:var(--size-bold-stroke-width) dashed var(--color-text-default);
           border-left: none;
           border-right: none;
           border-bottom: none;
         }
       }
-    }
-
-    &--solid {
-      border-style: solid;
-    }
-
-    &--dashed {
-      border-style: dashed;
     }
   }
 

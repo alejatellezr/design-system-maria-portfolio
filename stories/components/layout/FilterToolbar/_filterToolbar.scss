@@ -5,7 +5,7 @@
   padding: var(--gap-xl);
   background: var(--surface-primary);
   border-radius: var(--gap-ml);
-  width: 100%;
+  width: -webkit-fill-available;
   min-width: var(--size-desktop-min-width);
   max-width: var(--size-desktop-max-width);
   box-shadow: var(--shadow-global-position-x) var(--shadow-global-position-y)
@@ -30,5 +30,45 @@
   &__right {
     @include flex;
     gap: var(--gap-ml);
+  }
+
+  &__content {
+    @include flex-column;
+    justify-content: flex-end;
+    width: 100%;
+    gap: var(--gap-xxl);
+    margin-top: var(--gap-ml);
+  }
+
+  &__text {
+    color: var(--color-text-secondary);
+    margin: var(--gap-none) var(--gap-none);
+  }
+
+  &__section {
+    @include flex-column;
+    gap: var(--gap-xl);
+    margin: var(--gap-xl) auto var(--gap-none) auto;
+    max-width: 1200px;
+    width: 100%;
+
+    &--row{
+      @include flex;
+      gap: var(--gap-m);
+    }
+
+    &--block {
+      @include flex-column(flex-start, flex-start);
+      gap: var(--gap-s);
+    }
+
+    &--actions{
+      @include flex;
+      flex-direction: row;
+      align-items: flex-end;
+      width: 100%;
+      justify-content: flex-end;
+      gap: var(--gap-xl);
+    }
   }
 }

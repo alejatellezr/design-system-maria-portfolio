@@ -29,7 +29,9 @@
   }
 
   &__input-wrapper {
-    @include flex-center;
+    @include flex;
+    justify-content: space-between;
+    width: calc(100% - 16px);
     background-color: var(--surface-fourth);
     color: var(--color-text-default);
     border-width: var(--size-global-stroke-width);
@@ -42,11 +44,18 @@
     min-height: var(--size-global-default-height);
   }
 
+  &__input-selections{
+    @include flex-row(flex-start, center);
+    flex-wrap: wrap;
+    gap: var(--gap-xs);
+    max-width: 100%;
+    overflow: hidden;
+  }
+
   &__input {
     border: none;
     outline: none;
     min-width: var(--size-global-inputs-min-width);
-    width: 100%;
     background: transparent;
   }
 
@@ -61,9 +70,7 @@
     max-height: var(--size-message-max-height);
     overflow-y: auto;
     background-color: var(--surface-primary);
-    box-shadow: var(--shadow-global-position-x) var(--shadow-global-position-y)
-      var(--shadow-global-blur) var(--shadow-global-spread)
-      var(--shadow-global-color);
+    box-shadow: 2px 4px 6px 1px var(--shadow-global-color);
     z-index: 10;
     border-width: var(--size-global-stroke-width);
     border-style: solid;

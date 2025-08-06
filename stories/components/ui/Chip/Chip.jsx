@@ -5,7 +5,7 @@ import './_chip.scss';
 
 const Chip = ({ label, onRemove, disabled = false }) => (
   <span className={`x-chip ${disabled ? 'x-chip--disabled' : ''} x-font-16`}>
-    {label}
+    <span className='x-chip__label'>{label}</span>
     {!disabled && (
       <Button
               className="x-chip__close "

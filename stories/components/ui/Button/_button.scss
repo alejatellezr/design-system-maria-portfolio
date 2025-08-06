@@ -13,7 +13,7 @@
   line-height: var(--line-height-sm);
   height: var(--size-global-default-height);
   transition: var(--base-transition);
-  padding: var(--gap-s);
+  padding: var(--gap-s) var(--gap-xl);
 
   &--disabled,
   &:disabled,
