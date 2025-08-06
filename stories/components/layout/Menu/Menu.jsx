@@ -9,26 +9,31 @@ const rawMenuItems = [
     label: "Trend",
     icon: "IconTrendingUp",
     visualOnly: "icon",
+    status: "active",
   },
   {
     label: "Property",
     icon: "IconSpeakerphone",
     visualOnly: "icon",
+    status: "default",
   },
   {
     label: "Media",
     icon: "IconPhotoVideo",
     visualOnly: "icon",
+    status: "default",
   },
   {
     label: "Market",
     icon: "IconShoppingCart",
     visualOnly: "icon",
+    status: "default",
   },
   {
     label: "Create New Dashboard",
     icon: "IconSquareRoundedPlus",
     visualOnly: "icon",
+    status: "default",
   },
 ];
 
@@ -37,11 +42,13 @@ const BottomMenuItems = [
     label: "Notifications",
     icon: "IconBell",
     visualOnly: "icon",
+    status: "default",
   },
   {
     label: "Profile",
     icon: "IconUser",
     visualOnly: "icon",
+    status: "default",
   },
 ];
 
@@ -87,7 +94,7 @@ export const Menu = ({ isOpen, toggleMenu, extraclass }) => {
             iconName={item.icon}
             visualOnly={item.visualOnly}
             style={item.style}
-            className="x-menu__button"
+            className={`x-menu__button x-button-menu--${item.status}`}
           />
         ))}
         <span className="x-menu__line"></span>

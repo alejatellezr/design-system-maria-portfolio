@@ -48,7 +48,8 @@ const CreativeTop = ({ topAdvertisers = [], viewport = "desktop" }) => {
           title="Creative Details"
           onClose={handleCloseDialog}
           onConfirm={handleConfirm}
-          informative={true} // Or false if you want Save/Cancel
+          informative={true}
+          customWidth="800px"
         >
           <CreativeCard
             viewport={viewport}

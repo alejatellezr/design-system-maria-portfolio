@@ -10,12 +10,14 @@ const Dialog = ({
   onClose,
   onConfirm,
   informative,
+  customWidth = "auto",
+  customHeight = "auto",
 }) => {
   if (!isOpen) return null;
 
   return (
     <article className="x-dialog__overlay" role="dialog" aria-modal="true">
-      <div className="x-dialog__container">
+      <div className="x-dialog__container" style={{ width: customWidth, height: customHeight }}>
         <div className="x-dialog__header">
           <h3 className="x-dialog__title x-font-subtitle">{title}</h3>
           <Button

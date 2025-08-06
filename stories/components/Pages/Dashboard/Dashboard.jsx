@@ -54,7 +54,7 @@ const Dashboard = () => {
             <div className="x-dashboard__widgets-left">
               <div className="x-dashboard__widgets-small-charts">
                 <TopValueCard
-                  title={PositiveCard.TopCardTitle}
+                  TopCardTitle={PositiveCard.TopCardTitle}
                   status={PositiveCard.status}
                   TopCardNote={PositiveCard.TopCardNote}
                   TopCardPercentage={PositiveCard.TopCardPercentage}
@@ -64,7 +64,7 @@ const Dashboard = () => {
                   viewport={PositiveCard.viewport}
                 />
                 <TopValueCard
-                  title={NegativeCard.TopCardTitle}
+                  TopCardTitle={NegativeCard.TopCardTitle}
                   status={NegativeCard.status}
                   TopCardNote={NegativeCard.TopCardNote}
                   TopCardPercentage={NegativeCard.TopCardPercentage}
@@ -86,11 +86,10 @@ const Dashboard = () => {
           </article>
         </section>
       </section>
-
-      {/*<Footer
+      <Footer
         brandName={footerData.brandName}
         currentYear={footerData.currentYear}
-      />*/}
+      />
     </body>
   );
 };

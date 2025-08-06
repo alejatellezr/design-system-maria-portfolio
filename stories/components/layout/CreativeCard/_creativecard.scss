@@ -58,6 +58,7 @@
   }
 
   &__subitem-value{
+    width: calc(100% - 120px - var(--gap-s)*2);
     color:var(--color-text-default);
     margin: var(--gap-s);
   }
