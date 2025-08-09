@@ -4,6 +4,7 @@
   line-height: var(--line-height-xl);
   font-weight: var(--font-weight-bold);
   letter-spacing: var(--letter-spacing);
+  margin: var(--gap-l) var(--gap-none);
 }
 
 .x-font-subtitle {
@@ -12,6 +13,7 @@
   line-height: var(--line-height-m);
   font-weight: var(--font-weight-bold);
   letter-spacing: var(--letter-spacing);
+  margin: var(--gap-l) var(--gap-none);
 }
 
 .x-font-16 {
@@ -20,6 +22,7 @@
   line-height: var(--line-height-sm);
   font-weight: var(--font-weight-regular);
   letter-spacing: var(--letter-spacing);
+  margin: var(--gap-ml) var(--gap-none);
 }
 
 .x-font-16-bold {
