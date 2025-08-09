@@ -1,0 +1,30 @@
+@import "/stories/styles/main.scss";
+
+.x-font {
+  @include flex-column;
+  gap: var(--gap-s);
+
+  &__header {
+    @include flex;
+    justify-content: space-between;
+    gap: var(--gap-ml);
+  }
+
+  &__preview {
+    @include flex-column;
+    gap: var(--gap-s);
+    width: 100%;
+  }
+
+  &__textarea {
+    width: 100%;
+    min-height: 200px;
+    padding: var(--gap-xxl) var(--gap-xl);
+    border: 1px solid var(--color-border-primary);
+    border-radius: var(--border-radius-default);
+    background-color: var(--surface-fourth);
+    white-space: pre-wrap;
+    resize: none;
+    box-sizing: border-box;
+  }
+}
