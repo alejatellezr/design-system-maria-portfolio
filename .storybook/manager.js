@@ -1,4 +1,5 @@
 import { addons } from "@storybook/manager-api";
+
 import { themes, create } from "@storybook/theming";
 
 // Create custom themes that align with your design system
@@ -61,7 +62,7 @@ const darkTheme = create({
 // Set up dynamic theme switching
 addons.setConfig({
   theme: lightTheme, // Default theme
-  initialActive: 'components', // Default active tab
+  initialActive: 'UI', // Default active tab
 });
 
 // Listen for theme changes and update manager theme accordingly
