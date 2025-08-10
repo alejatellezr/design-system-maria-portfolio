@@ -63,6 +63,11 @@ const preview = {
     backgrounds: {
       disable: true, // Disable default backgrounds since we handle theming differently
     },
+    options: {
+      storySort: {
+        order: ["UI","Pages","Tokens","Components"], // Put your desired first story at the start
+      },
+    },
   },
   tags: ["autodocs"],
 };

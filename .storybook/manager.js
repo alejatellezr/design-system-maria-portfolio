@@ -32,7 +32,7 @@ const lightTheme = create({
 
 const darkTheme = create({
   base: "dark",
-  brandTitle: "esign System Maria Tellez Portfolio",
+  brandTitle: "Design System Maria Tellez Portfolio",
   brandUrl: "#",
   brandTarget: "_self",
 
@@ -61,6 +61,7 @@ const darkTheme = create({
 // Set up dynamic theme switching
 addons.setConfig({
   theme: lightTheme, // Default theme
+  initialActive: 'components', // Default active tab
 });
 
 // Listen for theme changes and update manager theme accordingly
