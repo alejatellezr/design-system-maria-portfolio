@@ -62,7 +62,7 @@ const darkTheme = create({
 // Set up dynamic theme switching
 addons.setConfig({
   theme: lightTheme, // Default theme
-  initialActive: 'UI', // Default active tab
+  initialActive: 'UI', // Default active tab/page
 });
 
 // Listen for theme changes and update manager theme accordingly
